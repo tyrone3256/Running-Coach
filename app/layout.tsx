@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { BottomNav } from "@/components/bottom-nav";
+import { OfflineSync } from "@/components/offline-sync";
 import "./globals.css";
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
@@ -25,7 +26,10 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
   return (
     <html lang="id">
       <body className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}>
-        <div className="mx-auto min-h-dvh max-w-lg px-4 pt-4 pb-24">{children}</div>
+        <div className="mx-auto min-h-dvh max-w-lg px-4 pt-4 pb-24">
+          <OfflineSync />
+          {children}
+        </div>
         <BottomNav />
       </body>
     </html>

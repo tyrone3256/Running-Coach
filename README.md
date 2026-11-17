@@ -5,7 +5,7 @@ Coach lari personal (PWA, Bahasa Indonesia). Spesifikasi: [docs/SPEC.md](docs/SP
 ## Status milestone
 
 - [x] **M1** schema + RLS + seed + layar *Hari ini* & *Program* (read-only)
-- [ ] M2 logging + check-in + import FIT/GPX/TCX
+- [x] **M2** log manual & log cepat, check-in pagi, import FIT/GPX/TCX (deteksi rep otomatis), antrean offline
 - [ ] M3 rules engine R1–R13 + plan versioning
 - [ ] M4 AI coach + tools
 - [ ] M5 PWA install + push + deploy
@@ -20,10 +20,18 @@ npm install
 npm run dev          # http://localhost:3000
 ```
 
-Tanpa `.env.local`, app memakai `seed/plan.json` langsung (tanpa login). Pratinjau tanggal lain: `/?date=2027-02-11`.
+Tanpa `.env.local`, app memakai `seed/plan.json` langsung (tanpa login) dan menyimpan log/check-in ke `.local-data/db.json` (diabaikan git; diblok di produksi). Pratinjau tanggal lain: `/?date=2027-02-11`.
+
+Contoh file FIT untuk mencoba import (tempo W12, rep 3 berhenti di menit ke-6):
 
 ```bash
-npm test             # Vitest: pace/HR resolver, integritas seed, seed rows
+npx tsx scripts/make-sample-fit.ts sample-tempo.fit
+```
+
+Data dari Huawei Health: sambungkan Huawei Health ke Strava, lalu di Strava (web) buka aktivitas → ⋯ → *Export Original* / *Export GPX*, upload di **Log → Import file**. (Otomatis lewat Strava API di M6.)
+
+```bash
+npm test             # Vitest: pace/HR, seed, parser FIT/GPX/TCX, deteksi rep, safety, store
 npm run typecheck
 npm run lint
 ```
@@ -36,7 +44,7 @@ python scripts/parse_plan.py   # butuh openpyxl → seed/plan.json + seed/parse_
 
 ## Supabase (opsional di M1)
 
-1. Buat project di supabase.com, jalankan `supabase/migrations/20261117000000_init.sql` di SQL Editor.
+1. Buat project di supabase.com, jalankan semua file di `supabase/migrations/` (urut nama) di SQL Editor.
 2. Auth → Email: aktifkan magic link; Auth → URL Configuration: tambahkan `http://localhost:3000/auth/callback`.
 3. Isi `.env.local` dari `.env.example`, lalu:
    ```bash

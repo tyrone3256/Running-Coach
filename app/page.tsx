@@ -4,6 +4,10 @@ import { addDays, DAY_LABEL, dayKey, daysBetween, formatDateId, isValidIso, toda
 import { SessionCard } from "@/components/session-card";
 import { GYM_LABEL, SESSION_LABEL } from "@/lib/labels";
 import { Badge } from "@/components/ui/badge";
+import { CheckinForm } from "@/components/checkin-form";
+import { getStore } from "@/lib/data/store";
+import { formatPace } from "@/lib/engine/pace";
+import { formatDuration } from "@/lib/log/units";
 
 export const dynamic = "force-dynamic";
 
@@ -21,6 +25,12 @@ export default async function TodayPage({
   const next = plan.sessions.find((s) => s.date > today);
   const gym = GYM_LABEL[dayKey(today)];
   const toRace = daysBetween(today, plan.race.date);
+  const store = getStore();
+  const [checkin, todaysLogs] = await Promise.all([
+    store.getCheckin(today),
+    store.listLogs({ from: today, to: today }),
+  ]);
+  const logged = session ? todaysLogs.find((l) => l.session_key === session.id) : todaysLogs[0];
 
   return (
     <main className="flex flex-col gap-4">
@@ -55,6 +65,8 @@ export default async function TodayPage({
         </section>
       )}
 
+      <CheckinForm date={today} initial={checkin} />
+
       {session ? (
         <SessionCard session={session} pace={plan.paceProfile} hr={plan.hrProfile} showDate={false} />
       ) : inProgram ? (
@@ -62,6 +74,25 @@ export default async function TodayPage({
           <p className="text-lg font-semibold">REST lari</p>
           <p className="text-sm text-muted-foreground">Pemulihan. Foam roll & mobility.</p>
         </section>
+      ) : null}
+
+      {logged ? (
+        <Link href={`/log/${logged.id}`} className="flex items-center justify-between rounded-xl border border-emerald-500/40 bg-emerald-50 px-4 py-3 text-sm dark:bg-emerald-950/40">
+          <span className="font-medium">✓ Sudah di-log</span>
+          <span className="tabular-nums">
+            {(logged.distance_m / 1000).toLocaleString("id-ID", { maximumFractionDigits: 2 })} km · {formatDuration(logged.duration_s)}
+            {logged.avg_pace_s ? ` · ${formatPace(logged.avg_pace_s)}` : ""} · RPE {logged.rpe}
+          </span>
+        </Link>
+      ) : session ? (
+        <div className="grid grid-cols-2 gap-2">
+          <Link href={`/log/new?session=${session.id}&quick=1`} className="flex h-12 items-center justify-center rounded-xl bg-primary font-medium text-primary-foreground">
+            Log cepat
+          </Link>
+          <Link href="/log/import" className="flex h-12 items-center justify-center rounded-xl border font-medium">
+            Import file
+          </Link>
+        </div>
       ) : null}
 
       {inProgram && gym && (
