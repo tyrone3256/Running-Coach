@@ -8,7 +8,7 @@ Coach lari personal (PWA, Bahasa Indonesia). Spesifikasi: [docs/SPEC.md](docs/SP
 - [x] **M2** log manual & log cepat, check-in pagi, import FIT/GPX/TCX (deteksi rep otomatis), antrean offline
 - [x] **M3** adaptive engine R1–R13 (deterministik, 1 test file per rule + acceptance), plan versioning dengan diff, approve/tolak, revert
 - [x] **M4** AI coach (Claude, server-only) dengan 11 tool di atas engine, safety pre-filter, feedback otomatis per log
-- [ ] M5 PWA install + push + deploy
+- [x] **M5** PWA (install, offline), web push pagi/sore, cron Vercel, konfigurasi deploy, E2E Playwright
 - [ ] M6 Strava (jalur utama data Huawei Health → Strava)
 
 ## Jalankan lokal
@@ -34,6 +34,7 @@ Data dari Huawei Health: sambungkan Huawei Health ke Strava, lalu di Strava (web
 npm test             # Vitest: pace/HR, seed, parser, safety, store, engine R1–R13, acceptance, property test guardrail
 npm run typecheck
 npm run lint
+npm run build && npm run test:e2e   # Playwright di build produksi (memakai Edge terpasang; PW_CHANNEL=chrome untuk Chrome)
 ```
 
 ## Adaptive engine (M3)
@@ -65,7 +66,36 @@ ANTHROPIC_MODEL=claude-opus-5-5   # opsional; default claude-opus-5-5
 python scripts/parse_plan.py   # butuh openpyxl → seed/plan.json + seed/parse_report.md
 ```
 
-## Supabase (opsional di M1)
+## PWA & notifikasi (M5)
+
+- Service worker (`public/sw.js`, aktif di build produksi): aset di-cache, halaman yang pernah dibuka bisa dilihat offline, halaman lain → `/offline`. Log & check-in offline tetap lewat antrean IndexedDB (M2). Logout menghapus cache halaman & riwayat chat.
+- **Hari ini → ⚙ Pengaturan**: pasang app, aktifkan/matikan notifikasi, kirim tes.
+- Cron (`vercel.json`): `05:00 WIB` engine harian + notifikasi sesi hari ini/check-in (hari tanpa lari hanya bila ada perubahan menunggu persetujuan); `19:00 WIB` pengingat log bila sesi hari ini belum dicatat. Saat hold red flag: hanya pengingat ke dokter.
+- Cron berjalan tanpa sesi login: route `/api/cron/*` hanya menerima `Authorization: Bearer $CRON_SECRET`, lalu memakai service-role key **terbatas pada akun `OWNER_EMAIL`**.
+
+## Deploy ke Vercel
+
+1. **Supabase** (lihat bagian bawah): jalankan semua migrasi, lalu `npm run seed:supabase` sekali dari laptop.
+2. **VAPID key** untuk push (sekali):
+   ```bash
+   node -e "import('web-push').then(w=>console.log(w.generateVAPIDKeys()))"
+   ```
+3. **Vercel**: import repo → Framework Next.js. Environment Variables (Production):
+   | Variabel | Isi |
+   |---|---|
+   | `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY` | dari Supabase → Project Settings → API |
+   | `SUPABASE_SERVICE_ROLE_KEY` | service role (server only; hanya dipakai cron) |
+   | `OWNER_EMAIL` | email login kamu |
+   | `ANTHROPIC_API_KEY`, `ANTHROPIC_MODEL` | coach AI (model opsional) |
+   | `NEXT_PUBLIC_VAPID_PUBLIC_KEY`, `VAPID_PRIVATE_KEY` | dari langkah 2 |
+   | `VAPID_SUBJECT` | `mailto:` email kamu |
+   | `CRON_SECRET` | string acak panjang (`openssl rand -hex 32`) — Vercel mengirimnya otomatis ke cron |
+4. Supabase → Auth → URL Configuration: Site URL = domain Vercel, tambahkan `https://<domain>/auth/callback` ke Redirect URLs.
+5. Deploy, buka di Chrome Android → login magic link → ⋮ **Instal aplikasi** → ⚙ Pengaturan → **Aktifkan notifikasi** → **Kirim tes**.
+
+Region fungsi `sin1` (Singapura, terdekat ke Jakarta). Paket Hobby cukup: 2 cron harian.
+
+## Supabase
 
 1. Buat project di supabase.com, jalankan semua file di `supabase/migrations/` (urut nama) di SQL Editor.
 2. Auth → Email: aktifkan magic link; Auth → URL Configuration: tambahkan `http://localhost:3000/auth/callback`.

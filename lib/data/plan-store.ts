@@ -4,7 +4,7 @@ import path from "node:path";
 import seed from "@/seed/plan.json";
 import type { Notice, PlanChangeRecord, PlanSnapshot, SafetyEvent } from "@/lib/engine/model";
 import type { PlanSeed } from "@/lib/engine/types";
-import { createSupabaseServer, supabaseConfigured } from "@/lib/supabase/server";
+import { createSupabaseServer, currentUserId, supabaseConfigured } from "@/lib/supabase/server";
 import { vdotFromRace } from "@/lib/engine/vdot";
 
 export interface PlanStore {
@@ -116,11 +116,7 @@ export function filePlanStore(dir = process.env.LOCAL_DATA_DIR ?? path.join(proc
 // ------------------------------------------------------------------ Supabase
 function supabasePlanStore(): PlanStore {
   const db = () => createSupabaseServer();
-  const uid = async () => {
-    const { data } = await (await db()).auth.getUser();
-    if (!data.user) throw new Error("Belum login");
-    return data.user.id;
-  };
+  const uid = currentUserId;
   const check = <T,>(res: { data: T; error: unknown }) => {
     if (res.error) throw new Error(JSON.stringify(res.error));
     return res.data;

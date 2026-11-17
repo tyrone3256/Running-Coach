@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Settings } from "lucide-react";
 import { getPlan, sessionByDate, weekOf } from "@/lib/data/plan";
 import { addDays, DAY_LABEL, dayKey, daysBetween, formatDateId, isValidIso, todayIso } from "@/lib/dates";
 import { SessionCard } from "@/components/session-card";
@@ -54,7 +55,12 @@ export default async function TodayPage({
       <header className="flex items-end justify-between gap-2">
         <div>
           <p className="text-sm text-muted-foreground">{formatDateId(today)}</p>
-          <h1 className="text-2xl font-semibold">Hari ini</h1>
+          <h1 className="flex items-center gap-2 text-2xl font-semibold">
+            Hari ini
+            <Link href="/settings" aria-label="Pengaturan" className="text-muted-foreground hover:text-foreground">
+              <Settings className="size-5" aria-hidden />
+            </Link>
+          </h1>
         </div>
         <div className="text-right text-sm">
           {week && (

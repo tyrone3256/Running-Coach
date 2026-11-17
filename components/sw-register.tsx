@@ -1,0 +1,12 @@
+"use client";
+import { useEffect } from "react";
+
+/** Daftarkan service worker (produksi saja; di dev bentrok dengan HMR). */
+export function SwRegister() {
+  useEffect(() => {
+    if (!("serviceWorker" in navigator)) return;
+    if (process.env.NODE_ENV !== "production") return;
+    navigator.serviceWorker.register("/sw.js", { scope: "/" }).catch(() => {});
+  }, []);
+  return null;
+}

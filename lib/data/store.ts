@@ -5,7 +5,7 @@ import path from "node:path";
 import type { CheckinInput, WorkoutLog, WorkoutLogInput } from "@/lib/log/schema";
 import { assessLogSafety } from "@/lib/log/safety";
 import { paceOf } from "@/lib/log/units";
-import { createSupabaseServer, supabaseConfigured } from "@/lib/supabase/server";
+import { createSupabaseServer, currentUserId, supabaseConfigured } from "@/lib/supabase/server";
 
 export type Checkin = CheckinInput & { created_at: string };
 
@@ -103,11 +103,7 @@ export function fileStore(dir = process.env.LOCAL_DATA_DIR ?? path.join(process.
 // ------------------------------------------------------------------ Supabase (RLS)
 function supabaseStore(): Store {
   const db = () => createSupabaseServer();
-  const uid = async () => {
-    const { data, error } = await (await db()).auth.getUser();
-    if (error || !data.user) throw new Error("Belum login");
-    return data.user.id;
-  };
+  const uid = currentUserId;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const toLog = (r: any): WorkoutLog => ({
     id: r.id, created_at: r.created_at, date: r.date, session_key: r.session_key,

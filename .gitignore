@@ -45,3 +45,7 @@ __pycache__/
 
 # data lokal (mode tanpa Supabase)
 .local-data/
+
+# Playwright
+/test-results/
+/playwright-report/

@@ -159,6 +159,14 @@ Setiap rule punya unit test minimal: 1 kasus memicu, 1 kasus tidak, 1 kasus bata
 - Feedback per log: mode baca saja (tool ubah plan tidak dikirim), disimpan di `workout_logs.coach_feedback`. Log STOP tidak mendapat feedback LLM.
 - Riwayat chat di localStorage (belum disinkronkan antar perangkat).
 
+### 7.2 Catatan implementasi M5
+- PWA: `app/manifest.ts`, ikon digambar di server (`/pwa-icon/[size]`, termasuk maskable), service worker vanilla `public/sw.js` (cache-first untuk `/_next/static`, network-first + salinan offline untuk halaman/RSC, fallback `/offline`; `/api`, `/auth`, `/login` tidak pernah di-cache).
+- Push: `web-push` + VAPID, tabel `push_subscriptions` (RLS), subscription 404/410 dihapus otomatis.
+- Cron Vercel 05:00 & 19:00 WIB (`0 22 * * *`, `0 12 * * *` UTC). Tanpa cookie login, cron memakai service-role client lewat `runAsOwner()` (AsyncLocalStorage) dengan user id dari `OWNER_EMAIL`. Ini aman karena allowlist hanya mengizinkan satu akun; bila suatu saat multi-user, query cron wajib difilter `user_id`.
+- Isi notifikasi: fungsi murni `lib/push/messages.ts` (diuji). Saat hold: tidak ada dorongan latihan.
+- Header keamanan dasar (nosniff, X-Frame-Options DENY, Referrer-Policy, Permissions-Policy).
+- E2E Playwright di build produksi: navigasi, manifest/ikon, offline via SW, API key palsu tidak muncul di JS client, chat red flag → hold → clearance, auth cron.
+
 ## 8. Hasil parsing & keputusan
 
 **Status (2026-11-17):** D1–D4, D7–D11 diterapkan sesuai usulan (D1 = kode `TJOG` 390–420). **D5 & D6 masih terbuka** — W12 dan W27 ditandai `guardrail_exception: pending_decision` di seed dan tampil ⚠ di layar Program.
