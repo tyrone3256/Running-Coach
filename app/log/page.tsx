@@ -6,11 +6,13 @@ import { formatPace } from "@/lib/engine/pace";
 import { formatDuration } from "@/lib/log/units";
 import { Badge } from "@/components/ui/badge";
 import { SESSION_LABEL } from "@/lib/labels";
+import { StravaInboxList } from "@/components/strava-inbox-list";
+import { pendingInbox } from "@/lib/strava/inbox";
 
 export const dynamic = "force-dynamic";
 
 export default async function LogListPage() {
-  const [plan, logs] = await Promise.all([getPlan(), getStore().listLogs({ limit: 100 })]);
+  const [plan, logs, stravaInbox] = await Promise.all([getPlan(), getStore().listLogs({ limit: 100 }), pendingInbox()]);
   const byId = new Map(plan.sessions.map((s) => [s.id, s]));
   return (
     <main className="flex flex-col gap-4">
@@ -21,7 +23,8 @@ export default async function LogListPage() {
           <Link href="/log/new" className="rounded-lg bg-primary px-3 py-2 text-primary-foreground">+ Log</Link>
         </div>
       </header>
-      {logs.length === 0 && (
+      <StravaInboxList items={stravaInbox} />
+      {logs.length === 0 && stravaInbox.length === 0 && (
         <p className="rounded-xl border bg-card p-4 text-sm text-muted-foreground">
           Belum ada log. Setelah lari, tekan <b>+ Log</b> (manual, ±30 detik) atau <b>Import file</b>.
         </p>

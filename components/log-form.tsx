@@ -206,7 +206,7 @@ export function LogForm({ initial, sessions, quick, importMeta, defaultHrSource 
           <p>Nyeri tercatat ({result.safety.reasons.join(", ")}). Sesi kualitas berikutnya sebaiknya ditunda dan cek ke dokter/fisioterapis bila tidak membaik dalam 2 hari.</p>
         )}
         <EngineOutcome o={result.engine} />
-        <p className="text-xs text-muted-foreground">Feedback coach (AI) menyusul di M4.</p>
+        <p className="text-xs text-muted-foreground">Feedback coach ada di halaman detail log (menu Log).</p>
       </Done>
     );
   }
@@ -347,7 +347,7 @@ export function LogForm({ initial, sessions, quick, importMeta, defaultHrSource 
             <fieldset className="flex flex-col gap-2">
               <legend className="mb-1 text-sm text-muted-foreground">Rep{session?.rep_label ? ` (${session.rep_label})` : ""}</legend>
               {reps.map((r, i) => (
-                <div key={i} className="grid grid-cols-[2rem_1fr_1fr_auto] items-center gap-2">
+                <div key={i} className="grid grid-cols-[2rem_minmax(0,1fr)_minmax(0,1fr)_auto] items-center gap-2">
                   <span className="text-sm tabular-nums">#{r.index}</span>
                   <input aria-label={`Pace rep ${r.index}`} className={cn(inputCls, "h-10")} placeholder="pace 4:50"
                     defaultValue={r.pace_s ? formatPace(r.pace_s) : ""}

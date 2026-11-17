@@ -46,6 +46,8 @@ test("API key tidak pernah ada di JS client", async ({ page, request }) => {
   for (const url of scripts) {
     const body = await (await request.get(url)).text();
     expect(body, url).not.toContain("sk-ant-e2e-dummy");
+    expect(body, url).not.toContain("e2e-secret"); // STRAVA_CLIENT_SECRET
+    expect(body, url).not.toContain("e2e-cron-secret");
     expect(body, url).not.toContain("api.anthropic.com");
   }
   const html = await (await request.get("/coach")).text();

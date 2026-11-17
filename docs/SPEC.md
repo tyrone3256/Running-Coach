@@ -167,6 +167,16 @@ Setiap rule punya unit test minimal: 1 kasus memicu, 1 kasus tidak, 1 kasus bata
 - Header keamanan dasar (nosniff, X-Frame-Options DENY, Referrer-Policy, Permissions-Policy).
 - E2E Playwright di build produksi: navigasi, manifest/ikon, offline via SW, API key palsu tidak muncul di JS client, chat red flag → hold → clearance, auth cron.
 
+### 7.3 Catatan implementasi M6 (Strava)
+- Jalur data utama: Huawei Health → Strava → webhook → inbox. Cadangan: cron (2 hari) dan sinkron manual (14 hari); import file tetap ada.
+- **Draft, bukan log otomatis**: aktivitas dikonversi dengan pipeline import yang sama (`buildDraft`: sesi dicocokkan dari tanggal WIB, deteksi rep, time-in-zone) lalu disimpan di `strava_inbox`. RPE kosong → skema log menolak sampai atlet mengisinya. Ini memenuhi "jangan mengarang data" dan memastikan cek red flag/nyeri selalu melewati atlet.
+- Dedupe: `external_id = strava:<id>`, ditambah pencocokan tanggal + jarak & durasi ±3% terhadap log yang sudah ada (mis. import FIT manual).
+- Webhook tidak ditandatangani Strava → diverifikasi lewat `subscription_id` (env) + `owner_id` = athlete yang terhubung; isi event tidak dipercaya (data selalu diambil ulang dari API dengan token sendiri); balasan 200 segera, proses di `after()`. Event deauthorize → koneksi dihapus; aktivitas dihapus → draft pending dihapus, log tetap.
+- Token: form-encoded ke `/oauth/token`, refresh bila <5 menit tersisa dan refresh token baru selalu disimpan (Strava merotasinya). Putuskan → `/oauth/revoke` (Basic auth; endpoint `deauthorize` lama hanya didukung sampai Juni 2027).
+- Streams diterima dalam dua bentuk (array `[{type,data}]` seperti di dokumentasi, atau objek per type). Cadence per-kaki dideteksi heuristik (median <120 → ×2) karena dokumentasi tidak menyebutnya.
+- Brand: tombol "Connect with Strava" (#FC5200), "Powered by Strava", tautan "View on Strava".
+- Belum diuji dengan akun Strava sungguhan (butuh app Strava + domain publik). Logika diuji dengan fixture + fetch tiruan (18 test) dan E2E alur draft → log.
+
 ## 8. Hasil parsing & keputusan
 
 **Status (2026-11-17):** D1–D4, D7–D11 diterapkan sesuai usulan (D1 = kode `TJOG` 390–420). **D5 & D6 masih terbuka** — W12 dan W27 ditandai `guardrail_exception: pending_decision` di seed dan tampil ⚠ di layar Program.

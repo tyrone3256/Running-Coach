@@ -6,6 +6,8 @@ import { SessionCard } from "@/components/session-card";
 import { GYM_LABEL, SESSION_LABEL } from "@/lib/labels";
 import { Badge } from "@/components/ui/badge";
 import { CheckinForm } from "@/components/checkin-form";
+import { StravaInboxList } from "@/components/strava-inbox-list";
+import { pendingInbox } from "@/lib/strava/inbox";
 import { getStore } from "@/lib/data/store";
 import { formatPace } from "@/lib/engine/pace";
 import { formatDuration } from "@/lib/log/units";
@@ -44,7 +46,7 @@ export default async function TodayPage({
   ]);
   const logged = session ? todaysLogs.find((l) => l.session_key === session.id) : todaysLogs[0];
   const ps = getPlanStore();
-  const [notices, changes] = await Promise.all([ps.listNotices(), ps.listChanges()]);
+  const [notices, changes, stravaInbox] = await Promise.all([ps.listNotices(), ps.listChanges(), pendingInbox()]);
   const todaysNotices = notices.filter((n) => n.date === today || (n.level === "warn" && n.date < today && daysBetween(n.date, today) <= 2));
   const pending = changes.filter((c) => c.mode === "pending").length;
   const recentAuto = changes.filter((c) => c.mode === "auto" && !c.reverted_by && daysBetween(c.date, today) <= 2 && c.date <= today);
@@ -89,6 +91,7 @@ export default async function TodayPage({
       )}
 
       {hold.active && <HoldBanner reasons={hold.reasons} since={hold.since} />}
+      <StravaInboxList items={stravaInbox} />
 
       {!hold.active && pending > 0 && (
         <Link href="/program/changes" className="rounded-xl border border-amber-500/60 bg-amber-50 px-4 py-3 text-sm dark:bg-amber-950/40">

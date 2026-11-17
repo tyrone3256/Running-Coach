@@ -9,7 +9,7 @@ Coach lari personal (PWA, Bahasa Indonesia). Spesifikasi: [docs/SPEC.md](docs/SP
 - [x] **M3** adaptive engine R1–R13 (deterministik, 1 test file per rule + acceptance), plan versioning dengan diff, approve/tolak, revert
 - [x] **M4** AI coach (Claude, server-only) dengan 11 tool di atas engine, safety pre-filter, feedback otomatis per log
 - [x] **M5** PWA (install, offline), web push pagi/sore, cron Vercel, konfigurasi deploy, E2E Playwright
-- [ ] M6 Strava (jalur utama data Huawei Health → Strava)
+- [x] **M6** Strava: OAuth, webhook + sinkron cadangan, aktivitas masuk sebagai draft yang kamu lengkapi (RPE & rasa)
 
 ## Jalankan lokal
 
@@ -28,7 +28,7 @@ Contoh file FIT untuk mencoba import (tempo W12, rep 3 berhenti di menit ke-6):
 npx tsx scripts/make-sample-fit.ts sample-tempo.fit
 ```
 
-Data dari Huawei Health: sambungkan Huawei Health ke Strava, lalu di Strava (web) buka aktivitas → ⋯ → *Export Original* / *Export GPX*, upload di **Log → Import file**. (Otomatis lewat Strava API di M6.)
+Data dari Huawei Health: sambungkan Huawei Health ke Strava, lalu di Strava (web) buka aktivitas → ⋯ → *Export Original* / *Export GPX*, upload di **Log → Import file**. Sejak M6 ini otomatis lewat Strava (lihat bagian Strava); import file tetap ada sebagai cadangan.
 
 ```bash
 npm test             # Vitest: pace/HR, seed, parser, safety, store, engine R1–R13, acceptance, property test guardrail
@@ -73,6 +73,27 @@ python scripts/parse_plan.py   # butuh openpyxl → seed/plan.json + seed/parse_
 - Cron (`vercel.json`): `05:00 WIB` engine harian + notifikasi sesi hari ini/check-in (hari tanpa lari hanya bila ada perubahan menunggu persetujuan); `19:00 WIB` pengingat log bila sesi hari ini belum dicatat. Saat hold red flag: hanya pengingat ke dokter.
 - Cron berjalan tanpa sesi login: route `/api/cron/*` hanya menerima `Authorization: Bearer $CRON_SECRET`, lalu memakai service-role key **terbatas pada akun `OWNER_EMAIL`**.
 
+## Strava (M6)
+
+Alur: jam Huawei → Huawei Health → (sinkron ke Strava, atur di Huawei Health → Saya → Berbagi data) → Strava → app ini.
+
+- Setiap lari baru masuk sebagai **draft** (jarak, durasi, HR, cadence, rep terdeteksi, sesi program dicocokkan dari tanggal). Draft **tidak** otomatis jadi log: RPE, rasa, nyeri, dan red flag hanya kamu yang tahu. Notifikasi "Lari baru dari Strava" → buka → isi RPE → **Simpan log** → engine berjalan.
+- Bukan lari (Ride/Walk) dilewati. Aktivitas yang sudah kamu import manual (tanggal sama, jarak & durasi ±3%) tidak dobel. Draft bisa diabaikan.
+- Masuk lewat webhook (hampir seketika). Cadangan: cron 05:00/19:00 menarik 2 hari terakhir; tombol **Sinkron 14 hari** di ⚙ Pengaturan.
+- Token Strava hanya disimpan di server (tabel `strava_connections`, RLS); refresh token otomatis. **Putuskan** mencabut akses di Strava (`/oauth/revoke`).
+
+Setup (sekali):
+1. https://www.strava.com/settings/api → buat app. *Authorization Callback Domain* = domain Vercel (lokal: `localhost`).
+2. Vercel env: `STRAVA_CLIENT_ID`, `STRAVA_CLIENT_SECRET`, `STRAVA_WEBHOOK_VERIFY_TOKEN` (string acak). Redeploy.
+3. Daftarkan webhook (app harus sudah live karena Strava langsung memvalidasi):
+   ```bash
+   npx tsx --env-file=.env.local scripts/strava-webhook.ts create https://<domain>/api/strava/webhook
+   ```
+   Isi `STRAVA_SUBSCRIPTION_ID` di Vercel dengan id yang dicetak, redeploy. (`view` / `delete <id>` untuk mengelola.)
+4. ⚙ Pengaturan → **Connect with Strava** → centang izin melihat aktivitas (termasuk "Only you").
+
+App Strava baru berstatus *Single Player Mode* (1 atlet) — cukup untuk app ini. Batas API: 100 request/15 menit, 1.000/hari (satu lari ≈ 2–3 request).
+
 ## Deploy ke Vercel
 
 1. **Supabase** (lihat bagian bawah): jalankan semua migrasi, lalu `npm run seed:supabase` sekali dari laptop.
@@ -89,6 +110,7 @@ python scripts/parse_plan.py   # butuh openpyxl → seed/plan.json + seed/parse_
    | `ANTHROPIC_API_KEY`, `ANTHROPIC_MODEL` | coach AI (model opsional) |
    | `NEXT_PUBLIC_VAPID_PUBLIC_KEY`, `VAPID_PRIVATE_KEY` | dari langkah 2 |
    | `VAPID_SUBJECT` | `mailto:` email kamu |
+   | `STRAVA_CLIENT_ID`, `STRAVA_CLIENT_SECRET`, `STRAVA_WEBHOOK_VERIFY_TOKEN`, `STRAVA_SUBSCRIPTION_ID` | lihat bagian Strava |
    | `CRON_SECRET` | string acak panjang (`openssl rand -hex 32`) — Vercel mengirimnya otomatis ke cron |
 4. Supabase → Auth → URL Configuration: Site URL = domain Vercel, tambahkan `https://<domain>/auth/callback` ke Redirect URLs.
 5. Deploy, buka di Chrome Android → login magic link → ⋮ **Instal aplikasi** → ⚙ Pengaturan → **Aktifkan notifikasi** → **Kirim tes**.

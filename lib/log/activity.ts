@@ -18,7 +18,9 @@ export interface Lap {
 }
 
 export interface ParsedActivity {
-  format: "fit" | "gpx" | "tcx";
+  format: "fit" | "gpx" | "tcx" | "strava";
+  /** id sumber (mis. "strava:123") untuk dedupe; default dari format+start+jarak */
+  external_id?: string;
   start: string; // ISO UTC
   device: string | null;
   samples: Sample[];

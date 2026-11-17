@@ -74,7 +74,7 @@ export function buildDraft(
       red_flags: [],
       notes: null,
       source: act.format,
-      external_id: `${act.format}:${act.start}:${Math.round(sum.distance_m)}`,
+      external_id: act.external_id ?? `${act.format}:${act.start}:${Math.round(sum.distance_m)}`,
       streams: sum.streams,
     },
     reps_detected: reps.length,

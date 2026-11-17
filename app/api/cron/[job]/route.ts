@@ -4,6 +4,9 @@ import { loadState, processTrigger } from "@/lib/data/engine-service";
 import { eveningMessage, morningMessage } from "@/lib/push/messages";
 import { pushConfigured, sendToAll } from "@/lib/push/send";
 import { runAsOwner, supabaseConfigured } from "@/lib/supabase/server";
+import { ingestDeps, stravaConfigured } from "@/lib/strava/server";
+import { getStravaStore } from "@/lib/strava/store";
+import { syncRecent } from "@/lib/strava/ingest";
 
 export const maxDuration = 60;
 
@@ -22,13 +25,17 @@ export async function GET(req: NextRequest, { params }: { params: Promise<{ job:
   if (job !== "morning" && job !== "evening") return NextResponse.json({ error: "job tidak dikenal" }, { status: 404 });
 
   const work = async () => {
+    // cadangan webhook: tarik aktivitas Strava 2 hari terakhir (draft masuk inbox, tidak jadi log otomatis)
+    const strava = stravaConfigured() && (await getStravaStore().getConnection())
+      ? await syncRecent(ingestDeps(), 2).catch((e) => ({ error: (e as Error).message }))
+      : null;
     // pagi: jalankan engine harian dulu (sesi terlewat, ACWR) supaya notifikasi memakai plan terbaru
     const engine = job === "morning" ? await processTrigger({ kind: "daily" }) : null;
     const state = await loadState();
     const msg = job === "morning" ? morningMessage(state) : eveningMessage(state);
     const push = msg && pushConfigured() ? await sendToAll(msg) : null;
     return {
-      job, today: state.today, message: msg,
+      job, today: state.today, message: msg, strava,
       engine: engine && { applied: engine.applied.length, pending: engine.pending.length, blocked: engine.blocked.length },
       push: push ?? (msg ? "push belum dikonfigurasi" : "tidak ada notifikasi"),
     };

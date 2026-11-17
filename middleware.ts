@@ -2,7 +2,8 @@ import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 
 // /api/cron: tanpa sesi login, dilindungi CRON_SECRET di route-nya sendiri
-const PUBLIC_PATHS = ["/login", "/auth", "/offline", "/api/cron"];
+// /api/strava/webhook: dipanggil Strava (tanpa login); diverifikasi subscription + athlete di route
+const PUBLIC_PATHS = ["/login", "/auth", "/offline", "/api/cron", "/api/strava/webhook"];
 
 export async function middleware(req: NextRequest) {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL;
