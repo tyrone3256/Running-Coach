@@ -2,7 +2,7 @@ import "server-only";
 import { mkdir, readFile, rename, writeFile } from "node:fs/promises";
 import path from "node:path";
 import seed from "@/seed/plan.json";
-import type { Notice, PlanChangeRecord, PlanSnapshot } from "@/lib/engine/model";
+import type { Notice, PlanChangeRecord, PlanSnapshot, SafetyEvent } from "@/lib/engine/model";
 import type { PlanSeed } from "@/lib/engine/types";
 import { createSupabaseServer, supabaseConfigured } from "@/lib/supabase/server";
 import { vdotFromRace } from "@/lib/engine/vdot";
@@ -18,6 +18,8 @@ export interface PlanStore {
   saveNotices(ns: Notice[]): Promise<void>;
   listClearances(): Promise<string[]>;
   addClearance(at: string, note: string | null): Promise<void>;
+  listSafetyEvents(): Promise<SafetyEvent[]>;
+  addSafetyEvent(e: SafetyEvent): Promise<void>;
 }
 
 export function seedSnapshot(): PlanSnapshot {
@@ -38,6 +40,7 @@ interface FileDb {
   changes: PlanChangeRecord[];
   notices: Array<Notice & { created_at: string }>;
   clearances: Array<{ at: string; note: string | null }>;
+  safety_events?: SafetyEvent[];
 }
 
 export function filePlanStore(dir = process.env.LOCAL_DATA_DIR ?? path.join(process.cwd(), ".local-data")): PlanStore {
@@ -46,7 +49,7 @@ export function filePlanStore(dir = process.env.LOCAL_DATA_DIR ?? path.join(proc
     try {
       return JSON.parse(await readFile(file, "utf-8")) as FileDb;
     } catch {
-      return { versions: [], changes: [], notices: [], clearances: [] };
+      return { versions: [], changes: [], notices: [], clearances: [], safety_events: [] };
     }
   };
   const save = async (db: FileDb) => {
@@ -97,6 +100,14 @@ export function filePlanStore(dir = process.env.LOCAL_DATA_DIR ?? path.join(proc
     async addClearance(at, note) {
       const db = await load();
       db.clearances.push({ at, note });
+      await save(db);
+    },
+    async listSafetyEvents() {
+      return (await load()).safety_events ?? [];
+    },
+    async addSafetyEvent(e) {
+      const db = await load();
+      (db.safety_events ??= []).push(e);
       await save(db);
     },
   };
@@ -227,6 +238,13 @@ function supabasePlanStore(): PlanStore {
     },
     async addClearance(at, note) {
       check(await (await db()).from("medical_clearances").insert({ user_id: await uid(), cleared_at: at, note }));
+    },
+    async listSafetyEvents() {
+      return ((check(await (await db()).from("safety_events").select("*")) ?? []) as Row[])
+        .map((r) => ({ created_at: r.created_at, date: r.date, reasons: r.reasons ?? [], source: r.source }));
+    },
+    async addSafetyEvent(e) {
+      check(await (await db()).from("safety_events").insert({ user_id: await uid(), ...e }));
     },
   };
 }

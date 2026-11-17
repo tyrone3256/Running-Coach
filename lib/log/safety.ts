@@ -5,7 +5,7 @@ import type { SafetyResult, WorkoutLogInput } from "./schema";
 
 // Kata kunci di teks bebas (catatan log / chat). Sengaja konservatif: lebih baik false positive.
 const RED_FLAG_PATTERNS: Array<[RegExp, string]> = [
-  [/nyeri\s*(di\s*)?dada|dada\s*(sakit|nyeri|sesak|tertekan|berat)|sakit\s*(di\s*)?dada|chest\s*pain/i, "nyeri dada"],
+  [/nyeri\s*(di\s*)?dada|dada\s*(ku\s*)?(terasa\s*|rasa(nya)?\s*|agak\s*|seperti\s*|kayak\s*)?(sakit|nyeri|sesak|tertekan|ditekan|berat|diremas|ketat)|sakit\s*(di\s*)?dada|chest\s*(pain|tight)/i, "nyeri dada"],
   [/sesak\s*(napas|nafas)?\s*(tidak|gak|nggak|ga)\s*wajar|sesak\s*berat|tidak\s*bisa\s*(napas|nafas)/i, "sesak tidak wajar"],
   [/pingsan|hampir\s*pingsan|mau\s*pingsan|kunang|black\s*out|blackout/i, "pingsan / hampir pingsan"],
   [/(berdebar|deg-?degan)\s*(tidak|gak|nggak|ga)\s*(teratur|beraturan)|jantung\s*(tidak|gak)\s*teratur|palpitasi|aritmia/i, "jantung berdebar tidak teratur"],

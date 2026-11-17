@@ -9,7 +9,7 @@ const ITEMS = [
   { href: "/program", label: "Program", icon: CalendarDays, ready: true },
   { href: "/log", label: "Log", icon: NotebookPen, ready: true },
   { href: "/insights", label: "Insights", icon: LineChart, ready: false },
-  { href: "/coach", label: "Coach", icon: MessageCircle, ready: false },
+  { href: "/coach", label: "Coach", icon: MessageCircle, ready: true },
 ];
 
 export function BottomNav() {

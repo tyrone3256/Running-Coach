@@ -13,6 +13,7 @@
     "seed:supabase": "tsx --env-file=.env.local scripts/seed-supabase.ts"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^1.9.0",
     "@base-ui/react": "^1.9.0",
     "@garmin/fitsdk": "^21.221.0",
     "@supabase/ssr": "^0.12.7",

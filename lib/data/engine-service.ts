@@ -18,14 +18,15 @@ export interface EngineOutcome {
 export async function loadState(today = todayIso()): Promise<EngineState> {
   const store = getStore();
   const ps = getPlanStore();
-  const [snapshot, logs, checkins, changes, clearances] = await Promise.all([
+  const [snapshot, logs, checkins, changes, clearances, safety_events] = await Promise.all([
     ps.getActive(),
     store.listLogs(),
     store.listCheckins("2000-01-01", "2100-12-31"), // satu pengguna: data kecil, muat semua
     ps.listChanges(),
     ps.listClearances(),
+    ps.listSafetyEvents(),
   ]);
-  return { today, snapshot, logs, checkins, changes, clearances };
+  return { today, snapshot, logs, checkins, changes, clearances, safety_events };
 }
 
 function record(p: Proposal, mode: PlanChangeRecord["mode"], today: string, extra: Partial<PlanChangeRecord> = {}): PlanChangeRecord {
@@ -146,4 +147,37 @@ export async function submitTest(input: TestInput) {
 
 export async function clearHold(note: string | null) {
   await getPlanStore().addClearance(new Date().toISOString(), note);
+}
+
+// ------------------------------------------------------------------ M4: coach AI
+/** Red flag dari chat → event keselamatan (memicu hold seperti log STOP). */
+export async function recordSafetyEvent(reasons: string[], date = todayIso()) {
+  await getPlanStore().addSafetyEvent({ created_at: new Date().toISOString(), date, reasons, source: "chat" });
+}
+
+/** Usulan coach: selalu disimpan sebagai pending (atau blocked bila melanggar guardrail). */
+export async function proposeCoachChange(input: {
+  title: string; reason: string; changes: Change[]; size: "small" | "large"; cues?: string[];
+}): Promise<PlanChangeRecord> {
+  const state = await loadState();
+  const p: Proposal = {
+    key: `coach:${randomUUID()}`, rule: "coach", size: input.size, title: input.title, reason: input.reason,
+    changes: input.changes, cues: input.cues,
+  };
+  const preview = applyProposal(state.snapshot, p.changes);
+  const v = validateChange(state.snapshot, preview.after, p.changes, state.today);
+  const rec = v.ok
+    ? record(p, "pending", state.today, { diff: preview.diff })
+    : record(p, "blocked", state.today, { diff: preview.diff, blocked_by: v.violations });
+  await getPlanStore().saveChange(rec);
+  return rec;
+}
+
+/** Coach hanya boleh menerapkan sendiri usulan KECIL miliknya. Usulan besar wajib disetujui user di UI. */
+export async function applyCoachChange(id: string) {
+  const c = await getPlanStore().getChange(id);
+  if (!c || c.rule !== "coach") throw new Error("Bukan usulan coach");
+  if (c.mode !== "pending") throw new Error(`Usulan sudah ${c.mode}`);
+  if (c.size !== "small") throw new Error("Perubahan besar: harus disetujui atlet sendiri lewat tombol Setujui");
+  return approveChange(id);
 }

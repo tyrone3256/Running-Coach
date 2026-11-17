@@ -3,7 +3,7 @@ import type { PacedCode, PaceProfile, PaceRange, Session, Week } from "./types";
 import type { WorkoutLog } from "@/lib/log/schema";
 
 export type RuleId =
-  | "R1" | "R2" | "R3" | "R4" | "R5" | "R6" | "R7" | "R8" | "R9" | "R10" | "R11" | "R12" | "R13" | "manual";
+  | "R1" | "R2" | "R3" | "R4" | "R5" | "R6" | "R7" | "R8" | "R9" | "R10" | "R11" | "R12" | "R13" | "manual" | "coach";
 
 /** Satu versi plan lengkap: sesi + pace profile + LTHR. */
 export interface PlanSnapshot {
@@ -110,6 +110,15 @@ export interface EngineState {
   changes: PlanChangeRecord[];
   /** tanggal user menyatakan sudah diperiksa dokter (membuka hold red flag) */
   clearances: string[];
+  /** red flag yang dilaporkan di luar log (mis. chat coach) — ikut memicu hold */
+  safety_events?: SafetyEvent[];
+}
+
+export interface SafetyEvent {
+  created_at: string;
+  date: string;
+  reasons: string[];
+  source: "chat";
 }
 
 export type Trigger =

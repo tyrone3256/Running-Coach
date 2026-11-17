@@ -146,7 +146,18 @@ Setiap rule punya unit test minimal: 1 kasus memicu, 1 kasus tidak, 1 kasus bata
 - LLM tidak punya akses tulis ke `sessions`; tool handler memanggil engine yang sama dengan UI.
 - **Safety pre-filter** (deterministik, sebelum LLM): kata kunci red-flag di log/chat → respons template "STOP + ke dokter (EKG/treadmill test)", sesi keras diblok sampai user menyatakan sudah diperiksa.
 - Persona & cue HR 170 diambil dari sheet 🫀 (start rep 5 dtk/km lebih lambat; pelankan 5–10 dtk/km tapi selesaikan rep; napas 2:2 tempo / 2:1 4×4; chunking 1 menit; cadence 170–180; mulai rep berikut saat HR <80% LTHR). Bedakan "berat tapi normal di ambang" vs red flag.
-- Model dari `ANTHROPIC_MODEL` (default yang direncanakan: model Claude terbaru, dicek ulang di dokumentasi saat M4); prompt caching untuk system prompt + profil.
+- Model dari `ANTHROPIC_MODEL` (default `claude-opus-5-5`); prompt caching untuk tools + system prompt statis.
+
+### 7.1 Catatan implementasi M4
+- Loop tool use manual di `/api/coach` (Messages API, beta endpoint untuk `fallbacks: "default"` pada model yang mendukung; effort `medium`; tanpa `tool_choice` paksa karena Opus 5.5 menolaknya).
+- `propose_plan_change` tidak menerima segmen/pace bebas: LLM memilih satu aksi (`make_easy`, `reduce_volume` 0,5–0,95, `split_reps` tempo/HM pace dengan total Z4 tetap, `rest`, `move` dalam ±6 hari, `shift_pace` −10…+30 dtk). Change dibangun dengan builder engine yang sama dengan R1–R13. Semua usulan coach disimpan `pending` (rule `coach`) atau `blocked` bila guardrail menolak.
+- `apply_plan_change` hanya untuk usulan coach berukuran small. Mempercepat pace selalu large. Large hanya lewat tombol Setujui.
+- `move` menolak: tanggal lewat, beda minggu, slot berisi sesi keras/long/race, sesi keras <48 jam dari sesi keras lain, sesi keras H-1 long run/shake-out/race, dan sesi keras ke hari Jumat.
+- `log_workout` menerima angka yang disebut atlet (bukan teks bebas yang diparse); engine langsung berjalan.
+- Red flag di chat → `safety_events` (tabel baru, RLS) → ikut `computeHold` seperti log STOP. Regex red flag diperluas ("dada terasa sesak", "dada berat", "chest tight").
+- Saat hold aktif, `propose_plan_change` ditolak dan system prompt memberi tahu model.
+- Feedback per log: mode baca saja (tool ubah plan tidak dikirim), disimpan di `workout_logs.coach_feedback`. Log STOP tidak mendapat feedback LLM.
+- Riwayat chat di localStorage (belum disinkronkan antar perangkat).
 
 ## 8. Hasil parsing & keputusan
 

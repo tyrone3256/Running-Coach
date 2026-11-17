@@ -9,6 +9,7 @@ import { RED_FLAGS, STOP_REASON_LABEL } from "@/lib/log/schema";
 import { STOP_MESSAGE } from "@/lib/log/safety";
 import { SessionCard } from "@/components/session-card";
 import { DeleteLogButton } from "@/components/delete-log-button";
+import { CoachFeedback } from "@/components/coach-feedback";
 
 export const dynamic = "force-dynamic";
 
@@ -92,6 +93,10 @@ export default async function LogDetailPage({ params }: { params: Promise<{ id: 
             </tbody>
           </table>
         </section>
+      )}
+
+      {log.safety.level !== "stop" && (
+        <CoachFeedback logId={log.id} initial={log.coach_feedback ?? null} aiReady={!!process.env.ANTHROPIC_API_KEY} />
       )}
 
       {session && (

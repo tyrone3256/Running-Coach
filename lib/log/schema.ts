@@ -72,6 +72,9 @@ export type WorkoutLog = WorkoutLogInput & {
   /** diisi engine (R13) */
   sensor_suspect?: boolean;
   sensor_suspect_reason?: string | null;
+  /** diisi coach AI (M4) */
+  coach_feedback?: string | null;
+  coach_feedback_at?: string | null;
 };
 
 export const checkinSchema = z.object({

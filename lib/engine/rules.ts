@@ -304,7 +304,7 @@ export function quickMoveTarget(snapshot: PlanSnapshot, missed: Session, today: 
   return null;
 }
 
-function moveChanges(snapshot: PlanSnapshot, s: Session, to: string, note: string): Change[] {
+export function moveChanges(snapshot: PlanSnapshot, s: Session, to: string, note: string): Change[] {
   const changes: Change[] = [];
   const occupant = sessionOnDate(snapshot, to);
   if (occupant) {
@@ -432,12 +432,16 @@ export function r09(state: EngineState, t: Trigger): RuleOut {
 export function computeHold(state: EngineState) {
   // clearances = timestamp ISO saat user menyatakan sudah diperiksa dokter
   const lastClear = state.clearances.slice().sort().pop() ?? "";
-  const flagged = state.logs.filter((l) => l.safety?.level === "stop" && l.created_at > lastClear);
+  const flagged = [
+    ...state.logs.filter((l) => l.safety?.level === "stop" && l.created_at > lastClear)
+      .map((l) => ({ date: l.date, reasons: l.safety.reasons })),
+    ...(state.safety_events ?? []).filter((e) => e.created_at > lastClear),
+  ];
   if (!flagged.length) return { active: false, since: null, reasons: [] as string[] };
   return {
     active: true,
     since: flagged.map((l) => l.date).sort()[0],
-    reasons: [...new Set(flagged.flatMap((l) => l.safety.reasons))],
+    reasons: [...new Set(flagged.flatMap((l) => l.reasons))],
   };
 }
 

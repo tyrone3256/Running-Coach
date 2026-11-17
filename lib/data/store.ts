@@ -9,13 +9,15 @@ import { createSupabaseServer, supabaseConfigured } from "@/lib/supabase/server"
 
 export type Checkin = CheckinInput & { created_at: string };
 
+export type LogAnnotationPatch = Partial<Pick<WorkoutLog, "sensor_suspect" | "sensor_suspect_reason" | "coach_feedback" | "coach_feedback_at">>;
+
 export interface Store {
   kind: "file" | "supabase";
   listLogs(opts?: { from?: string; to?: string; limit?: number }): Promise<WorkoutLog[]>;
   getLog(id: string): Promise<WorkoutLog | null>;
   saveLog(input: WorkoutLogInput): Promise<{ log: WorkoutLog; duplicate: boolean }>;
   deleteLog(id: string): Promise<void>;
-  annotateLog(id: string, a: { sensor_suspect: boolean; sensor_suspect_reason: string | null }): Promise<void>;
+  annotateLog(id: string, a: LogAnnotationPatch): Promise<void>;
   getCheckin(date: string): Promise<Checkin | null>;
   listCheckins(from: string, to: string): Promise<Checkin[]>;
   saveCheckin(input: CheckinInput): Promise<Checkin>;
