@@ -127,6 +127,19 @@ Konvensi: "easy run" = sesi `easy|easy_strides|easy_hill|recovery|long` (bagian 
 Urutan evaluasi: R10 (keselamatan) → R13 (validitas data) → R6 → R5 → R7 → R12 → R3/R4 → R1/R2 → R9 (tampilan) → validasi R8 + R11 pada hasil gabungan.
 Setiap rule punya unit test minimal: 1 kasus memicu, 1 kasus tidak, 1 kasus batas.
 
+### 6.1 Catatan implementasi M3 (keputusan yang diambil saat membangun)
+
+- **Grandfather guardrail**: pelanggaran yang sudah ada di program asli (W12 & W27 = 3 sesi keras — D5/D6 belum diputuskan; beberapa lonjakan volume yang memang tertulis di Excel) tidak memblokir. Perubahan hanya ditolak bila **menambah** pelanggaran baru atau memperburuknya.
+- **Volume +10%** hanya dinilai untuk minggu yang volumenya **naik** karena perubahan itu. Mengurangi beban satu minggu (rest R6, absen R7, ACWR) tidak dianggap "membuat minggu berikutnya melonjak".
+- **R5 relatif**: pace baru = pace saat ini + (anchor Daniels VDOT-tes − anchor VDOT-acuan). Acuan awal = VDOT target HM 1:45 (42,6), lalu VDOT tes terakhir yang disetujui. Ini menjaga kalibrasi coach (mis. E sengaja lebih lambat dari rumus Daniels karena panas BSD). Usulan R5 selalu **besar** dengan opsi "LTHR saja", dan menyertakan panduan Excel (6,0–6,2 km di W05 = normal).
+- **Ukuran perubahan**: menurunkan sesi kualitas jadi easy (R6, R10) dan memotong volume ≤20% (R3, R8) = kecil/otomatis karena hanya mengurangi beban. Memindah tanggal, rest, set LTHR/pace profile, geser pace >10 dtk/km = besar.
+- **Konflik antar rule** pada sesi yang sama: prioritas R10 > R6 > R12 > R7 > R3 > R8 > R1 > R2 > R4 > R5 (mis. tempo gagal karena HR → R12 memecah rep; R3 tidak ikut memotong sesi yang sama).
+- **R7 absen**: "minggu 1" = 7 hari setelah lari pertama setelah ≥8 hari tanpa log (kualitas → easy, ×0,7); "minggu 2" = hari 8–14 (sesi non-kualitas ×0,85).
+- **R10**: nyeri ≥4/10 (check-in/log) atau nyeri terlokalisasi dilaporkan 3 hari berturut-turut → kualitas 7 hari ke depan jadi easy. Red flag → hold: tidak ada proposal/saran latihan, layar Hari ini hanya menampilkan STOP + check-in, sampai user menandai "sudah diperiksa dokter".
+- **R12 4×4**: alasan berhenti "HR tidak turun <80% LTHR setelah ±3′ jog" dicatat dan dikecualikan dari R3.
+- **R9** butuh suhu/kelembapan: ditambahkan ke check-in pagi (opsional) dan log.
+- Engine harian (R7, R8 ACWR) berjalan saat layar Hari ini dibuka (idempoten lewat kunci dedupe); cron di M5.
+
 ## 7. AI coach
 
 - Route `POST /api/coach` (server). Tools: `get_athlete_profile`, `get_plan(from,to)`, `get_logs(from,to)`, `get_metrics(range)`, `get_readiness(date)`, `get_z4_tolerance(range)`, `log_workout(text)` → draft terstruktur (perlu konfirmasi), `propose_plan_change(changes, rationale)` → validasi engine → diff, `apply_plan_change(version_id)` (besar → hanya bila user sudah setuju di UI), `recalc_from_test(type, distance, duration, avg_hr_last20)`, `explain_session(date)`.

@@ -6,7 +6,7 @@ Coach lari personal (PWA, Bahasa Indonesia). Spesifikasi: [docs/SPEC.md](docs/SP
 
 - [x] **M1** schema + RLS + seed + layar *Hari ini* & *Program* (read-only)
 - [x] **M2** log manual & log cepat, check-in pagi, import FIT/GPX/TCX (deteksi rep otomatis), antrean offline
-- [ ] M3 rules engine R1–R13 + plan versioning
+- [x] **M3** adaptive engine R1–R13 (deterministik, 1 test file per rule + acceptance), plan versioning dengan diff, approve/tolak, revert
 - [ ] M4 AI coach + tools
 - [ ] M5 PWA install + push + deploy
 - [ ] M6 Strava (jalur utama data Huawei Health → Strava)
@@ -31,10 +31,17 @@ npx tsx scripts/make-sample-fit.ts sample-tempo.fit
 Data dari Huawei Health: sambungkan Huawei Health ke Strava, lalu di Strava (web) buka aktivitas → ⋯ → *Export Original* / *Export GPX*, upload di **Log → Import file**. (Otomatis lewat Strava API di M6.)
 
 ```bash
-npm test             # Vitest: pace/HR, seed, parser FIT/GPX/TCX, deteksi rep, safety, store
+npm test             # Vitest: pace/HR, seed, parser, safety, store, engine R1–R13, acceptance, property test guardrail
 npm run typecheck
 npm run lint
 ```
+
+## Adaptive engine (M3)
+
+- Kode: `lib/engine/` (murni, tanpa I/O) — `rules.ts` (R1–R13), `guardrails.ts` (R8/R11), `engine.ts` (dedupe, prioritas, validasi), `snapshot.ts` (apply/diff/inverse), `vdot.ts`.
+- Dipicu otomatis setelah simpan log, check-in, dan saat membuka **Hari ini** (sesi terlewat, ACWR).
+- **Program → Perubahan program**: riwayat + diff sebelum/sesudah, setujui/tolak perubahan besar, revert.
+- **Program → Input hasil tes**: tes 30′ / 10K TT → usulan LTHR + pace (atau LTHR saja).
 
 ## Regenerasi seed dari Excel
 

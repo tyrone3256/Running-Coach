@@ -96,6 +96,10 @@ export function plannedZ4Minutes(session: Session, profile: PaceProfile): number
     if (seg.intensity !== "T" && seg.intensity !== "H") continue;
     const [a, b] = parseZoneTag(seg.hr_zone);
     if (!(a <= "Z4" && b >= "Z4")) continue;
+    if (seg.duration_s && !seg.distance_m) {
+      total += (seg.duration_s * (seg.reps ?? 1)) / 60;
+      continue;
+    }
     const p = resolvePace(seg, profile, session.week)!;
     total += (((p[0] + p[1]) / 2) * segmentKm(seg)) / 60;
   }

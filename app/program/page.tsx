@@ -19,7 +19,11 @@ export default async function ProgramPage() {
       <header>
         <h1 className="text-2xl font-semibold">Program 27 minggu</h1>
         <p className="text-sm text-muted-foreground tabular-nums">
-          HM sub-1:45 · {formatDateId(plan.race.date)} · total {total.toLocaleString("id-ID")} km rencana
+          HM sub-1:45 · {formatDateId(plan.race.date)} · total {total.toLocaleString("id-ID")} km rencana · plan v{plan.planVersion}
+        </p>
+        <p className="mt-1 flex gap-4 text-sm">
+          <Link href="/program/changes" className="underline">Perubahan program</Link>
+          <Link href="/program/test" className="underline">Input hasil tes</Link>
         </p>
       </header>
 
@@ -34,7 +38,7 @@ export default async function ProgramPage() {
 
       <ol className="flex flex-col gap-2">
         {plan.weeks.map((w) => {
-          const sessions = plan.sessions.filter((s) => s.week === w.week);
+          const sessions = plan.sessions.filter((s) => s.week === w.week).sort((a, b) => a.date.localeCompare(b.date));
           const isCurrent = current?.week === w.week;
           return (
             <li key={w.week}>
@@ -62,9 +66,9 @@ export default async function ProgramPage() {
                 <ul className="divide-y border-t text-sm">
                   {sessions.map((s) => (
                     <li key={s.id}>
-                      <Link href={`/program/${s.id}`} className="flex items-center gap-3 px-3 py-2 hover:bg-muted">
+                      <Link href={`/program/${s.id}`} className={`flex items-center gap-3 px-3 py-2 hover:bg-muted ${s.status && s.status !== "planned" ? "opacity-50 line-through" : ""}`}>
                         <span className="w-14 text-xs text-muted-foreground">{DAY_LABEL[s.day]}</span>
-                        <span className="flex-1">{SESSION_LABEL[s.type]}</span>
+                        <span className="flex-1">{SESSION_LABEL[s.type]}{s.moved_from ? " ↪" : ""}{s.status === "rest" ? " (rest)" : ""}</span>
                         {s.is_hard && <Badge variant="destructive">keras</Badge>}
                         <span className="w-12 text-right tabular-nums">{s.planned_km.toLocaleString("id-ID")}</span>
                       </Link>

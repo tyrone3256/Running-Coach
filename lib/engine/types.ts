@@ -65,6 +65,9 @@ export interface Session {
   segments: Segment[];
   notes: string[];
   source_text: string;
+  /** undefined/"planned" = aktif; "skipped"/"rest" = tidak dijalankan */
+  status?: "planned" | "skipped" | "rest";
+  moved_from?: string | null;
 }
 
 export interface Week {
@@ -83,6 +86,8 @@ export type PaceRange = [number, number]; // detik/km [cepat, lambat]
 
 export interface PaceProfile {
   version: number;
+  /** VDOT yang menjadi acuan kalibrasi profil ini (awal = VDOT target HM 1:45). */
+  vdot_ref?: number;
   default: Record<PacedCode, PaceRange>;
   base_phase: { weeks: [number, number] } & Partial<Record<PacedCode, PaceRange>>;
 }

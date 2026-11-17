@@ -8,9 +8,10 @@ export const RED_FLAGS = [
 ] as const;
 export type RedFlagId = (typeof RED_FLAGS)[number]["id"];
 
-export const STOP_REASONS = ["hr_tidak_nyaman", "lelah", "nyeri", "panas", "waktu", "lainnya"] as const;
+export const STOP_REASONS = ["hr_tidak_nyaman", "hr_recovery_slow", "lelah", "nyeri", "panas", "waktu", "lainnya"] as const;
 export const STOP_REASON_LABEL: Record<(typeof STOP_REASONS)[number], string> = {
   hr_tidak_nyaman: "HR 170 / tidak nyaman",
+  hr_recovery_slow: "HR tidak turun <80% LTHR setelah ±3′ jog",
   lelah: "Lelah",
   nyeri: "Nyeri",
   panas: "Panas",

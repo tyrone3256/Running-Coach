@@ -1,14 +1,23 @@
 import type { HrProfile, PaceProfile, Segment, Session } from "@/lib/engine/types";
 import {
-  estimateDurationMin, formatHr, formatPaceRange, plannedZ4Minutes, resolveHr, resolvePace, segmentKm,
+  estimateDurationMin, formatHr, formatPaceRange, plannedZ4Minutes, resolveHr, resolvePace,
 } from "@/lib/engine/pace";
 import { INTENSITY_LABEL, KIND_LABEL, PHASE_COLOR, SESSION_LABEL } from "@/lib/labels";
 import { DAY_LABEL, formatDateId } from "@/lib/dates";
+import { segmentKmEst } from "@/lib/engine/build";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 
+function minutesLabel(sec: number): string {
+  return sec % 60 === 0 ? `${sec / 60}′` : `${Math.floor(sec / 60)}′${String(sec % 60).padStart(2, "0")}″`;
+}
+
 function segDistance(seg: Segment): string {
   if (seg.kind === "hill") return `${seg.reps}×${seg.duration_s} dtk`;
+  if (seg.duration_s && !seg.distance_m && seg.kind !== "test") {
+    const reps = seg.reps ?? 1;
+    return reps > 1 ? `${reps}×${minutesLabel(seg.duration_s)}` : minutesLabel(seg.duration_s);
+  }
   if (seg.kind === "test" && seg.duration_s) return `${seg.duration_s / 60} menit`;
   const d = seg.distance_m;
   if (!d) return "";
@@ -17,10 +26,14 @@ function segDistance(seg: Segment): string {
   return reps > 1 ? `${reps}×${one}` : one;
 }
 
-export function SegmentRow({ seg, week, pace, hr }: {
-  seg: Segment; week: number; pace: PaceProfile; hr: HrProfile;
+const HEAT_CODES = new Set(["E", "L", "REC", "WU"]);
+
+export function SegmentRow({ seg, week, pace, hr, heatAdj = 0 }: {
+  seg: Segment; week: number; pace: PaceProfile; hr: HrProfile; heatAdj?: number;
 }) {
-  const p = resolvePace(seg, pace, week);
+  const raw = resolvePace(seg, pace, week);
+  const adj = heatAdj && HEAT_CODES.has(seg.intensity) ? heatAdj : 0;
+  const p = raw && adj ? ([raw[0] + adj, raw[1] + adj] as [number, number]) : raw;
   const bpm = resolveHr(seg.hr_zone, hr.lthr);
   const isWork = seg.kind === "work" || seg.kind === "test";
   return (
@@ -34,7 +47,10 @@ export function SegmentRow({ seg, week, pace, hr }: {
         {seg.distance_is_estimate && <span className="block text-xs text-muted-foreground">jarak = estimasi</span>}
       </span>
       <span className="text-right tabular-nums">
-        <span className="block">{seg.kind === "hill" ? "effort ±90%" : seg.kind === "test" ? "effort rata" : formatPaceRange(p)}</span>
+        <span className="block">
+          {seg.kind === "hill" ? "effort ±90%" : seg.kind === "test" ? "effort rata" : formatPaceRange(p)}
+          {adj > 0 && <span className="ml-1 text-xs text-amber-600">+{adj}″ panas</span>}
+        </span>
         <span className="block text-xs text-muted-foreground">
           {seg.hr_zone ? `${seg.hr_zone.replace("-", "–")} · ${formatHr(bpm)}` : "—"}
         </span>
@@ -43,13 +59,13 @@ export function SegmentRow({ seg, week, pace, hr }: {
   );
 }
 
-export function SessionCard({ session, pace, hr, showDate = true }: {
-  session: Session; pace: PaceProfile; hr: HrProfile; showDate?: boolean;
+export function SessionCard({ session, pace, hr, showDate = true, heatAdj = 0 }: {
+  session: Session; pace: PaceProfile; hr: HrProfile; showDate?: boolean; heatAdj?: number;
 }) {
   const color = PHASE_COLOR[session.phase];
   const z4 = plannedZ4Minutes(session, pace);
   const dur = estimateDurationMin(session, pace);
-  const km = session.segments.reduce((a, s) => a + segmentKm(s), 0);
+  const km = session.segments.reduce((a, s) => a + segmentKmEst(s, pace, session.week), 0);
   return (
     <section className="overflow-hidden rounded-xl border bg-card" style={{ borderLeft: `6px solid ${color.header}` }}>
       <header className="flex flex-col gap-1 border-b px-4 py-3">
@@ -61,10 +77,11 @@ export function SessionCard({ session, pace, hr, showDate = true }: {
         <div className="flex flex-wrap items-center gap-2">
           <h2 className="text-lg font-semibold">{SESSION_LABEL[session.type]}</h2>
           {session.is_hard && <Badge variant="destructive">KERAS</Badge>}
+          {session.moved_from && <Badge variant="outline">dipindah dari {session.moved_from.slice(5)}</Badge>}
         </div>
         <p className="text-sm text-muted-foreground tabular-nums">
           {session.planned_km.toLocaleString("id-ID")} km rencana · ±{dur} menit
-          {Math.abs(km - session.planned_km) > 0.05 && ` · segmen ${km.toLocaleString("id-ID", { maximumFractionDigits: 1 })} km`}
+          {Math.abs(km - session.planned_km) > 0.3 && ` · segmen ±${km.toLocaleString("id-ID", { maximumFractionDigits: 1 })} km`}
         </p>
         {(session.z4_target_min || z4 > 0) && (
           <p className="text-sm">
@@ -76,7 +93,7 @@ export function SessionCard({ session, pace, hr, showDate = true }: {
       </header>
       <ul className="divide-y px-4 text-sm">
         {session.segments.map((seg, i) => (
-          <SegmentRow key={i} seg={seg} week={session.week} pace={pace} hr={hr} />
+          <SegmentRow key={i} seg={seg} week={session.week} pace={pace} hr={hr} heatAdj={heatAdj} />
         ))}
       </ul>
       {session.notes.length > 0 && (

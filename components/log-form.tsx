@@ -8,6 +8,8 @@ import type { Rep, SafetyResult, WorkoutLogInput } from "@/lib/log/schema";
 import { formatDuration, parseDuration, parseKm, parsePace } from "@/lib/log/units";
 import { formatPace } from "@/lib/engine/pace";
 import { cn } from "@/lib/utils";
+import { EngineOutcome } from "@/components/engine-outcome";
+import type { OutcomeSummary } from "@/lib/data/outcome";
 
 export interface SessionOption {
   id: string;
@@ -112,7 +114,7 @@ export function LogForm({ initial, sessions, quick, importMeta, defaultHrSource 
   const [showDetail, setShowDetail] = useState(!quick);
   const [busy, setBusy] = useState(false);
   const [errors, setErrors] = useState<string[]>([]);
-  const [result, setResult] = useState<null | { queued: true } | { queued: false; safety: SafetyResult; message: string | null; duplicate: boolean }>(null);
+  const [result, setResult] = useState<null | { queued: true } | { queued: false; safety: SafetyResult; message: string | null; duplicate: boolean; engine: OutcomeSummary | null }>(null);
 
   const updateRep = (i: number, patch: Partial<Rep>) =>
     setReps((rs) => rs.map((r, j) => (j === i ? { ...r, ...patch } : r)));
@@ -176,14 +178,14 @@ export function LogForm({ initial, sessions, quick, importMeta, defaultHrSource 
     setErrors(errs);
     if (!body) return;
     setBusy(true);
-    const r = await postJson<{ safety: SafetyResult; message: string | null; duplicate: boolean; error?: string; issues?: Array<{ path: string[]; message: string }> }>("/api/logs", body);
+    const r = await postJson<{ safety: SafetyResult; message: string | null; duplicate: boolean; engine: OutcomeSummary | null; error?: string; issues?: Array<{ path: string[]; message: string }> }>("/api/logs", body);
     setBusy(false);
     if (r.status === "queued") return setResult({ queued: true });
     if (!r.ok) {
       setErrors([r.data?.error ?? `Gagal (${r.httpStatus})`, ...(r.data?.issues ?? []).map((i) => `${i.path.join(".")}: ${i.message}`)]);
       return;
     }
-    setResult({ queued: false, safety: r.data.safety, message: r.data.message, duplicate: r.data.duplicate });
+    setResult({ queued: false, safety: r.data.safety, message: r.data.message, duplicate: r.data.duplicate, engine: r.data.engine });
   }
 
   if (result) {
@@ -203,7 +205,8 @@ export function LogForm({ initial, sessions, quick, importMeta, defaultHrSource 
         {result.safety.level === "medical_check" && (
           <p>Nyeri tercatat ({result.safety.reasons.join(", ")}). Sesi kualitas berikutnya sebaiknya ditunda dan cek ke dokter/fisioterapis bila tidak membaik dalam 2 hari.</p>
         )}
-        <p className="text-xs">Feedback coach & penyesuaian program menyusul di milestone berikutnya.</p>
+        <EngineOutcome o={result.engine} />
+        <p className="text-xs text-muted-foreground">Feedback coach (AI) menyusul di M4.</p>
       </Done>
     );
   }

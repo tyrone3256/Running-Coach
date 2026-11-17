@@ -8,6 +8,13 @@ import { CheckinForm } from "@/components/checkin-form";
 import { getStore } from "@/lib/data/store";
 import { formatPace } from "@/lib/engine/pace";
 import { formatDuration } from "@/lib/log/units";
+import { getPlanStore } from "@/lib/data/plan-store";
+import { loadState, processTrigger } from "@/lib/data/engine-service";
+import { run } from "@/lib/engine/engine";
+import { heatAdjustment } from "@/lib/engine/analysis";
+import { isActive } from "@/lib/engine/snapshot";
+import { HoldBanner } from "@/components/hold-banner";
+import { cn } from "@/lib/utils";
 
 export const dynamic = "force-dynamic";
 
@@ -15,14 +22,18 @@ export default async function TodayPage({
   searchParams,
 }: { searchParams: Promise<{ date?: string }> }) {
   const sp = await searchParams;
-  const plan = await getPlan();
   const realToday = todayIso();
   const today = isValidIso(sp.date) ? sp.date : realToday;
+  // Engine harian (R7 sesi terlewat, R8 ACWR) — hanya untuk tanggal sebenarnya; pratinjau = baca saja.
+  const hold = today === realToday
+    ? (await processTrigger({ kind: "daily" }, today)).hold
+    : run(await loadState(today), { kind: "daily" }).hold;
+  const plan = await getPlan();
   const lastDay = plan.sessions[plan.sessions.length - 1].date;
   const inProgram = today >= plan.programStart && today <= lastDay;
   const week = inProgram ? weekOf(plan, today) : undefined;
   const session = sessionByDate(plan, today);
-  const next = plan.sessions.find((s) => s.date > today);
+  const next = plan.sessions.find((s) => s.date > today && isActive(s));
   const gym = GYM_LABEL[dayKey(today)];
   const toRace = daysBetween(today, plan.race.date);
   const store = getStore();
@@ -31,6 +42,12 @@ export default async function TodayPage({
     store.listLogs({ from: today, to: today }),
   ]);
   const logged = session ? todaysLogs.find((l) => l.session_key === session.id) : todaysLogs[0];
+  const ps = getPlanStore();
+  const [notices, changes] = await Promise.all([ps.listNotices(), ps.listChanges()]);
+  const todaysNotices = notices.filter((n) => n.date === today || (n.level === "warn" && n.date < today && daysBetween(n.date, today) <= 2));
+  const pending = changes.filter((c) => c.mode === "pending").length;
+  const recentAuto = changes.filter((c) => c.mode === "auto" && !c.reverted_by && daysBetween(c.date, today) <= 2 && c.date <= today);
+  const heat = heatAdjustment(checkin?.temp_c, checkin?.humidity);
 
   return (
     <main className="flex flex-col gap-4">
@@ -65,10 +82,30 @@ export default async function TodayPage({
         </section>
       )}
 
+      {hold.active && <HoldBanner reasons={hold.reasons} since={hold.since} />}
+
+      {!hold.active && pending > 0 && (
+        <Link href="/program/changes" className="rounded-xl border border-amber-500/60 bg-amber-50 px-4 py-3 text-sm dark:bg-amber-950/40">
+          <b>{pending} perubahan program</b> menunggu persetujuanmu →
+        </Link>
+      )}
+      {!hold.active && recentAuto.map((c) => (
+        <Link key={c.id} href="/program/changes" className="rounded-xl border bg-card px-4 py-3 text-sm">
+          <span className="text-xs text-muted-foreground">Program disesuaikan otomatis · {c.rule}</span>
+          <span className="block">{c.title}</span>
+        </Link>
+      ))}
+
       <CheckinForm date={today} initial={checkin} />
 
-      {session ? (
-        <SessionCard session={session} pace={plan.paceProfile} hr={plan.hrProfile} showDate={false} />
+      {!hold.active && todaysNotices.map((n) => (
+        <p key={n.key} className={cn("rounded-xl px-4 py-3 text-sm", n.level === "stop" ? "bg-destructive/10 text-destructive" : n.level === "warn" ? "bg-amber-100 text-amber-900 dark:bg-amber-950 dark:text-amber-200" : "bg-muted")}>
+          <span className="text-xs opacity-70">{n.rule} · </span>{n.message}
+        </p>
+      ))}
+
+      {hold.active ? null : session ? (
+        <SessionCard session={session} pace={plan.paceProfile} hr={plan.hrProfile} showDate={false} heatAdj={heat} />
       ) : inProgram ? (
         <section className="rounded-xl border bg-card p-4">
           <p className="text-lg font-semibold">REST lari</p>
@@ -76,7 +113,7 @@ export default async function TodayPage({
         </section>
       ) : null}
 
-      {logged ? (
+      {hold.active ? null : logged ? (
         <Link href={`/log/${logged.id}`} className="flex items-center justify-between rounded-xl border border-emerald-500/40 bg-emerald-50 px-4 py-3 text-sm dark:bg-emerald-950/40">
           <span className="font-medium">✓ Sudah di-log</span>
           <span className="tabular-nums">
@@ -95,14 +132,14 @@ export default async function TodayPage({
         </div>
       ) : null}
 
-      {inProgram && gym && (
+      {!hold.active && inProgram && gym && (
         <section className="flex items-center justify-between rounded-xl border bg-card px-4 py-3 text-sm">
           <span className="text-muted-foreground">Gym</span>
           <span className="font-medium">{gym}</span>
         </section>
       )}
 
-      {next && (
+      {!hold.active && next && (
         <Link href={`/program/${next.id}`} className="rounded-xl border bg-card px-4 py-3 text-sm hover:bg-muted">
           <p className="text-xs text-muted-foreground">Sesi berikutnya · {DAY_LABEL[next.day]} {formatDateId(next.date, { weekday: undefined })}</p>
           <p className="flex items-center gap-2 font-medium">
@@ -114,7 +151,7 @@ export default async function TodayPage({
 
       <p className="text-xs text-muted-foreground">
         LTHR {plan.hrProfile.lthr} ({plan.hrProfile.source === "estimate" ? "sementara" : "hasil tes"}) · pace profile v
-        {plan.paceProfile.version} · data: {plan.source === "seed" ? "seed lokal" : "Supabase"}
+        {plan.paceProfile.version} · data: {plan.source === "supabase" ? "Supabase" : plan.source === "local" ? "lokal (.local-data)" : "seed (read-only)"}
         {inProgram && (
           <>
             {" · "}

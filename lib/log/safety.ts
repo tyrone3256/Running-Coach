@@ -1,6 +1,7 @@
 // Deteksi keselamatan deterministik (dasar R10). Dipanggil SEBELUM apa pun lainnya
 // (engine, coach). Red flag → STOP: tanpa saran latihan, arahkan ke dokter.
-import { RED_FLAGS, type SafetyResult, type WorkoutLogInput } from "./schema";
+import { RED_FLAGS } from "./constants";
+import type { SafetyResult, WorkoutLogInput } from "./schema";
 
 // Kata kunci di teks bebas (catatan log / chat). Sengaja konservatif: lebih baik false positive.
 const RED_FLAG_PATTERNS: Array<[RegExp, string]> = [

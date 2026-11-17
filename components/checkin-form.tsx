@@ -16,6 +16,8 @@ export function CheckinForm({ date, initial }: { date: string; initial: CheckinI
   const [pain, setPain] = useState(initial?.pain_score ?? 0);
   const [painLoc, setPainLoc] = useState(initial?.pain_location ?? "");
   const [hrv, setHrv] = useState(initial?.hrv?.toString() ?? "");
+  const [temp, setTemp] = useState(initial?.temp_c?.toString() ?? "");
+  const [hum, setHum] = useState(initial?.humidity?.toString() ?? "");
   const [msg, setMsg] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
 
@@ -43,6 +45,8 @@ export function CheckinForm({ date, initial }: { date: string; initial: CheckinI
       pain_score: pain,
       pain_location: pain > 0 && painLoc.trim() ? painLoc.trim() : null,
       hrv: n(hrv),
+      temp_c: n(temp),
+      humidity: n(hum),
     };
     setBusy(true);
     const r = await postJson<{ error?: string }>("/api/checkins", body);
@@ -78,6 +82,16 @@ export function CheckinForm({ date, initial }: { date: string; initial: CheckinI
         <span className="text-muted-foreground">Nyeri: <b className="text-foreground">{pain}</b>/10</span>
         <input type="range" min={0} max={10} value={pain} onChange={(e) => setPain(Number(e.target.value))} />
       </label>
+      <div className="grid grid-cols-2 gap-3 text-sm">
+        <label className="flex flex-col gap-1">
+          <span className="text-muted-foreground">Suhu pagi (°C)</span>
+          <input inputMode="decimal" className={inputCls} value={temp} onChange={(e) => setTemp(e.target.value)} placeholder="27" />
+        </label>
+        <label className="flex flex-col gap-1">
+          <span className="text-muted-foreground">Kelembapan (%)</span>
+          <input inputMode="numeric" className={inputCls} value={hum} onChange={(e) => setHum(e.target.value)} placeholder="80" />
+        </label>
+      </div>
       {pain > 0 && (
         <input className={inputCls} value={painLoc} onChange={(e) => setPainLoc(e.target.value)} placeholder="Lokasi nyeri" />
       )}

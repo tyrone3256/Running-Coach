@@ -15,12 +15,13 @@ export interface Store {
   getLog(id: string): Promise<WorkoutLog | null>;
   saveLog(input: WorkoutLogInput): Promise<{ log: WorkoutLog; duplicate: boolean }>;
   deleteLog(id: string): Promise<void>;
+  annotateLog(id: string, a: { sensor_suspect: boolean; sensor_suspect_reason: string | null }): Promise<void>;
   getCheckin(date: string): Promise<Checkin | null>;
   listCheckins(from: string, to: string): Promise<Checkin[]>;
   saveCheckin(input: CheckinInput): Promise<Checkin>;
 }
 
-export function enrich(input: WorkoutLogInput, id = randomUUID(), created_at = new Date().toISOString()): WorkoutLog {
+export function enrich(input: WorkoutLogInput, id: string = randomUUID(), created_at = new Date().toISOString()): WorkoutLog {
   return {
     ...input,
     id,
@@ -33,7 +34,7 @@ export function enrich(input: WorkoutLogInput, id = randomUUID(), created_at = n
 // ------------------------------------------------------------------ file (dev lokal)
 interface FileDb { logs: WorkoutLog[]; checkins: Checkin[] }
 
-export function fileStore(dir = path.join(process.cwd(), ".local-data")): Store {
+export function fileStore(dir = process.env.LOCAL_DATA_DIR ?? path.join(process.cwd(), ".local-data")): Store {
   const file = path.join(dir, "db.json");
   const load = async (): Promise<FileDb> => {
     try {
@@ -76,6 +77,11 @@ export function fileStore(dir = path.join(process.cwd(), ".local-data")): Store 
       db.logs = db.logs.filter((l) => l.id !== id);
       await save(db);
     },
+    async annotateLog(id, a) {
+      const db = await load();
+      db.logs = db.logs.map((l) => (l.id === id ? { ...l, ...a } : l));
+      await save(db);
+    },
     async getCheckin(date) {
       return (await load()).checkins.find((c) => c.date === date) ?? null;
     },
@@ -110,6 +116,7 @@ function supabaseStore(): Store {
     temp_c: r.temp_c, humidity: r.humidity, pain: r.pain ?? { score: 0, location: null, sharp: false },
     red_flags: r.red_flags ?? [], notes: r.notes, source: r.source, external_id: r.external_id,
     streams: r.streams, safety: r.safety,
+    sensor_suspect: r.sensor_suspect, sensor_suspect_reason: r.sensor_suspect_reason,
   });
   const check = <T,>(res: { data: T; error: unknown }) => {
     if (res.error) throw new Error(JSON.stringify(res.error));
@@ -146,6 +153,9 @@ function supabaseStore(): Store {
     },
     async deleteLog(id) {
       check(await (await db()).from("workout_logs").delete().eq("id", id));
+    },
+    async annotateLog(id, a) {
+      check(await (await db()).from("workout_logs").update(a).eq("id", id));
     },
     async getCheckin(date) {
       return check(await (await db()).from("daily_checkins").select("*").eq("date", date).maybeSingle());

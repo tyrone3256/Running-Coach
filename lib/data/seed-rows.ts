@@ -33,7 +33,8 @@ export function planToRows(plan: PlanSeed, userId: string, planVersionId: string
       version: plan.pace_profile.version,
       valid_from: meta.program_start,
       codes: plan.pace_profile.default,
-      base_phase: { weeks: baseWeeks, ...baseCodes },
+      // vdot_ref = VDOT target program (HM 1:45), acuan kalibrasi R5
+      base_phase: { weeks: baseWeeks, ...baseCodes, vdot_ref: 42.6 },
       source: "seed",
     },
     hr_profile: {

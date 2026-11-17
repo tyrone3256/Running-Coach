@@ -69,6 +69,9 @@ export type WorkoutLog = WorkoutLogInput & {
   created_at: string;
   avg_pace_s: number | null;
   safety: SafetyResult;
+  /** diisi engine (R13) */
+  sensor_suspect?: boolean;
+  sensor_suspect_reason?: string | null;
 };
 
 export const checkinSchema = z.object({
@@ -79,6 +82,8 @@ export const checkinSchema = z.object({
   pain_score: int(0, 10).nullable(),
   pain_location: z.string().max(80).nullable(),
   hrv: z.number().min(0).max(300).nullable(),
+  temp_c: z.number().min(-10).max(50).nullable().optional(),
+  humidity: z.number().min(0).max(100).nullable().optional(),
 });
 export type CheckinInput = z.infer<typeof checkinSchema>;
 
