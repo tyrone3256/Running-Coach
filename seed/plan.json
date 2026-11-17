@@ -1,0 +1,5743 @@
+{
+  "meta": {
+    "source": "Program_HM_Sub145_Mei2027.xlsx",
+    "generated_at": "2026-11-17T11:45:36",
+    "athlete": "Tyrone",
+    "race": {
+      "name": "Half Marathon",
+      "date": "2027-05-30",
+      "distance_m": 21097.5,
+      "goal_time_s": 6299,
+      "goal_pace_s": 298
+    },
+    "program_start": "2026-11-23",
+    "weeks": 27,
+    "lthr": 170
+  },
+  "pace_profile": {
+    "version": 1,
+    "default": {
+      "WU": [
+        360,
+        390
+      ],
+      "E": [
+        350,
+        390
+      ],
+      "REC": [
+        365,
+        400
+      ],
+      "L": [
+        345,
+        375
+      ],
+      "M": [
+        315,
+        320
+      ],
+      "H": [
+        295,
+        300
+      ],
+      "T": [
+        288,
+        295
+      ],
+      "N": [
+        265,
+        280
+      ],
+      "JOG": [
+        420,
+        480
+      ],
+      "S": [
+        230,
+        250
+      ]
+    },
+    "base_phase": {
+      "weeks": [
+        3,
+        8
+      ],
+      "T": [
+        298,
+        305
+      ],
+      "N": [
+        275,
+        285
+      ]
+    }
+  },
+  "hr_zones_pct_lthr": {
+    "Z1": [
+      0,
+      84
+    ],
+    "Z2": [
+      85,
+      89
+    ],
+    "Z3": [
+      90,
+      94
+    ],
+    "Z4": [
+      95,
+      100
+    ],
+    "Z5": [
+      101,
+      106
+    ]
+  },
+  "z4_ladder": [
+    {
+      "weeks": [
+        4,
+        6
+      ],
+      "min": 20
+    },
+    {
+      "weeks": [
+        7,
+        11
+      ],
+      "min": 30
+    },
+    {
+      "weeks": [
+        12,
+        13
+      ],
+      "min": 40
+    },
+    {
+      "weeks": [
+        15,
+        24
+      ],
+      "hmp_block_km": [
+        9,
+        12
+      ]
+    }
+  ],
+  "recovery_weeks": [
+    6,
+    10,
+    14,
+    18,
+    22
+  ],
+  "vo2_weeks_w15_w24": [
+    17,
+    20,
+    22
+  ],
+  "weeks": [
+    {
+      "week": 1,
+      "start": "2026-11-23",
+      "phase": "Transisi",
+      "is_recovery_week": false,
+      "is_taper": false,
+      "planned_km": 38.0,
+      "hard_sessions": [],
+      "color": {
+        "header": "#7F7F7F",
+        "cell": "#EDEDED"
+      }
+    },
+    {
+      "week": 2,
+      "start": "2026-11-30",
+      "phase": "Transisi",
+      "is_recovery_week": false,
+      "is_taper": false,
+      "planned_km": 42.5,
+      "hard_sessions": [
+        "tue"
+      ],
+      "color": {
+        "header": "#7F7F7F",
+        "cell": "#EDEDED"
+      }
+    },
+    {
+      "week": 3,
+      "start": "2026-12-07",
+      "phase": "Base",
+      "is_recovery_week": false,
+      "is_taper": false,
+      "planned_km": 46.0,
+      "hard_sessions": [
+        "tue"
+      ],
+      "color": {
+        "header": "#82B366",
+        "cell": "#D5E8D4"
+      }
+    },
+    {
+      "week": 4,
+      "start": "2026-12-14",
+      "phase": "Base",
+      "is_recovery_week": false,
+      "is_taper": false,
+      "planned_km": 49.0,
+      "hard_sessions": [
+        "tue",
+        "thu"
+      ],
+      "color": {
+        "header": "#82B366",
+        "cell": "#D5E8D4"
+      }
+    },
+    {
+      "week": 5,
+      "start": "2026-12-21",
+      "phase": "Base",
+      "is_recovery_week": false,
+      "is_taper": false,
+      "planned_km": 52.0,
+      "hard_sessions": [
+        "tue",
+        "thu"
+      ],
+      "color": {
+        "header": "#82B366",
+        "cell": "#D5E8D4"
+      }
+    },
+    {
+      "week": 6,
+      "start": "2026-12-28",
+      "phase": "Base",
+      "is_recovery_week": true,
+      "is_taper": false,
+      "planned_km": 44.0,
+      "hard_sessions": [
+        "tue",
+        "thu"
+      ],
+      "color": {
+        "header": "#82B366",
+        "cell": "#D5E8D4"
+      }
+    },
+    {
+      "week": 7,
+      "start": "2027-01-04",
+      "phase": "Base",
+      "is_recovery_week": false,
+      "is_taper": false,
+      "planned_km": 53.5,
+      "hard_sessions": [
+        "tue",
+        "thu"
+      ],
+      "color": {
+        "header": "#82B366",
+        "cell": "#D5E8D4"
+      }
+    },
+    {
+      "week": 8,
+      "start": "2027-01-11",
+      "phase": "Base",
+      "is_recovery_week": false,
+      "is_taper": false,
+      "planned_km": 56.5,
+      "hard_sessions": [
+        "tue",
+        "thu"
+      ],
+      "color": {
+        "header": "#82B366",
+        "cell": "#D5E8D4"
+      }
+    },
+    {
+      "week": 9,
+      "start": "2027-01-18",
+      "phase": "Build",
+      "is_recovery_week": false,
+      "is_taper": false,
+      "planned_km": 60.0,
+      "hard_sessions": [
+        "tue",
+        "thu"
+      ],
+      "color": {
+        "header": "#6C8EBF",
+        "cell": "#DAE8FC"
+      }
+    },
+    {
+      "week": 10,
+      "start": "2027-01-25",
+      "phase": "Build",
+      "is_recovery_week": true,
+      "is_taper": false,
+      "planned_km": 47.5,
+      "hard_sessions": [
+        "tue",
+        "thu"
+      ],
+      "color": {
+        "header": "#6C8EBF",
+        "cell": "#DAE8FC"
+      }
+    },
+    {
+      "week": 11,
+      "start": "2027-02-01",
+      "phase": "Build",
+      "is_recovery_week": false,
+      "is_taper": false,
+      "planned_km": 62.0,
+      "hard_sessions": [
+        "tue",
+        "thu"
+      ],
+      "color": {
+        "header": "#6C8EBF",
+        "cell": "#DAE8FC"
+      }
+    },
+    {
+      "week": 12,
+      "start": "2027-02-08",
+      "phase": "Build",
+      "is_recovery_week": false,
+      "is_taper": false,
+      "planned_km": 65.0,
+      "hard_sessions": [
+        "tue",
+        "thu",
+        "sat"
+      ],
+      "color": {
+        "header": "#6C8EBF",
+        "cell": "#DAE8FC"
+      }
+    },
+    {
+      "week": 13,
+      "start": "2027-02-15",
+      "phase": "Build",
+      "is_recovery_week": false,
+      "is_taper": false,
+      "planned_km": 66.5,
+      "hard_sessions": [
+        "tue",
+        "thu"
+      ],
+      "color": {
+        "header": "#6C8EBF",
+        "cell": "#DAE8FC"
+      }
+    },
+    {
+      "week": 14,
+      "start": "2027-02-22",
+      "phase": "Build",
+      "is_recovery_week": true,
+      "is_taper": false,
+      "planned_km": 54.5,
+      "hard_sessions": [
+        "tue",
+        "sat"
+      ],
+      "color": {
+        "header": "#6C8EBF",
+        "cell": "#DAE8FC"
+      }
+    },
+    {
+      "week": 15,
+      "start": "2027-03-01",
+      "phase": "Spesifik",
+      "is_recovery_week": false,
+      "is_taper": false,
+      "planned_km": 63.0,
+      "hard_sessions": [
+        "thu",
+        "sat"
+      ],
+      "color": {
+        "header": "#D6B656",
+        "cell": "#FFE6CC"
+      }
+    },
+    {
+      "week": 16,
+      "start": "2027-03-08",
+      "phase": "Spesifik",
+      "is_recovery_week": false,
+      "is_taper": false,
+      "planned_km": 66.5,
+      "hard_sessions": [
+        "thu",
+        "sat"
+      ],
+      "color": {
+        "header": "#D6B656",
+        "cell": "#FFE6CC"
+      }
+    },
+    {
+      "week": 17,
+      "start": "2027-03-15",
+      "phase": "Spesifik",
+      "is_recovery_week": false,
+      "is_taper": false,
+      "planned_km": 69.0,
+      "hard_sessions": [
+        "tue",
+        "thu"
+      ],
+      "color": {
+        "header": "#D6B656",
+        "cell": "#FFE6CC"
+      }
+    },
+    {
+      "week": 18,
+      "start": "2027-03-22",
+      "phase": "Spesifik",
+      "is_recovery_week": true,
+      "is_taper": false,
+      "planned_km": 55.0,
+      "hard_sessions": [
+        "thu"
+      ],
+      "color": {
+        "header": "#D6B656",
+        "cell": "#FFE6CC"
+      }
+    },
+    {
+      "week": 19,
+      "start": "2027-03-29",
+      "phase": "Spesifik",
+      "is_recovery_week": false,
+      "is_taper": false,
+      "planned_km": 68.0,
+      "hard_sessions": [
+        "thu",
+        "sat"
+      ],
+      "color": {
+        "header": "#D6B656",
+        "cell": "#FFE6CC"
+      }
+    },
+    {
+      "week": 20,
+      "start": "2027-04-05",
+      "phase": "Spesifik",
+      "is_recovery_week": false,
+      "is_taper": false,
+      "planned_km": 71.5,
+      "hard_sessions": [
+        "tue",
+        "thu"
+      ],
+      "color": {
+        "header": "#D6B656",
+        "cell": "#FFE6CC"
+      }
+    },
+    {
+      "week": 21,
+      "start": "2027-04-12",
+      "phase": "Peak",
+      "is_recovery_week": false,
+      "is_taper": false,
+      "planned_km": 72.0,
+      "hard_sessions": [
+        "thu"
+      ],
+      "color": {
+        "header": "#B85450",
+        "cell": "#F8CECC"
+      }
+    },
+    {
+      "week": 22,
+      "start": "2027-04-19",
+      "phase": "Peak",
+      "is_recovery_week": true,
+      "is_taper": false,
+      "planned_km": 58.5,
+      "hard_sessions": [
+        "tue",
+        "thu"
+      ],
+      "color": {
+        "header": "#B85450",
+        "cell": "#F8CECC"
+      }
+    },
+    {
+      "week": 23,
+      "start": "2027-04-26",
+      "phase": "Peak",
+      "is_recovery_week": false,
+      "is_taper": false,
+      "planned_km": 68.5,
+      "hard_sessions": [
+        "thu",
+        "sat"
+      ],
+      "color": {
+        "header": "#B85450",
+        "cell": "#F8CECC"
+      }
+    },
+    {
+      "week": 24,
+      "start": "2027-05-03",
+      "phase": "Peak",
+      "is_recovery_week": false,
+      "is_taper": false,
+      "planned_km": 61.0,
+      "hard_sessions": [
+        "thu",
+        "sat"
+      ],
+      "color": {
+        "header": "#B85450",
+        "cell": "#F8CECC"
+      }
+    },
+    {
+      "week": 25,
+      "start": "2027-05-10",
+      "phase": "Taper",
+      "is_recovery_week": false,
+      "is_taper": true,
+      "planned_km": 53.5,
+      "hard_sessions": [
+        "tue",
+        "thu"
+      ],
+      "color": {
+        "header": "#9673A6",
+        "cell": "#E1D5E7"
+      }
+    },
+    {
+      "week": 26,
+      "start": "2027-05-17",
+      "phase": "Taper",
+      "is_recovery_week": false,
+      "is_taper": true,
+      "planned_km": 45.5,
+      "hard_sessions": [
+        "tue",
+        "thu"
+      ],
+      "color": {
+        "header": "#9673A6",
+        "cell": "#E1D5E7"
+      }
+    },
+    {
+      "week": 27,
+      "start": "2027-05-24",
+      "phase": "Taper",
+      "is_recovery_week": false,
+      "is_taper": true,
+      "planned_km": 44.6,
+      "hard_sessions": [
+        "tue",
+        "thu",
+        "sun"
+      ],
+      "color": {
+        "header": "#E94560",
+        "cell": "#E1D5E7"
+      }
+    }
+  ],
+  "sessions": [
+    {
+      "id": "W01-tue",
+      "date": "2026-11-24",
+      "week": 1,
+      "day": "tue",
+      "phase": "Transisi",
+      "type": "easy",
+      "is_hard": false,
+      "planned_km": 7.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 7.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 7000,
+          "intensity": "E",
+          "src_pace": "5:50–6:30",
+          "hr_zone": "Z2",
+          "fill_remaining": true
+        }
+      ],
+      "notes": [
+        "transisi, belum ada interval"
+      ],
+      "source_text": "Easy @5:50–6:30 [Z2]\n(transisi, belum ada interval)"
+    },
+    {
+      "id": "W01-wed",
+      "date": "2026-11-25",
+      "week": 1,
+      "day": "wed",
+      "phase": "Transisi",
+      "type": "easy",
+      "is_hard": false,
+      "planned_km": 6.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 6.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 6000,
+          "intensity": "E",
+          "src_pace": "5:50–6:30",
+          "hr_zone": "Z2",
+          "fill_remaining": true
+        }
+      ],
+      "notes": [],
+      "source_text": "Easy @5:50–6:30 [Z2]"
+    },
+    {
+      "id": "W01-thu",
+      "date": "2026-11-26",
+      "week": 1,
+      "day": "thu",
+      "phase": "Transisi",
+      "type": "easy",
+      "is_hard": false,
+      "planned_km": 6.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 6.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 6000,
+          "intensity": "E",
+          "src_pace": "5:50–6:30",
+          "hr_zone": "Z2",
+          "fill_remaining": true
+        }
+      ],
+      "notes": [
+        "cek kondisi kaki & HR"
+      ],
+      "source_text": "Easy @5:50–6:30 [Z2]\n(cek kondisi kaki & HR)"
+    },
+    {
+      "id": "W01-sat",
+      "date": "2026-11-28",
+      "week": 1,
+      "day": "sat",
+      "phase": "Transisi",
+      "type": "long",
+      "is_hard": false,
+      "planned_km": 13.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 13.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 13000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2",
+          "fill_remaining": true,
+          "label": "Long run santai"
+        }
+      ],
+      "notes": [],
+      "source_text": "Long run santai @6:00–6:30 [Z1–2]"
+    },
+    {
+      "id": "W01-sun",
+      "date": "2026-11-29",
+      "week": 1,
+      "day": "sun",
+      "phase": "Transisi",
+      "type": "recovery",
+      "is_hard": false,
+      "planned_km": 6.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 6.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 6000,
+          "intensity": "REC",
+          "src_pace": "6:05–6:40",
+          "hr_zone": "Z1",
+          "fill_remaining": true
+        }
+      ],
+      "notes": [
+        "santai, bisa ngobrol"
+      ],
+      "source_text": "Recovery @6:05–6:40 [Z1]\n(santai, bisa ngobrol)"
+    },
+    {
+      "id": "W02-tue",
+      "date": "2026-12-01",
+      "week": 2,
+      "day": "tue",
+      "phase": "Transisi",
+      "type": "vo2_4x4",
+      "is_hard": true,
+      "planned_km": 7.5,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 7.2,
+      "segments": [
+        {
+          "kind": "warmup",
+          "distance_m": 3000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        },
+        {
+          "kind": "work",
+          "reps": 4,
+          "distance_m": 400,
+          "intensity": "N",
+          "pace_variant": "base",
+          "review": true,
+          "src_pace": "4:35–4:45",
+          "hr_zone": "Z5",
+          "note": "pengenalan"
+        },
+        {
+          "kind": "recovery",
+          "distance_m": 200,
+          "intensity": "JOG",
+          "pace_adj_s": [
+            -30,
+            -60
+          ],
+          "review": true,
+          "src_pace": "6:30–7:00",
+          "hr_zone": "Z1",
+          "reps": 3,
+          "between_reps": true
+        },
+        {
+          "kind": "cooldown",
+          "distance_m": 2000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        }
+      ],
+      "notes": [],
+      "source_text": "WU 3 km @6:00–6:30 [Z1–2]\n4×400 m @4:35–4:45 [Z5] (pengenalan)\nrec 200 m jog @6:30–7:00\nCD 2 km @6:00–6:30 [Z1–2]"
+    },
+    {
+      "id": "W02-wed",
+      "date": "2026-12-02",
+      "week": 2,
+      "day": "wed",
+      "phase": "Transisi",
+      "type": "easy_strides",
+      "is_hard": false,
+      "planned_km": 6.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 6.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 5400,
+          "intensity": "E",
+          "src_pace": "5:50–6:30",
+          "hr_zone": "Z2",
+          "fill_remaining": true
+        },
+        {
+          "kind": "strides",
+          "reps": 6,
+          "distance_m": 100,
+          "intensity": "S",
+          "src_pace": "3:50–4:10",
+          "hr_zone": null
+        }
+      ],
+      "notes": [],
+      "source_text": "Easy @5:50–6:30 [Z2]\n+ 6×100 m strides @3:50–4:10"
+    },
+    {
+      "id": "W02-thu",
+      "date": "2026-12-03",
+      "week": 2,
+      "day": "thu",
+      "phase": "Transisi",
+      "type": "fartlek",
+      "is_hard": false,
+      "planned_km": 8.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 7.5,
+      "segments": [
+        {
+          "kind": "warmup",
+          "distance_m": 3000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        },
+        {
+          "kind": "work",
+          "reps": 6,
+          "distance_m": 250,
+          "intensity": "N",
+          "pace_adj_s": [
+            -10,
+            -10
+          ],
+          "review": true,
+          "src_pace": "4:15–4:30",
+          "hr_zone": "Z5",
+          "label": "Fartlek"
+        },
+        {
+          "kind": "recovery",
+          "distance_m": 200,
+          "intensity": "JOG",
+          "pace_adj_s": [
+            -30,
+            -60
+          ],
+          "review": true,
+          "src_pace": "6:30–7:00",
+          "hr_zone": "Z1",
+          "reps": 5,
+          "between_reps": true
+        },
+        {
+          "kind": "cooldown",
+          "distance_m": 2000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        }
+      ],
+      "notes": [],
+      "source_text": "WU 3 km @6:00–6:30 [Z1–2]\nFartlek 6×250 m @4:15–4:30\nrec 200 m jog @6:30–7:00\nCD 2 km @6:00–6:30 [Z1–2]"
+    },
+    {
+      "id": "W02-sat",
+      "date": "2026-12-05",
+      "week": 2,
+      "day": "sat",
+      "phase": "Transisi",
+      "type": "long",
+      "is_hard": false,
+      "planned_km": 15.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 15.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 15000,
+          "intensity": "L",
+          "pace_adj_s": [
+            5,
+            5
+          ],
+          "review": true,
+          "src_pace": "5:50–6:20",
+          "hr_zone": "Z2",
+          "fill_remaining": true,
+          "label": "Long run nyaman"
+        }
+      ],
+      "notes": [],
+      "source_text": "Long run nyaman @5:50–6:20 [Z2]"
+    },
+    {
+      "id": "W02-sun",
+      "date": "2026-12-06",
+      "week": 2,
+      "day": "sun",
+      "phase": "Transisi",
+      "type": "recovery",
+      "is_hard": false,
+      "planned_km": 6.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 6.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 6000,
+          "intensity": "REC",
+          "src_pace": "6:05–6:40",
+          "hr_zone": "Z1",
+          "fill_remaining": true
+        }
+      ],
+      "notes": [
+        "santai, bisa ngobrol"
+      ],
+      "source_text": "Recovery @6:05–6:40 [Z1]\n(santai, bisa ngobrol)"
+    },
+    {
+      "id": "W03-tue",
+      "date": "2026-12-08",
+      "week": 3,
+      "day": "tue",
+      "phase": "Base",
+      "type": "vo2_4x4",
+      "is_hard": true,
+      "planned_km": 9.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 9.0,
+      "segments": [
+        {
+          "kind": "warmup",
+          "distance_m": 3000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        },
+        {
+          "kind": "work",
+          "reps": 4,
+          "distance_m": 700,
+          "intensity": "N",
+          "src_pace": "4:35–4:45",
+          "hr_zone": "Z5"
+        },
+        {
+          "kind": "recovery",
+          "distance_m": 400,
+          "intensity": "JOG",
+          "src_pace": "7:00–8:00",
+          "hr_zone": "Z1",
+          "reps": 3,
+          "between_reps": true
+        },
+        {
+          "kind": "cooldown",
+          "distance_m": 2000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        }
+      ],
+      "notes": [],
+      "source_text": "WU 3 km @6:00–6:30 [Z1–2]\n4×700 m @4:35–4:45 [Z5]\nrec 400 m jog @7:00–8:00\nCD 2 km @6:00–6:30 [Z1–2]"
+    },
+    {
+      "id": "W03-wed",
+      "date": "2026-12-09",
+      "week": 3,
+      "day": "wed",
+      "phase": "Base",
+      "type": "easy_strides",
+      "is_hard": false,
+      "planned_km": 6.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 6.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 5400,
+          "intensity": "E",
+          "src_pace": "5:50–6:30",
+          "hr_zone": "Z2",
+          "fill_remaining": true
+        },
+        {
+          "kind": "strides",
+          "reps": 6,
+          "distance_m": 100,
+          "intensity": "S",
+          "src_pace": "3:50–4:10",
+          "hr_zone": null
+        }
+      ],
+      "notes": [],
+      "source_text": "Easy @5:50–6:30 [Z2]\n+ 6×100 m strides @3:50–4:10"
+    },
+    {
+      "id": "W03-thu",
+      "date": "2026-12-10",
+      "week": 3,
+      "day": "thu",
+      "phase": "Base",
+      "type": "fartlek",
+      "is_hard": false,
+      "planned_km": 9.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 8.4,
+      "segments": [
+        {
+          "kind": "warmup",
+          "distance_m": 3000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        },
+        {
+          "kind": "work",
+          "reps": 8,
+          "distance_m": 250,
+          "intensity": "N",
+          "pace_adj_s": [
+            -20,
+            -15
+          ],
+          "review": true,
+          "src_pace": "4:15–4:30",
+          "hr_zone": "Z5",
+          "label": "Fartlek"
+        },
+        {
+          "kind": "recovery",
+          "distance_m": 200,
+          "intensity": "JOG",
+          "pace_adj_s": [
+            -30,
+            -60
+          ],
+          "review": true,
+          "src_pace": "6:30–7:00",
+          "hr_zone": "Z1",
+          "reps": 7,
+          "between_reps": true
+        },
+        {
+          "kind": "cooldown",
+          "distance_m": 2000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        }
+      ],
+      "notes": [],
+      "source_text": "WU 3 km @6:00–6:30 [Z1–2]\nFartlek 8×250 m @4:15–4:30\nrec 200 m jog @6:30–7:00\nCD 2 km @6:00–6:30 [Z1–2]"
+    },
+    {
+      "id": "W03-sat",
+      "date": "2026-12-12",
+      "week": 3,
+      "day": "sat",
+      "phase": "Base",
+      "type": "long",
+      "is_hard": false,
+      "planned_km": 16.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 16.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 16000,
+          "intensity": "L",
+          "pace_adj_s": [
+            5,
+            5
+          ],
+          "review": true,
+          "src_pace": "5:50–6:20",
+          "hr_zone": "Z2",
+          "fill_remaining": true,
+          "label": "Long run nyaman"
+        }
+      ],
+      "notes": [
+        "HR rendah, Z2"
+      ],
+      "source_text": "Long run nyaman @5:50–6:20 [Z2]\n(HR rendah, Z2)"
+    },
+    {
+      "id": "W03-sun",
+      "date": "2026-12-13",
+      "week": 3,
+      "day": "sun",
+      "phase": "Base",
+      "type": "recovery",
+      "is_hard": false,
+      "planned_km": 6.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 6.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 6000,
+          "intensity": "REC",
+          "src_pace": "6:05–6:40",
+          "hr_zone": "Z1",
+          "fill_remaining": true
+        }
+      ],
+      "notes": [
+        "santai, bisa ngobrol"
+      ],
+      "source_text": "Recovery @6:05–6:40 [Z1]\n(santai, bisa ngobrol)"
+    },
+    {
+      "id": "W04-tue",
+      "date": "2026-12-15",
+      "week": 4,
+      "day": "tue",
+      "phase": "Base",
+      "type": "vo2_4x4",
+      "is_hard": true,
+      "planned_km": 9.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 9.0,
+      "segments": [
+        {
+          "kind": "warmup",
+          "distance_m": 3000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        },
+        {
+          "kind": "work",
+          "reps": 4,
+          "distance_m": 700,
+          "intensity": "N",
+          "src_pace": "4:35–4:45",
+          "hr_zone": "Z5"
+        },
+        {
+          "kind": "recovery",
+          "distance_m": 400,
+          "intensity": "JOG",
+          "src_pace": "7:00–8:00",
+          "hr_zone": "Z1",
+          "reps": 3,
+          "between_reps": true
+        },
+        {
+          "kind": "cooldown",
+          "distance_m": 2000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        }
+      ],
+      "notes": [],
+      "source_text": "WU 3 km @6:00–6:30 [Z1–2]\n4×700 m @4:35–4:45 [Z5]\nrec 400 m jog @7:00–8:00\nCD 2 km @6:00–6:30 [Z1–2]"
+    },
+    {
+      "id": "W04-wed",
+      "date": "2026-12-16",
+      "week": 4,
+      "day": "wed",
+      "phase": "Base",
+      "type": "easy_strides",
+      "is_hard": false,
+      "planned_km": 7.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 7.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 6400,
+          "intensity": "E",
+          "src_pace": "5:50–6:30",
+          "hr_zone": "Z2",
+          "fill_remaining": true
+        },
+        {
+          "kind": "strides",
+          "reps": 6,
+          "distance_m": 100,
+          "intensity": "S",
+          "src_pace": "3:50–4:10",
+          "hr_zone": null
+        }
+      ],
+      "notes": [],
+      "source_text": "Easy @5:50–6:30 [Z2]\n+ 6×100 m strides @3:50–4:10"
+    },
+    {
+      "id": "W04-thu",
+      "date": "2026-12-17",
+      "week": 4,
+      "day": "thu",
+      "phase": "Base",
+      "type": "tempo",
+      "is_hard": true,
+      "planned_km": 10.0,
+      "z4_target_min": 20,
+      "z4_planned_min": 24.1,
+      "mp_hmp_km": null,
+      "segments_km": 10.4,
+      "segments": [
+        {
+          "kind": "warmup",
+          "distance_m": 3000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        },
+        {
+          "kind": "work",
+          "reps": 3,
+          "distance_m": 1600,
+          "intensity": "T",
+          "src_pace": "4:58–5:05",
+          "hr_zone": "Z3-4",
+          "label": "Tempo"
+        },
+        {
+          "kind": "recovery",
+          "distance_m": 300,
+          "intensity": "JOG",
+          "pace_adj_s": [
+            -30,
+            -60
+          ],
+          "review": true,
+          "src_pace": "6:30–7:00",
+          "hr_zone": "Z1",
+          "reps": 2,
+          "between_reps": true
+        },
+        {
+          "kind": "cooldown",
+          "distance_m": 2000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        }
+      ],
+      "notes": [],
+      "source_text": "WU 3 km @6:00–6:30 [Z1–2]\nTempo 3×1,6 km @4:58–5:05 [Z3–4]\nrec 300 m jog @6:30–7:00\nCD 2 km @6:00–6:30 [Z1–2]"
+    },
+    {
+      "id": "W04-sat",
+      "date": "2026-12-19",
+      "week": 4,
+      "day": "sat",
+      "phase": "Base",
+      "type": "long",
+      "is_hard": false,
+      "planned_km": 17.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 17.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 17000,
+          "intensity": "L",
+          "src_pace": "5:45–6:15",
+          "hr_zone": "Z2",
+          "fill_remaining": true,
+          "label": "Long run nyaman"
+        }
+      ],
+      "notes": [],
+      "source_text": "Long run nyaman @5:45–6:15 [Z2]"
+    },
+    {
+      "id": "W04-sun",
+      "date": "2026-12-20",
+      "week": 4,
+      "day": "sun",
+      "phase": "Base",
+      "type": "recovery",
+      "is_hard": false,
+      "planned_km": 6.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 6.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 6000,
+          "intensity": "REC",
+          "src_pace": "6:05–6:40",
+          "hr_zone": "Z1",
+          "fill_remaining": true
+        }
+      ],
+      "notes": [
+        "santai, bisa ngobrol"
+      ],
+      "source_text": "Recovery @6:05–6:40 [Z1]\n(santai, bisa ngobrol)"
+    },
+    {
+      "id": "W05-tue",
+      "date": "2026-12-22",
+      "week": 5,
+      "day": "tue",
+      "phase": "Base",
+      "type": "vo2_4x4",
+      "is_hard": true,
+      "planned_km": 10.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 9.8,
+      "segments": [
+        {
+          "kind": "warmup",
+          "distance_m": 3000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        },
+        {
+          "kind": "work",
+          "reps": 4,
+          "distance_m": 900,
+          "intensity": "N",
+          "src_pace": "4:35–4:45",
+          "hr_zone": "Z5"
+        },
+        {
+          "kind": "recovery",
+          "distance_m": 400,
+          "intensity": "JOG",
+          "src_pace": "7:00–8:00",
+          "hr_zone": "Z1",
+          "reps": 3,
+          "between_reps": true
+        },
+        {
+          "kind": "cooldown",
+          "distance_m": 2000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        }
+      ],
+      "notes": [],
+      "source_text": "WU 3 km @6:00–6:30 [Z1–2]\n4×900 m @4:35–4:45 [Z5]\nrec 400 m jog @7:00–8:00\nCD 2 km @6:00–6:30 [Z1–2]"
+    },
+    {
+      "id": "W05-wed",
+      "date": "2026-12-23",
+      "week": 5,
+      "day": "wed",
+      "phase": "Base",
+      "type": "easy_strides",
+      "is_hard": false,
+      "planned_km": 7.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 7.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 6400,
+          "intensity": "E",
+          "src_pace": "5:50–6:30",
+          "hr_zone": "Z2",
+          "fill_remaining": true
+        },
+        {
+          "kind": "strides",
+          "reps": 6,
+          "distance_m": 100,
+          "intensity": "S",
+          "src_pace": "3:50–4:10",
+          "hr_zone": null
+        }
+      ],
+      "notes": [],
+      "source_text": "Easy @5:50–6:30 [Z2]\n+ 6×100 m strides @3:50–4:10"
+    },
+    {
+      "id": "W05-thu",
+      "date": "2026-12-24",
+      "week": 5,
+      "day": "thu",
+      "phase": "Base",
+      "type": "test_30min",
+      "is_hard": true,
+      "planned_km": 11.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 11.0,
+      "segments": [
+        {
+          "kind": "warmup",
+          "distance_m": 3000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        },
+        {
+          "kind": "test",
+          "intensity": "TEST",
+          "hr_zone": "Z4-5",
+          "src_pace": "4:40–4:50",
+          "duration_s": 1800,
+          "test_type": "30min",
+          "target_note": "target ≥ 6,2 km; LTHR = avg HR 20′ terakhir",
+          "distance_m": 6000,
+          "fill_remaining": true,
+          "distance_is_estimate": true
+        },
+        {
+          "kind": "cooldown",
+          "distance_m": 2000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        }
+      ],
+      "notes": [],
+      "source_text": "WU 3 km @6:00–6:30 [Z1–2]\n🧪 TES 30 MENIT solo, effort rata\n@4:40–4:50 [Z4–5] (target ≥ 6,2 km)\nLTHR = avg HR 20′ terakhir → isi ⏱️ C6\nCD 2 km @6:00–6:30 [Z1–2]"
+    },
+    {
+      "id": "W05-sat",
+      "date": "2026-12-26",
+      "week": 5,
+      "day": "sat",
+      "phase": "Base",
+      "type": "long",
+      "is_hard": false,
+      "planned_km": 18.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 18.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 18000,
+          "intensity": "L",
+          "src_pace": "5:45–6:15",
+          "hr_zone": "Z2",
+          "fill_remaining": true,
+          "label": "Long run nyaman"
+        }
+      ],
+      "notes": [],
+      "source_text": "Long run nyaman @5:45–6:15 [Z2]"
+    },
+    {
+      "id": "W05-sun",
+      "date": "2026-12-27",
+      "week": 5,
+      "day": "sun",
+      "phase": "Base",
+      "type": "recovery",
+      "is_hard": false,
+      "planned_km": 6.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 6.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 6000,
+          "intensity": "REC",
+          "src_pace": "6:05–6:40",
+          "hr_zone": "Z1",
+          "fill_remaining": true
+        }
+      ],
+      "notes": [
+        "santai, bisa ngobrol"
+      ],
+      "source_text": "Recovery @6:05–6:40 [Z1]\n(santai, bisa ngobrol)"
+    },
+    {
+      "id": "W06-tue",
+      "date": "2026-12-29",
+      "week": 6,
+      "day": "tue",
+      "phase": "Base",
+      "type": "vo2_4x4",
+      "is_hard": true,
+      "planned_km": 8.5,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 8.5,
+      "segments": [
+        {
+          "kind": "warmup",
+          "distance_m": 3000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        },
+        {
+          "kind": "work",
+          "reps": 3,
+          "distance_m": 900,
+          "intensity": "N",
+          "src_pace": "4:35–4:45",
+          "hr_zone": "Z5",
+          "note": "pemulihan"
+        },
+        {
+          "kind": "recovery",
+          "distance_m": 400,
+          "intensity": "JOG",
+          "src_pace": "7:00–8:00",
+          "hr_zone": "Z1",
+          "reps": 2,
+          "between_reps": true
+        },
+        {
+          "kind": "cooldown",
+          "distance_m": 2000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        }
+      ],
+      "notes": [],
+      "source_text": "WU 3 km @6:00–6:30 [Z1–2]\n3×900 m @4:35–4:45 [Z5] (pemulihan)\nrec 400 m jog @7:00–8:00\nCD 2 km @6:00–6:30 [Z1–2]"
+    },
+    {
+      "id": "W06-wed",
+      "date": "2026-12-30",
+      "week": 6,
+      "day": "wed",
+      "phase": "Base",
+      "type": "easy_strides",
+      "is_hard": false,
+      "planned_km": 6.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 6.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 5400,
+          "intensity": "E",
+          "src_pace": "5:50–6:30",
+          "hr_zone": "Z2",
+          "fill_remaining": true
+        },
+        {
+          "kind": "strides",
+          "reps": 6,
+          "distance_m": 100,
+          "intensity": "S",
+          "src_pace": "3:50–4:10",
+          "hr_zone": null
+        }
+      ],
+      "notes": [],
+      "source_text": "Easy @5:50–6:30 [Z2]\n+ 6×100 m strides @3:50–4:10"
+    },
+    {
+      "id": "W06-thu",
+      "date": "2026-12-31",
+      "week": 6,
+      "day": "thu",
+      "phase": "Base",
+      "type": "tempo",
+      "is_hard": true,
+      "planned_km": 9.5,
+      "z4_target_min": 20,
+      "z4_planned_min": 20.1,
+      "mp_hmp_km": null,
+      "segments_km": 9.3,
+      "segments": [
+        {
+          "kind": "warmup",
+          "distance_m": 3000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        },
+        {
+          "kind": "work",
+          "reps": 2,
+          "distance_m": 2000,
+          "intensity": "T",
+          "src_pace": "4:58–5:05",
+          "hr_zone": "Z3-4",
+          "label": "Tempo"
+        },
+        {
+          "kind": "recovery",
+          "distance_m": 300,
+          "intensity": "JOG",
+          "pace_adj_s": [
+            -30,
+            -60
+          ],
+          "review": true,
+          "src_pace": "6:30–7:00",
+          "hr_zone": "Z1",
+          "reps": 1,
+          "between_reps": true
+        },
+        {
+          "kind": "cooldown",
+          "distance_m": 2000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        }
+      ],
+      "notes": [],
+      "source_text": "WU 3 km @6:00–6:30 [Z1–2]\nTempo 2×2 km @4:58–5:05 [Z3–4]\nrec 300 m jog @6:30–7:00\nCD 2 km @6:00–6:30 [Z1–2]"
+    },
+    {
+      "id": "W06-sat",
+      "date": "2027-01-02",
+      "week": 6,
+      "day": "sat",
+      "phase": "Base",
+      "type": "long",
+      "is_hard": false,
+      "planned_km": 14.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 14.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 14000,
+          "intensity": "L",
+          "pace_adj_s": [
+            10,
+            10
+          ],
+          "review": true,
+          "src_pace": "5:55–6:25",
+          "hr_zone": "Z2",
+          "fill_remaining": true,
+          "label": "Long run ringan"
+        }
+      ],
+      "notes": [],
+      "source_text": "Long run ringan @5:55–6:25 [Z2]"
+    },
+    {
+      "id": "W06-sun",
+      "date": "2027-01-03",
+      "week": 6,
+      "day": "sun",
+      "phase": "Base",
+      "type": "recovery",
+      "is_hard": false,
+      "planned_km": 6.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 6.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 6000,
+          "intensity": "REC",
+          "src_pace": "6:05–6:40",
+          "hr_zone": "Z1",
+          "fill_remaining": true
+        }
+      ],
+      "notes": [
+        "santai, bisa ngobrol"
+      ],
+      "source_text": "Recovery @6:05–6:40 [Z1]\n(santai, bisa ngobrol)"
+    },
+    {
+      "id": "W07-tue",
+      "date": "2027-01-05",
+      "week": 7,
+      "day": "tue",
+      "phase": "Base",
+      "type": "vo2_4x4",
+      "is_hard": true,
+      "planned_km": 10.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 9.8,
+      "segments": [
+        {
+          "kind": "warmup",
+          "distance_m": 3000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        },
+        {
+          "kind": "work",
+          "reps": 4,
+          "distance_m": 900,
+          "intensity": "N",
+          "src_pace": "4:35–4:45",
+          "hr_zone": "Z5"
+        },
+        {
+          "kind": "recovery",
+          "distance_m": 400,
+          "intensity": "JOG",
+          "src_pace": "7:00–8:00",
+          "hr_zone": "Z1",
+          "reps": 3,
+          "between_reps": true
+        },
+        {
+          "kind": "cooldown",
+          "distance_m": 2000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        }
+      ],
+      "notes": [],
+      "source_text": "WU 3 km @6:00–6:30 [Z1–2]\n4×900 m @4:35–4:45 [Z5]\nrec 400 m jog @7:00–8:00\nCD 2 km @6:00–6:30 [Z1–2]"
+    },
+    {
+      "id": "W07-wed",
+      "date": "2027-01-06",
+      "week": 7,
+      "day": "wed",
+      "phase": "Base",
+      "type": "easy_strides",
+      "is_hard": false,
+      "planned_km": 7.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 7.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 6400,
+          "intensity": "E",
+          "src_pace": "5:50–6:30",
+          "hr_zone": "Z2",
+          "fill_remaining": true
+        },
+        {
+          "kind": "strides",
+          "reps": 6,
+          "distance_m": 100,
+          "intensity": "S",
+          "src_pace": "3:50–4:10",
+          "hr_zone": null
+        }
+      ],
+      "notes": [],
+      "source_text": "Easy @5:50–6:30 [Z2]\n+ 6×100 m strides @3:50–4:10"
+    },
+    {
+      "id": "W07-thu",
+      "date": "2027-01-07",
+      "week": 7,
+      "day": "thu",
+      "phase": "Base",
+      "type": "tempo",
+      "is_hard": true,
+      "planned_km": 11.5,
+      "z4_target_min": 30,
+      "z4_planned_min": 30.1,
+      "mp_hmp_km": null,
+      "segments_km": 11.6,
+      "segments": [
+        {
+          "kind": "warmup",
+          "distance_m": 3000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        },
+        {
+          "kind": "work",
+          "reps": 3,
+          "distance_m": 2000,
+          "intensity": "T",
+          "src_pace": "4:58–5:05",
+          "hr_zone": "Z3-4",
+          "label": "Tempo"
+        },
+        {
+          "kind": "recovery",
+          "distance_m": 300,
+          "intensity": "JOG",
+          "pace_adj_s": [
+            -30,
+            -60
+          ],
+          "review": true,
+          "src_pace": "6:30–7:00",
+          "hr_zone": "Z1",
+          "reps": 2,
+          "between_reps": true
+        },
+        {
+          "kind": "cooldown",
+          "distance_m": 2000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        }
+      ],
+      "notes": [],
+      "source_text": "WU 3 km @6:00–6:30 [Z1–2]\nTempo 3×2 km @4:58–5:05 [Z3–4]\nrec 300 m jog @6:30–7:00\nCD 2 km @6:00–6:30 [Z1–2]"
+    },
+    {
+      "id": "W07-sat",
+      "date": "2027-01-09",
+      "week": 7,
+      "day": "sat",
+      "phase": "Base",
+      "type": "long",
+      "is_hard": false,
+      "planned_km": 19.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 19.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 19000,
+          "intensity": "L",
+          "src_pace": "5:45–6:15",
+          "hr_zone": "Z2",
+          "fill_remaining": true,
+          "label": "Long run nyaman"
+        }
+      ],
+      "notes": [],
+      "source_text": "Long run nyaman @5:45–6:15 [Z2]"
+    },
+    {
+      "id": "W07-sun",
+      "date": "2027-01-10",
+      "week": 7,
+      "day": "sun",
+      "phase": "Base",
+      "type": "recovery",
+      "is_hard": false,
+      "planned_km": 6.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 6.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 6000,
+          "intensity": "REC",
+          "src_pace": "6:05–6:40",
+          "hr_zone": "Z1",
+          "fill_remaining": true
+        }
+      ],
+      "notes": [
+        "santai, bisa ngobrol"
+      ],
+      "source_text": "Recovery @6:05–6:40 [Z1]\n(santai, bisa ngobrol)"
+    },
+    {
+      "id": "W08-tue",
+      "date": "2027-01-12",
+      "week": 8,
+      "day": "tue",
+      "phase": "Base",
+      "type": "vo2_4x4",
+      "is_hard": true,
+      "planned_km": 10.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 9.8,
+      "segments": [
+        {
+          "kind": "warmup",
+          "distance_m": 3000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        },
+        {
+          "kind": "work",
+          "reps": 4,
+          "distance_m": 900,
+          "intensity": "N",
+          "src_pace": "4:35–4:45",
+          "hr_zone": "Z5"
+        },
+        {
+          "kind": "recovery",
+          "distance_m": 400,
+          "intensity": "JOG",
+          "src_pace": "7:00–8:00",
+          "hr_zone": "Z1",
+          "reps": 3,
+          "between_reps": true
+        },
+        {
+          "kind": "cooldown",
+          "distance_m": 2000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        }
+      ],
+      "notes": [],
+      "source_text": "WU 3 km @6:00–6:30 [Z1–2]\n4×900 m @4:35–4:45 [Z5]\nrec 400 m jog @7:00–8:00\nCD 2 km @6:00–6:30 [Z1–2]"
+    },
+    {
+      "id": "W08-wed",
+      "date": "2027-01-13",
+      "week": 8,
+      "day": "wed",
+      "phase": "Base",
+      "type": "easy_strides",
+      "is_hard": false,
+      "planned_km": 9.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 9.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 8400,
+          "intensity": "E",
+          "src_pace": "5:50–6:30",
+          "hr_zone": "Z2",
+          "fill_remaining": true
+        },
+        {
+          "kind": "strides",
+          "reps": 6,
+          "distance_m": 100,
+          "intensity": "S",
+          "src_pace": "3:50–4:10",
+          "hr_zone": null
+        }
+      ],
+      "notes": [],
+      "source_text": "Easy @5:50–6:30 [Z2]\n+ 6×100 m strides @3:50–4:10"
+    },
+    {
+      "id": "W08-thu",
+      "date": "2027-01-14",
+      "week": 8,
+      "day": "thu",
+      "phase": "Base",
+      "type": "tempo",
+      "is_hard": true,
+      "planned_km": 11.5,
+      "z4_target_min": 30,
+      "z4_planned_min": 30.1,
+      "mp_hmp_km": null,
+      "segments_km": 11.4,
+      "segments": [
+        {
+          "kind": "warmup",
+          "distance_m": 3000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        },
+        {
+          "kind": "work",
+          "reps": 2,
+          "distance_m": 3000,
+          "intensity": "T",
+          "src_pace": "4:58–5:05",
+          "hr_zone": "Z3-4",
+          "label": "Tempo"
+        },
+        {
+          "kind": "recovery",
+          "distance_m": 400,
+          "intensity": "JOG",
+          "pace_adj_s": [
+            -30,
+            -60
+          ],
+          "review": true,
+          "src_pace": "6:30–7:00",
+          "hr_zone": "Z1",
+          "reps": 1,
+          "between_reps": true
+        },
+        {
+          "kind": "cooldown",
+          "distance_m": 2000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        }
+      ],
+      "notes": [],
+      "source_text": "WU 3 km @6:00–6:30 [Z1–2]\nTempo 2×3 km @4:58–5:05 [Z3–4]\nrec 400 m jog @6:30–7:00\nCD 2 km @6:00–6:30 [Z1–2]"
+    },
+    {
+      "id": "W08-sat",
+      "date": "2027-01-16",
+      "week": 8,
+      "day": "sat",
+      "phase": "Base",
+      "type": "long_with_pace",
+      "is_hard": false,
+      "planned_km": 20.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": 3.0,
+      "segments_km": 20.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 17000,
+          "intensity": "L",
+          "src_pace": "5:45–6:15",
+          "hr_zone": "Z2"
+        },
+        {
+          "kind": "steady",
+          "distance_m": 3000,
+          "intensity": "M",
+          "src_pace": "5:15–5:20",
+          "hr_zone": "Z3",
+          "position": "last"
+        }
+      ],
+      "notes": [],
+      "source_text": "17 km @5:45–6:15 [Z2]\n+ 3 km terakhir @5:15–5:20 [Z3]"
+    },
+    {
+      "id": "W08-sun",
+      "date": "2027-01-17",
+      "week": 8,
+      "day": "sun",
+      "phase": "Base",
+      "type": "recovery",
+      "is_hard": false,
+      "planned_km": 6.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 6.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 6000,
+          "intensity": "REC",
+          "src_pace": "6:05–6:40",
+          "hr_zone": "Z1",
+          "fill_remaining": true
+        }
+      ],
+      "notes": [
+        "santai, bisa ngobrol"
+      ],
+      "source_text": "Recovery @6:05–6:40 [Z1]\n(santai, bisa ngobrol)"
+    },
+    {
+      "id": "W09-tue",
+      "date": "2027-01-19",
+      "week": 9,
+      "day": "tue",
+      "phase": "Build",
+      "type": "vo2_4x4",
+      "is_hard": true,
+      "planned_km": 10.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 10.2,
+      "segments": [
+        {
+          "kind": "warmup",
+          "distance_m": 3000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        },
+        {
+          "kind": "work",
+          "reps": 4,
+          "distance_m": 1000,
+          "intensity": "N",
+          "src_pace": "4:25–4:40",
+          "hr_zone": "Z5"
+        },
+        {
+          "kind": "recovery",
+          "distance_m": 400,
+          "intensity": "JOG",
+          "src_pace": "7:00–8:00",
+          "hr_zone": "Z1",
+          "reps": 3,
+          "between_reps": true
+        },
+        {
+          "kind": "cooldown",
+          "distance_m": 2000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        }
+      ],
+      "notes": [],
+      "source_text": "WU 3 km @6:00–6:30 [Z1–2]\n4×1 km @4:25–4:40 [Z5]\nrec 400 m jog @7:00–8:00\nCD 2 km @6:00–6:30 [Z1–2]"
+    },
+    {
+      "id": "W09-wed",
+      "date": "2027-01-20",
+      "week": 9,
+      "day": "wed",
+      "phase": "Build",
+      "type": "easy_strides",
+      "is_hard": false,
+      "planned_km": 10.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 10.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 9400,
+          "intensity": "E",
+          "src_pace": "5:50–6:30",
+          "hr_zone": "Z2",
+          "fill_remaining": true
+        },
+        {
+          "kind": "strides",
+          "reps": 6,
+          "distance_m": 100,
+          "intensity": "S",
+          "src_pace": "3:50–4:10",
+          "hr_zone": null
+        }
+      ],
+      "notes": [],
+      "source_text": "Easy @5:50–6:30 [Z2]\n+ 6×100 m strides @3:50–4:10"
+    },
+    {
+      "id": "W09-thu",
+      "date": "2027-01-21",
+      "week": 9,
+      "day": "thu",
+      "phase": "Build",
+      "type": "tempo",
+      "is_hard": true,
+      "planned_km": 10.0,
+      "z4_target_min": 30,
+      "z4_planned_min": 24.3,
+      "mp_hmp_km": null,
+      "segments_km": 10.0,
+      "segments": [
+        {
+          "kind": "warmup",
+          "distance_m": 3000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        },
+        {
+          "kind": "work",
+          "reps": 1,
+          "distance_m": 5000,
+          "intensity": "T",
+          "src_pace": "4:48–4:55",
+          "hr_zone": "Z4",
+          "label": "Tempo kontinu"
+        },
+        {
+          "kind": "cooldown",
+          "distance_m": 2000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        }
+      ],
+      "notes": [],
+      "source_text": "WU 3 km @6:00–6:30 [Z1–2]\nTempo 5 km kontinu @4:48–4:55 [Z4]\nCD 2 km @6:00–6:30 [Z1–2]"
+    },
+    {
+      "id": "W09-sat",
+      "date": "2027-01-23",
+      "week": 9,
+      "day": "sat",
+      "phase": "Build",
+      "type": "long",
+      "is_hard": false,
+      "planned_km": 21.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 21.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 21000,
+          "intensity": "L",
+          "src_pace": "5:45–6:15",
+          "hr_zone": "Z2",
+          "fill_remaining": true,
+          "label": "Long run nyaman"
+        }
+      ],
+      "notes": [],
+      "source_text": "Long run nyaman @5:45–6:15 [Z2]"
+    },
+    {
+      "id": "W09-sun",
+      "date": "2027-01-24",
+      "week": 9,
+      "day": "sun",
+      "phase": "Build",
+      "type": "recovery",
+      "is_hard": false,
+      "planned_km": 9.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 9.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 9000,
+          "intensity": "REC",
+          "src_pace": "6:05–6:40",
+          "hr_zone": "Z1",
+          "fill_remaining": true
+        }
+      ],
+      "notes": [
+        "santai, bisa ngobrol"
+      ],
+      "source_text": "Recovery @6:05–6:40 [Z1]\n(santai, bisa ngobrol)"
+    },
+    {
+      "id": "W10-tue",
+      "date": "2027-01-26",
+      "week": 10,
+      "day": "tue",
+      "phase": "Build",
+      "type": "vo2_4x4",
+      "is_hard": true,
+      "planned_km": 8.5,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 8.8,
+      "segments": [
+        {
+          "kind": "warmup",
+          "distance_m": 3000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        },
+        {
+          "kind": "work",
+          "reps": 3,
+          "distance_m": 1000,
+          "intensity": "N",
+          "src_pace": "4:25–4:40",
+          "hr_zone": "Z5",
+          "note": "pemulihan"
+        },
+        {
+          "kind": "recovery",
+          "distance_m": 400,
+          "intensity": "JOG",
+          "src_pace": "7:00–8:00",
+          "hr_zone": "Z1",
+          "reps": 2,
+          "between_reps": true
+        },
+        {
+          "kind": "cooldown",
+          "distance_m": 2000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        }
+      ],
+      "notes": [],
+      "source_text": "WU 3 km @6:00–6:30 [Z1–2]\n3×1 km @4:25–4:40 [Z5] (pemulihan)\nrec 400 m jog @7:00–8:00\nCD 2 km @6:00–6:30 [Z1–2]"
+    },
+    {
+      "id": "W10-wed",
+      "date": "2027-01-27",
+      "week": 10,
+      "day": "wed",
+      "phase": "Build",
+      "type": "easy_strides",
+      "is_hard": false,
+      "planned_km": 7.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 7.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 6400,
+          "intensity": "E",
+          "src_pace": "5:50–6:30",
+          "hr_zone": "Z2",
+          "fill_remaining": true
+        },
+        {
+          "kind": "strides",
+          "reps": 6,
+          "distance_m": 100,
+          "intensity": "S",
+          "src_pace": "3:50–4:10",
+          "hr_zone": null
+        }
+      ],
+      "notes": [],
+      "source_text": "Easy @5:50–6:30 [Z2]\n+ 6×100 m strides @3:50–4:10"
+    },
+    {
+      "id": "W10-thu",
+      "date": "2027-01-28",
+      "week": 10,
+      "day": "thu",
+      "phase": "Build",
+      "type": "tempo",
+      "is_hard": true,
+      "planned_km": 10.0,
+      "z4_target_min": 30,
+      "z4_planned_min": 23.3,
+      "mp_hmp_km": null,
+      "segments_km": 10.4,
+      "segments": [
+        {
+          "kind": "warmup",
+          "distance_m": 3000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        },
+        {
+          "kind": "work",
+          "reps": 3,
+          "distance_m": 1600,
+          "intensity": "T",
+          "src_pace": "4:48–4:55",
+          "hr_zone": "Z4",
+          "label": "Tempo"
+        },
+        {
+          "kind": "recovery",
+          "distance_m": 300,
+          "intensity": "JOG",
+          "pace_adj_s": [
+            -30,
+            -60
+          ],
+          "review": true,
+          "src_pace": "6:30–7:00",
+          "hr_zone": "Z1",
+          "reps": 2,
+          "between_reps": true
+        },
+        {
+          "kind": "cooldown",
+          "distance_m": 2000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        }
+      ],
+      "notes": [],
+      "source_text": "WU 3 km @6:00–6:30 [Z1–2]\nTempo 3×1,6 km @4:48–4:55 [Z4]\nrec 300 m jog @6:30–7:00\nCD 2 km @6:00–6:30 [Z1–2]"
+    },
+    {
+      "id": "W10-sat",
+      "date": "2027-01-30",
+      "week": 10,
+      "day": "sat",
+      "phase": "Build",
+      "type": "long",
+      "is_hard": false,
+      "planned_km": 16.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 16.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 16000,
+          "intensity": "L",
+          "pace_adj_s": [
+            10,
+            10
+          ],
+          "review": true,
+          "src_pace": "5:55–6:25",
+          "hr_zone": "Z2",
+          "fill_remaining": true,
+          "label": "Long run ringan"
+        }
+      ],
+      "notes": [],
+      "source_text": "Long run ringan @5:55–6:25 [Z2]"
+    },
+    {
+      "id": "W10-sun",
+      "date": "2027-01-31",
+      "week": 10,
+      "day": "sun",
+      "phase": "Build",
+      "type": "recovery",
+      "is_hard": false,
+      "planned_km": 6.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 6.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 6000,
+          "intensity": "REC",
+          "src_pace": "6:05–6:40",
+          "hr_zone": "Z1",
+          "fill_remaining": true
+        }
+      ],
+      "notes": [
+        "santai, bisa ngobrol"
+      ],
+      "source_text": "Recovery @6:05–6:40 [Z1]\n(santai, bisa ngobrol)"
+    },
+    {
+      "id": "W11-tue",
+      "date": "2027-02-02",
+      "week": 11,
+      "day": "tue",
+      "phase": "Build",
+      "type": "vo2_4x4",
+      "is_hard": true,
+      "planned_km": 10.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 10.2,
+      "segments": [
+        {
+          "kind": "warmup",
+          "distance_m": 3000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        },
+        {
+          "kind": "work",
+          "reps": 4,
+          "distance_m": 1000,
+          "intensity": "N",
+          "src_pace": "4:25–4:40",
+          "hr_zone": "Z5"
+        },
+        {
+          "kind": "recovery",
+          "distance_m": 400,
+          "intensity": "JOG",
+          "src_pace": "7:00–8:00",
+          "hr_zone": "Z1",
+          "reps": 3,
+          "between_reps": true
+        },
+        {
+          "kind": "cooldown",
+          "distance_m": 2000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        }
+      ],
+      "notes": [],
+      "source_text": "WU 3 km @6:00–6:30 [Z1–2]\n4×1 km @4:25–4:40 [Z5]\nrec 400 m jog @7:00–8:00\nCD 2 km @6:00–6:30 [Z1–2]"
+    },
+    {
+      "id": "W11-wed",
+      "date": "2027-02-03",
+      "week": 11,
+      "day": "wed",
+      "phase": "Build",
+      "type": "easy_strides",
+      "is_hard": false,
+      "planned_km": 10.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 10.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 9400,
+          "intensity": "E",
+          "src_pace": "5:50–6:30",
+          "hr_zone": "Z2",
+          "fill_remaining": true
+        },
+        {
+          "kind": "strides",
+          "reps": 6,
+          "distance_m": 100,
+          "intensity": "S",
+          "src_pace": "3:50–4:10",
+          "hr_zone": null
+        }
+      ],
+      "notes": [],
+      "source_text": "Easy @5:50–6:30 [Z2]\n+ 6×100 m strides @3:50–4:10"
+    },
+    {
+      "id": "W11-thu",
+      "date": "2027-02-04",
+      "week": 11,
+      "day": "thu",
+      "phase": "Build",
+      "type": "tempo",
+      "is_hard": true,
+      "planned_km": 11.0,
+      "z4_target_min": 30,
+      "z4_planned_min": 29.1,
+      "mp_hmp_km": null,
+      "segments_km": 11.0,
+      "segments": [
+        {
+          "kind": "warmup",
+          "distance_m": 3000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        },
+        {
+          "kind": "work",
+          "reps": 1,
+          "distance_m": 6000,
+          "intensity": "T",
+          "src_pace": "4:48–4:55",
+          "hr_zone": "Z4",
+          "label": "Tempo kontinu"
+        },
+        {
+          "kind": "cooldown",
+          "distance_m": 2000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        }
+      ],
+      "notes": [],
+      "source_text": "WU 3 km @6:00–6:30 [Z1–2]\nTempo 6 km kontinu @4:48–4:55 [Z4]\nCD 2 km @6:00–6:30 [Z1–2]"
+    },
+    {
+      "id": "W11-sat",
+      "date": "2027-02-06",
+      "week": 11,
+      "day": "sat",
+      "phase": "Build",
+      "type": "long_with_pace",
+      "is_hard": false,
+      "planned_km": 22.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": 4.0,
+      "segments_km": 22.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 18000,
+          "intensity": "L",
+          "src_pace": "5:45–6:15",
+          "hr_zone": "Z2"
+        },
+        {
+          "kind": "steady",
+          "distance_m": 4000,
+          "intensity": "M",
+          "src_pace": "5:15–5:20",
+          "hr_zone": "Z3",
+          "position": "last"
+        }
+      ],
+      "notes": [],
+      "source_text": "18 km @5:45–6:15 [Z2]\n+ 4 km terakhir @5:15–5:20 [Z3]"
+    },
+    {
+      "id": "W11-sun",
+      "date": "2027-02-07",
+      "week": 11,
+      "day": "sun",
+      "phase": "Build",
+      "type": "recovery",
+      "is_hard": false,
+      "planned_km": 9.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 9.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 9000,
+          "intensity": "REC",
+          "src_pace": "6:05–6:40",
+          "hr_zone": "Z1",
+          "fill_remaining": true
+        }
+      ],
+      "notes": [
+        "santai, bisa ngobrol"
+      ],
+      "source_text": "Recovery @6:05–6:40 [Z1]\n(santai, bisa ngobrol)"
+    },
+    {
+      "id": "W12-tue",
+      "date": "2027-02-09",
+      "week": 12,
+      "day": "tue",
+      "phase": "Build",
+      "type": "vo2_4x4",
+      "is_hard": true,
+      "planned_km": 10.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 10.2,
+      "segments": [
+        {
+          "kind": "warmup",
+          "distance_m": 3000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        },
+        {
+          "kind": "work",
+          "reps": 4,
+          "distance_m": 1000,
+          "intensity": "N",
+          "src_pace": "4:25–4:40",
+          "hr_zone": "Z5"
+        },
+        {
+          "kind": "recovery",
+          "distance_m": 400,
+          "intensity": "JOG",
+          "src_pace": "7:00–8:00",
+          "hr_zone": "Z1",
+          "reps": 3,
+          "between_reps": true
+        },
+        {
+          "kind": "cooldown",
+          "distance_m": 2000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        }
+      ],
+      "notes": [],
+      "source_text": "WU 3 km @6:00–6:30 [Z1–2]\n4×1 km @4:25–4:40 [Z5]\nrec 400 m jog @7:00–8:00\nCD 2 km @6:00–6:30 [Z1–2]"
+    },
+    {
+      "id": "W12-wed",
+      "date": "2027-02-10",
+      "week": 12,
+      "day": "wed",
+      "phase": "Build",
+      "type": "easy_strides",
+      "is_hard": false,
+      "planned_km": 11.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 11.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 10400,
+          "intensity": "E",
+          "src_pace": "5:50–6:30",
+          "hr_zone": "Z2",
+          "fill_remaining": true
+        },
+        {
+          "kind": "strides",
+          "reps": 6,
+          "distance_m": 100,
+          "intensity": "S",
+          "src_pace": "3:50–4:10",
+          "hr_zone": null
+        }
+      ],
+      "notes": [],
+      "source_text": "Easy @5:50–6:30 [Z2]\n+ 6×100 m strides @3:50–4:10"
+    },
+    {
+      "id": "W12-thu",
+      "date": "2027-02-11",
+      "week": 12,
+      "day": "thu",
+      "phase": "Build",
+      "type": "tempo",
+      "is_hard": true,
+      "planned_km": 13.0,
+      "z4_target_min": 40,
+      "z4_planned_min": 36.4,
+      "mp_hmp_km": null,
+      "segments_km": 13.1,
+      "segments": [
+        {
+          "kind": "warmup",
+          "distance_m": 3000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        },
+        {
+          "kind": "work",
+          "reps": 3,
+          "distance_m": 2500,
+          "intensity": "T",
+          "src_pace": "4:48–4:55",
+          "hr_zone": "Z4",
+          "label": "Tempo"
+        },
+        {
+          "kind": "recovery",
+          "distance_m": 300,
+          "intensity": "JOG",
+          "pace_adj_s": [
+            -30,
+            -60
+          ],
+          "review": true,
+          "src_pace": "6:30–7:00",
+          "hr_zone": "Z1",
+          "reps": 2,
+          "between_reps": true
+        },
+        {
+          "kind": "cooldown",
+          "distance_m": 2000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        }
+      ],
+      "notes": [],
+      "source_text": "WU 3 km @6:00–6:30 [Z1–2]\nTempo 3×2,5 km @4:48–4:55 [Z4]\nrec 300 m jog @6:30–7:00\nCD 2 km @6:00–6:30 [Z1–2]"
+    },
+    {
+      "id": "W12-sat",
+      "date": "2027-02-13",
+      "week": 12,
+      "day": "sat",
+      "phase": "Build",
+      "type": "long_progressive",
+      "is_hard": true,
+      "planned_km": 22.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": 6.0,
+      "segments_km": 22.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 8000,
+          "intensity": "L",
+          "pace_adj_s": [
+            15,
+            -5
+          ],
+          "review": true,
+          "src_pace": "6:00–6:10",
+          "hr_zone": "Z2",
+          "label": "Progresif"
+        },
+        {
+          "kind": "steady",
+          "distance_m": 8000,
+          "intensity": "L",
+          "pace_adj_s": [
+            -10,
+            -30
+          ],
+          "review": true,
+          "src_pace": "5:35–5:45",
+          "hr_zone": "Z2-3"
+        },
+        {
+          "kind": "steady",
+          "distance_m": 6000,
+          "intensity": "M",
+          "src_pace": "5:15–5:20",
+          "hr_zone": "Z3"
+        }
+      ],
+      "notes": [],
+      "source_text": "Progresif: 8 km @6:00–6:10 [Z2]\n→ 8 km @5:35–5:45 [Z2–3] → 6 km @5:15–5:20 [Z3]"
+    },
+    {
+      "id": "W12-sun",
+      "date": "2027-02-14",
+      "week": 12,
+      "day": "sun",
+      "phase": "Build",
+      "type": "recovery",
+      "is_hard": false,
+      "planned_km": 9.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 9.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 9000,
+          "intensity": "REC",
+          "src_pace": "6:05–6:40",
+          "hr_zone": "Z1",
+          "fill_remaining": true
+        }
+      ],
+      "notes": [
+        "santai, bisa ngobrol"
+      ],
+      "source_text": "Recovery @6:05–6:40 [Z1]\n(santai, bisa ngobrol)"
+    },
+    {
+      "id": "W13-tue",
+      "date": "2027-02-16",
+      "week": 13,
+      "day": "tue",
+      "phase": "Build",
+      "type": "vo2_4x4",
+      "is_hard": true,
+      "planned_km": 10.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 10.2,
+      "segments": [
+        {
+          "kind": "warmup",
+          "distance_m": 3000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        },
+        {
+          "kind": "work",
+          "reps": 4,
+          "distance_m": 1000,
+          "intensity": "N",
+          "src_pace": "4:25–4:40",
+          "hr_zone": "Z5"
+        },
+        {
+          "kind": "recovery",
+          "distance_m": 400,
+          "intensity": "JOG",
+          "src_pace": "7:00–8:00",
+          "hr_zone": "Z1",
+          "reps": 3,
+          "between_reps": true
+        },
+        {
+          "kind": "cooldown",
+          "distance_m": 2000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        }
+      ],
+      "notes": [],
+      "source_text": "WU 3 km @6:00–6:30 [Z1–2]\n4×1 km @4:25–4:40 [Z5]\nrec 400 m jog @7:00–8:00\nCD 2 km @6:00–6:30 [Z1–2]"
+    },
+    {
+      "id": "W13-wed",
+      "date": "2027-02-17",
+      "week": 13,
+      "day": "wed",
+      "phase": "Build",
+      "type": "easy_strides",
+      "is_hard": false,
+      "planned_km": 11.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 11.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 10400,
+          "intensity": "E",
+          "src_pace": "5:50–6:30",
+          "hr_zone": "Z2",
+          "fill_remaining": true
+        },
+        {
+          "kind": "strides",
+          "reps": 6,
+          "distance_m": 100,
+          "intensity": "S",
+          "src_pace": "3:50–4:10",
+          "hr_zone": null
+        }
+      ],
+      "notes": [],
+      "source_text": "Easy @5:50–6:30 [Z2]\n+ 6×100 m strides @3:50–4:10"
+    },
+    {
+      "id": "W13-thu",
+      "date": "2027-02-18",
+      "week": 13,
+      "day": "thu",
+      "phase": "Build",
+      "type": "tempo",
+      "is_hard": true,
+      "planned_km": 13.5,
+      "z4_target_min": 40,
+      "z4_planned_min": 38.9,
+      "mp_hmp_km": null,
+      "segments_km": 13.4,
+      "segments": [
+        {
+          "kind": "warmup",
+          "distance_m": 3000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        },
+        {
+          "kind": "work",
+          "reps": 2,
+          "distance_m": 4000,
+          "intensity": "T",
+          "src_pace": "4:48–4:55",
+          "hr_zone": "Z4",
+          "label": "Tempo"
+        },
+        {
+          "kind": "recovery",
+          "distance_m": 400,
+          "intensity": "JOG",
+          "pace_adj_s": [
+            -30,
+            -60
+          ],
+          "review": true,
+          "src_pace": "6:30–7:00",
+          "hr_zone": "Z1",
+          "reps": 1,
+          "between_reps": true
+        },
+        {
+          "kind": "cooldown",
+          "distance_m": 2000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        }
+      ],
+      "notes": [],
+      "source_text": "WU 3 km @6:00–6:30 [Z1–2]\nTempo 2×4 km @4:48–4:55 [Z4]\nrec 400 m jog @6:30–7:00\nCD 2 km @6:00–6:30 [Z1–2]"
+    },
+    {
+      "id": "W13-sat",
+      "date": "2027-02-20",
+      "week": 13,
+      "day": "sat",
+      "phase": "Build",
+      "type": "long",
+      "is_hard": false,
+      "planned_km": 24.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 24.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 23400,
+          "intensity": "L",
+          "src_pace": "5:45–6:15",
+          "hr_zone": "Z2",
+          "fill_remaining": true,
+          "label": "Long run nyaman"
+        },
+        {
+          "kind": "strides",
+          "reps": 6,
+          "distance_m": 100,
+          "intensity": "S",
+          "src_pace": "3:50–4:10",
+          "hr_zone": null
+        }
+      ],
+      "notes": [],
+      "source_text": "Long run nyaman @5:45–6:15 [Z2]\n+ 6×100 m strides @3:50–4:10"
+    },
+    {
+      "id": "W13-sun",
+      "date": "2027-02-21",
+      "week": 13,
+      "day": "sun",
+      "phase": "Build",
+      "type": "recovery",
+      "is_hard": false,
+      "planned_km": 8.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 8.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 8000,
+          "intensity": "REC",
+          "src_pace": "6:05–6:40",
+          "hr_zone": "Z1",
+          "fill_remaining": true
+        }
+      ],
+      "notes": [
+        "santai, bisa ngobrol"
+      ],
+      "source_text": "Recovery @6:05–6:40 [Z1]\n(santai, bisa ngobrol)"
+    },
+    {
+      "id": "W14-tue",
+      "date": "2027-02-23",
+      "week": 14,
+      "day": "tue",
+      "phase": "Build",
+      "type": "vo2_4x4",
+      "is_hard": true,
+      "planned_km": 8.5,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 8.8,
+      "segments": [
+        {
+          "kind": "warmup",
+          "distance_m": 3000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        },
+        {
+          "kind": "work",
+          "reps": 3,
+          "distance_m": 1000,
+          "intensity": "N",
+          "src_pace": "4:25–4:40",
+          "hr_zone": "Z5",
+          "note": "pemulihan"
+        },
+        {
+          "kind": "recovery",
+          "distance_m": 400,
+          "intensity": "JOG",
+          "src_pace": "7:00–8:00",
+          "hr_zone": "Z1",
+          "reps": 2,
+          "between_reps": true
+        },
+        {
+          "kind": "cooldown",
+          "distance_m": 2000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        }
+      ],
+      "notes": [],
+      "source_text": "WU 3 km @6:00–6:30 [Z1–2]\n3×1 km @4:25–4:40 [Z5] (pemulihan)\nrec 400 m jog @7:00–8:00\nCD 2 km @6:00–6:30 [Z1–2]"
+    },
+    {
+      "id": "W14-wed",
+      "date": "2027-02-24",
+      "week": 14,
+      "day": "wed",
+      "phase": "Build",
+      "type": "easy_strides",
+      "is_hard": false,
+      "planned_km": 12.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 12.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 11400,
+          "intensity": "E",
+          "src_pace": "5:50–6:30",
+          "hr_zone": "Z2",
+          "fill_remaining": true
+        },
+        {
+          "kind": "strides",
+          "reps": 6,
+          "distance_m": 100,
+          "intensity": "S",
+          "src_pace": "3:50–4:10",
+          "hr_zone": null
+        }
+      ],
+      "notes": [],
+      "source_text": "Easy @5:50–6:30 [Z2]\n+ 6×100 m strides @3:50–4:10"
+    },
+    {
+      "id": "W14-thu",
+      "date": "2027-02-25",
+      "week": 14,
+      "day": "thu",
+      "phase": "Build",
+      "type": "easy_strides",
+      "is_hard": false,
+      "planned_km": 9.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 9.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 8400,
+          "intensity": "E",
+          "src_pace": "5:50–6:30",
+          "hr_zone": "Z2",
+          "fill_remaining": true
+        },
+        {
+          "kind": "strides",
+          "reps": 6,
+          "distance_m": 100,
+          "intensity": "S",
+          "src_pace": "3:50–4:10",
+          "hr_zone": null,
+          "note": "pra-TT"
+        }
+      ],
+      "notes": [],
+      "source_text": "Easy @5:50–6:30 [Z2]\n+ 6×100 m strides @3:50–4:10 (pra-TT)"
+    },
+    {
+      "id": "W14-sat",
+      "date": "2027-02-27",
+      "week": 14,
+      "day": "sat",
+      "phase": "Build",
+      "type": "tt_10k",
+      "is_hard": true,
+      "planned_km": 15.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 15.0,
+      "segments": [
+        {
+          "kind": "warmup",
+          "distance_m": 3000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        },
+        {
+          "kind": "test",
+          "intensity": "TEST",
+          "hr_zone": "Z4-5",
+          "src_pace": "4:40–4:45",
+          "distance_m": 10000,
+          "test_type": "10k_tt",
+          "target_note": "±47:00"
+        },
+        {
+          "kind": "cooldown",
+          "distance_m": 2000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        }
+      ],
+      "notes": [],
+      "source_text": "WU 3 km @6:00–6:30 [Z1–2]\n🔥 10K TIME TRIAL @4:40–4:45 [Z4–5] (±47:00)\nCD 2 km @6:00–6:30 [Z1–2]"
+    },
+    {
+      "id": "W14-sun",
+      "date": "2027-02-28",
+      "week": 14,
+      "day": "sun",
+      "phase": "Build",
+      "type": "recovery",
+      "is_hard": false,
+      "planned_km": 10.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 10.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 10000,
+          "intensity": "REC",
+          "src_pace": "6:05–6:40",
+          "hr_zone": "Z1",
+          "fill_remaining": true
+        }
+      ],
+      "notes": [
+        "santai, bisa ngobrol"
+      ],
+      "source_text": "Recovery @6:05–6:40 [Z1]\n(santai, bisa ngobrol)"
+    },
+    {
+      "id": "W15-tue",
+      "date": "2027-03-02",
+      "week": 15,
+      "day": "tue",
+      "phase": "Spesifik",
+      "type": "easy_hill",
+      "is_hard": false,
+      "planned_km": 10.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 10.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 10000,
+          "intensity": "E",
+          "src_pace": "5:50–6:30",
+          "hr_zone": "Z2",
+          "fill_remaining": true
+        },
+        {
+          "kind": "hill",
+          "intensity": "HILL",
+          "reps": 6,
+          "duration_s": 20,
+          "hr_zone": null,
+          "effort": "±90%",
+          "recovery": "jalan turun",
+          "note": "flyover/ramp/treadmill 6–8%"
+        }
+      ],
+      "notes": [
+        "ganti 4×4 — long run Sabtu sudah keras"
+      ],
+      "source_text": "Easy @5:50–6:30 [Z2]\n+ 6×20 dtk hill sprint (flyover/ramp/\ntreadmill 6–8%), effort ±90%, jalan turun\n(ganti 4×4 — long run Sabtu sudah keras)"
+    },
+    {
+      "id": "W15-wed",
+      "date": "2027-03-03",
+      "week": 15,
+      "day": "wed",
+      "phase": "Spesifik",
+      "type": "easy_strides",
+      "is_hard": false,
+      "planned_km": 9.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 9.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 8400,
+          "intensity": "E",
+          "src_pace": "5:50–6:30",
+          "hr_zone": "Z2",
+          "fill_remaining": true
+        },
+        {
+          "kind": "strides",
+          "reps": 6,
+          "distance_m": 100,
+          "intensity": "S",
+          "src_pace": "3:50–4:10",
+          "hr_zone": null
+        }
+      ],
+      "notes": [],
+      "source_text": "Easy @5:50–6:30 [Z2]\n+ 6×100 m strides @3:50–4:10"
+    },
+    {
+      "id": "W15-thu",
+      "date": "2027-03-04",
+      "week": 15,
+      "day": "thu",
+      "phase": "Spesifik",
+      "type": "hm_pace",
+      "is_hard": true,
+      "planned_km": 15.0,
+      "z4_target_min": null,
+      "z4_planned_min": 44.6,
+      "mp_hmp_km": 9.0,
+      "segments_km": 14.8,
+      "segments": [
+        {
+          "kind": "warmup",
+          "distance_m": 3000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        },
+        {
+          "kind": "work",
+          "reps": 3,
+          "distance_m": 3000,
+          "intensity": "H",
+          "src_pace": "4:55–5:00",
+          "hr_zone": "Z4",
+          "label": "HM pace"
+        },
+        {
+          "kind": "recovery",
+          "distance_m": 400,
+          "intensity": "JOG",
+          "pace_adj_s": [
+            -30,
+            -60
+          ],
+          "review": true,
+          "src_pace": "6:30–7:00",
+          "hr_zone": "Z1",
+          "reps": 2,
+          "between_reps": true
+        },
+        {
+          "kind": "cooldown",
+          "distance_m": 2000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        }
+      ],
+      "notes": [],
+      "source_text": "WU 3 km @6:00–6:30 [Z1–2]\nHM pace 3×3 km @4:55–5:00 [Z4]\nrec 400 m jog @6:30–7:00\nCD 2 km @6:00–6:30 [Z1–2]"
+    },
+    {
+      "id": "W15-sat",
+      "date": "2027-03-06",
+      "week": 15,
+      "day": "sat",
+      "phase": "Spesifik",
+      "type": "long_with_pace",
+      "is_hard": true,
+      "planned_km": 22.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": 5.0,
+      "segments_km": 22.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 17000,
+          "intensity": "L",
+          "src_pace": "5:45–6:15",
+          "hr_zone": "Z2"
+        },
+        {
+          "kind": "steady",
+          "distance_m": 5000,
+          "intensity": "H",
+          "src_pace": "4:55–5:00",
+          "hr_zone": "Z4",
+          "position": "last"
+        }
+      ],
+      "notes": [],
+      "source_text": "17 km @5:45–6:15 [Z2]\n+ 5 km terakhir @4:55–5:00 [Z4]"
+    },
+    {
+      "id": "W15-sun",
+      "date": "2027-03-07",
+      "week": 15,
+      "day": "sun",
+      "phase": "Spesifik",
+      "type": "recovery",
+      "is_hard": false,
+      "planned_km": 7.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 7.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 7000,
+          "intensity": "REC",
+          "src_pace": "6:05–6:40",
+          "hr_zone": "Z1",
+          "fill_remaining": true
+        }
+      ],
+      "notes": [
+        "santai, bisa ngobrol"
+      ],
+      "source_text": "Recovery @6:05–6:40 [Z1]\n(santai, bisa ngobrol)"
+    },
+    {
+      "id": "W16-tue",
+      "date": "2027-03-09",
+      "week": 16,
+      "day": "tue",
+      "phase": "Spesifik",
+      "type": "easy_strides",
+      "is_hard": false,
+      "planned_km": 10.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 10.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 9200,
+          "intensity": "E",
+          "src_pace": "5:50–6:30",
+          "hr_zone": "Z2",
+          "fill_remaining": true
+        },
+        {
+          "kind": "strides",
+          "reps": 8,
+          "distance_m": 100,
+          "intensity": "S",
+          "src_pace": "3:50–4:10",
+          "hr_zone": null
+        }
+      ],
+      "notes": [
+        "ganti 4×4 — minggu ini cukup 1–2 sesi keras"
+      ],
+      "source_text": "Easy @5:50–6:30 [Z2]\n+ 8×100 m strides @3:50–4:10\n(ganti 4×4 — minggu ini cukup 1–2 sesi keras)"
+    },
+    {
+      "id": "W16-wed",
+      "date": "2027-03-10",
+      "week": 16,
+      "day": "wed",
+      "phase": "Spesifik",
+      "type": "easy_strides",
+      "is_hard": false,
+      "planned_km": 9.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 9.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 8400,
+          "intensity": "E",
+          "src_pace": "5:50–6:30",
+          "hr_zone": "Z2",
+          "fill_remaining": true
+        },
+        {
+          "kind": "strides",
+          "reps": 6,
+          "distance_m": 100,
+          "intensity": "S",
+          "src_pace": "3:50–4:10",
+          "hr_zone": null
+        }
+      ],
+      "notes": [],
+      "source_text": "Easy @5:50–6:30 [Z2]\n+ 6×100 m strides @3:50–4:10"
+    },
+    {
+      "id": "W16-thu",
+      "date": "2027-03-11",
+      "week": 16,
+      "day": "thu",
+      "phase": "Spesifik",
+      "type": "hm_pace",
+      "is_hard": true,
+      "planned_km": 15.5,
+      "z4_target_min": null,
+      "z4_planned_min": 49.6,
+      "mp_hmp_km": 10.0,
+      "segments_km": 15.4,
+      "segments": [
+        {
+          "kind": "warmup",
+          "distance_m": 3000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        },
+        {
+          "kind": "work",
+          "reps": 2,
+          "distance_m": 5000,
+          "intensity": "H",
+          "src_pace": "4:55–5:00",
+          "hr_zone": "Z4",
+          "label": "HM pace"
+        },
+        {
+          "kind": "recovery",
+          "distance_m": 400,
+          "intensity": "JOG",
+          "pace_adj_s": [
+            -30,
+            -60
+          ],
+          "review": true,
+          "src_pace": "6:30–7:00",
+          "hr_zone": "Z1",
+          "reps": 1,
+          "between_reps": true
+        },
+        {
+          "kind": "cooldown",
+          "distance_m": 2000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        }
+      ],
+      "notes": [],
+      "source_text": "WU 3 km @6:00–6:30 [Z1–2]\nHM pace 2×5 km @4:55–5:00 [Z4]\nrec 400 m jog @6:30–7:00\nCD 2 km @6:00–6:30 [Z1–2]"
+    },
+    {
+      "id": "W16-sat",
+      "date": "2027-03-13",
+      "week": 16,
+      "day": "sat",
+      "phase": "Spesifik",
+      "type": "long_progressive",
+      "is_hard": true,
+      "planned_km": 24.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": 8.0,
+      "segments_km": 24.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 8000,
+          "intensity": "L",
+          "pace_adj_s": [
+            15,
+            -5
+          ],
+          "review": true,
+          "src_pace": "6:00–6:10",
+          "hr_zone": "Z2",
+          "label": "Progresif"
+        },
+        {
+          "kind": "steady",
+          "distance_m": 8000,
+          "intensity": "L",
+          "pace_adj_s": [
+            -15,
+            -35
+          ],
+          "review": true,
+          "src_pace": "5:30–5:40",
+          "hr_zone": "Z2-3"
+        },
+        {
+          "kind": "steady",
+          "distance_m": 8000,
+          "intensity": "M",
+          "pace_adj_s": [
+            -10,
+            -5
+          ],
+          "review": true,
+          "src_pace": "5:05–5:15",
+          "hr_zone": "Z3"
+        }
+      ],
+      "notes": [],
+      "source_text": "Progresif: 8 km @6:00–6:10 [Z2]\n→ 8 km @5:30–5:40 [Z2–3] → 8 km @5:05–5:15 [Z3]"
+    },
+    {
+      "id": "W16-sun",
+      "date": "2027-03-14",
+      "week": 16,
+      "day": "sun",
+      "phase": "Spesifik",
+      "type": "recovery",
+      "is_hard": false,
+      "planned_km": 8.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 8.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 8000,
+          "intensity": "REC",
+          "src_pace": "6:05–6:40",
+          "hr_zone": "Z1",
+          "fill_remaining": true
+        }
+      ],
+      "notes": [
+        "santai, bisa ngobrol"
+      ],
+      "source_text": "Recovery @6:05–6:40 [Z1]\n(santai, bisa ngobrol)"
+    },
+    {
+      "id": "W17-tue",
+      "date": "2027-03-16",
+      "week": 17,
+      "day": "tue",
+      "phase": "Spesifik",
+      "type": "vo2_4x4",
+      "is_hard": true,
+      "planned_km": 10.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 10.2,
+      "segments": [
+        {
+          "kind": "warmup",
+          "distance_m": 3000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        },
+        {
+          "kind": "work",
+          "reps": 4,
+          "distance_m": 1000,
+          "intensity": "N",
+          "src_pace": "4:25–4:40",
+          "hr_zone": "Z5"
+        },
+        {
+          "kind": "recovery",
+          "distance_m": 400,
+          "intensity": "JOG",
+          "src_pace": "7:00–8:00",
+          "hr_zone": "Z1",
+          "reps": 3,
+          "between_reps": true
+        },
+        {
+          "kind": "cooldown",
+          "distance_m": 2000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        }
+      ],
+      "notes": [],
+      "source_text": "WU 3 km @6:00–6:30 [Z1–2]\n4×1 km @4:25–4:40 [Z5]\nrec 400 m jog @7:00–8:00\nCD 2 km @6:00–6:30 [Z1–2]"
+    },
+    {
+      "id": "W17-wed",
+      "date": "2027-03-17",
+      "week": 17,
+      "day": "wed",
+      "phase": "Spesifik",
+      "type": "easy_strides",
+      "is_hard": false,
+      "planned_km": 12.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 12.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 11400,
+          "intensity": "E",
+          "src_pace": "5:50–6:30",
+          "hr_zone": "Z2",
+          "fill_remaining": true
+        },
+        {
+          "kind": "strides",
+          "reps": 6,
+          "distance_m": 100,
+          "intensity": "S",
+          "src_pace": "3:50–4:10",
+          "hr_zone": null
+        }
+      ],
+      "notes": [],
+      "source_text": "Easy @5:50–6:30 [Z2]\n+ 6×100 m strides @3:50–4:10"
+    },
+    {
+      "id": "W17-thu",
+      "date": "2027-03-18",
+      "week": 17,
+      "day": "thu",
+      "phase": "Spesifik",
+      "type": "tempo",
+      "is_hard": true,
+      "planned_km": 12.0,
+      "z4_target_min": null,
+      "z4_planned_min": 34.0,
+      "mp_hmp_km": null,
+      "segments_km": 12.0,
+      "segments": [
+        {
+          "kind": "warmup",
+          "distance_m": 3000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        },
+        {
+          "kind": "work",
+          "reps": 1,
+          "distance_m": 7000,
+          "intensity": "T",
+          "src_pace": "4:48–4:55",
+          "hr_zone": "Z4",
+          "label": "Tempo kontinu"
+        },
+        {
+          "kind": "cooldown",
+          "distance_m": 2000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        }
+      ],
+      "notes": [],
+      "source_text": "WU 3 km @6:00–6:30 [Z1–2]\nTempo 7 km kontinu @4:48–4:55 [Z4]\nCD 2 km @6:00–6:30 [Z1–2]"
+    },
+    {
+      "id": "W17-sat",
+      "date": "2027-03-20",
+      "week": 17,
+      "day": "sat",
+      "phase": "Spesifik",
+      "type": "long",
+      "is_hard": false,
+      "planned_km": 25.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 25.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 25000,
+          "intensity": "L",
+          "src_pace": "5:45–6:15",
+          "hr_zone": "Z2",
+          "fill_remaining": true,
+          "label": "Long run nyaman"
+        }
+      ],
+      "notes": [],
+      "source_text": "Long run nyaman @5:45–6:15 [Z2]"
+    },
+    {
+      "id": "W17-sun",
+      "date": "2027-03-21",
+      "week": 17,
+      "day": "sun",
+      "phase": "Spesifik",
+      "type": "recovery",
+      "is_hard": false,
+      "planned_km": 10.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 10.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 10000,
+          "intensity": "REC",
+          "src_pace": "6:05–6:40",
+          "hr_zone": "Z1",
+          "fill_remaining": true
+        }
+      ],
+      "notes": [
+        "santai, bisa ngobrol"
+      ],
+      "source_text": "Recovery @6:05–6:40 [Z1]\n(santai, bisa ngobrol)"
+    },
+    {
+      "id": "W18-tue",
+      "date": "2027-03-23",
+      "week": 18,
+      "day": "tue",
+      "phase": "Spesifik",
+      "type": "easy_strides",
+      "is_hard": false,
+      "planned_km": 8.5,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 8.5,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 7700,
+          "intensity": "E",
+          "src_pace": "5:50–6:30",
+          "hr_zone": "Z2",
+          "fill_remaining": true
+        },
+        {
+          "kind": "strides",
+          "reps": 8,
+          "distance_m": 100,
+          "intensity": "S",
+          "src_pace": "3:50–4:10",
+          "hr_zone": null
+        }
+      ],
+      "notes": [
+        "ganti 4×4 — minggu ini cukup 1–2 sesi keras"
+      ],
+      "source_text": "Easy @5:50–6:30 [Z2]\n+ 8×100 m strides @3:50–4:10\n(ganti 4×4 — minggu ini cukup 1–2 sesi keras)"
+    },
+    {
+      "id": "W18-wed",
+      "date": "2027-03-24",
+      "week": 18,
+      "day": "wed",
+      "phase": "Spesifik",
+      "type": "easy_strides",
+      "is_hard": false,
+      "planned_km": 8.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 8.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 7400,
+          "intensity": "E",
+          "src_pace": "5:50–6:30",
+          "hr_zone": "Z2",
+          "fill_remaining": true
+        },
+        {
+          "kind": "strides",
+          "reps": 6,
+          "distance_m": 100,
+          "intensity": "S",
+          "src_pace": "3:50–4:10",
+          "hr_zone": null
+        }
+      ],
+      "notes": [],
+      "source_text": "Easy @5:50–6:30 [Z2]\n+ 6×100 m strides @3:50–4:10"
+    },
+    {
+      "id": "W18-thu",
+      "date": "2027-03-25",
+      "week": 18,
+      "day": "thu",
+      "phase": "Spesifik",
+      "type": "hm_pace",
+      "is_hard": true,
+      "planned_km": 13.5,
+      "z4_target_min": null,
+      "z4_planned_min": 39.7,
+      "mp_hmp_km": 8.0,
+      "segments_km": 13.9,
+      "segments": [
+        {
+          "kind": "warmup",
+          "distance_m": 3000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        },
+        {
+          "kind": "work",
+          "reps": 4,
+          "distance_m": 2000,
+          "intensity": "H",
+          "src_pace": "4:55–5:00",
+          "hr_zone": "Z4",
+          "label": "HM pace"
+        },
+        {
+          "kind": "recovery",
+          "distance_m": 300,
+          "intensity": "JOG",
+          "pace_adj_s": [
+            -30,
+            -60
+          ],
+          "review": true,
+          "src_pace": "6:30–7:00",
+          "hr_zone": "Z1",
+          "reps": 3,
+          "between_reps": true
+        },
+        {
+          "kind": "cooldown",
+          "distance_m": 2000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        }
+      ],
+      "notes": [],
+      "source_text": "WU 3 km @6:00–6:30 [Z1–2]\nHM pace 4×2 km @4:55–5:00 [Z4]\nrec 300 m jog @6:30–7:00\nCD 2 km @6:00–6:30 [Z1–2]"
+    },
+    {
+      "id": "W18-sat",
+      "date": "2027-03-27",
+      "week": 18,
+      "day": "sat",
+      "phase": "Spesifik",
+      "type": "long",
+      "is_hard": false,
+      "planned_km": 18.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 18.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 18000,
+          "intensity": "L",
+          "pace_adj_s": [
+            10,
+            10
+          ],
+          "review": true,
+          "src_pace": "5:55–6:25",
+          "hr_zone": "Z2",
+          "fill_remaining": true,
+          "label": "Long run ringan"
+        }
+      ],
+      "notes": [],
+      "source_text": "Long run ringan @5:55–6:25 [Z2]"
+    },
+    {
+      "id": "W18-sun",
+      "date": "2027-03-28",
+      "week": 18,
+      "day": "sun",
+      "phase": "Spesifik",
+      "type": "recovery",
+      "is_hard": false,
+      "planned_km": 7.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 7.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 7000,
+          "intensity": "REC",
+          "src_pace": "6:05–6:40",
+          "hr_zone": "Z1",
+          "fill_remaining": true
+        }
+      ],
+      "notes": [
+        "santai, bisa ngobrol"
+      ],
+      "source_text": "Recovery @6:05–6:40 [Z1]\n(santai, bisa ngobrol)"
+    },
+    {
+      "id": "W19-tue",
+      "date": "2027-03-30",
+      "week": 19,
+      "day": "tue",
+      "phase": "Spesifik",
+      "type": "easy_hill",
+      "is_hard": false,
+      "planned_km": 10.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 10.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 10000,
+          "intensity": "E",
+          "src_pace": "5:50–6:30",
+          "hr_zone": "Z2",
+          "fill_remaining": true
+        },
+        {
+          "kind": "hill",
+          "intensity": "HILL",
+          "reps": 6,
+          "duration_s": 20,
+          "hr_zone": null,
+          "effort": "±90%",
+          "recovery": "jalan turun",
+          "note": "flyover/ramp/treadmill 6–8%"
+        }
+      ],
+      "notes": [
+        "ganti 4×4 — long run Sabtu sudah keras"
+      ],
+      "source_text": "Easy @5:50–6:30 [Z2]\n+ 6×20 dtk hill sprint (flyover/ramp/\ntreadmill 6–8%), effort ±90%, jalan turun\n(ganti 4×4 — long run Sabtu sudah keras)"
+    },
+    {
+      "id": "W19-wed",
+      "date": "2027-03-31",
+      "week": 19,
+      "day": "wed",
+      "phase": "Spesifik",
+      "type": "easy_strides",
+      "is_hard": false,
+      "planned_km": 12.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 12.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 11400,
+          "intensity": "E",
+          "src_pace": "5:50–6:30",
+          "hr_zone": "Z2",
+          "fill_remaining": true
+        },
+        {
+          "kind": "strides",
+          "reps": 6,
+          "distance_m": 100,
+          "intensity": "S",
+          "src_pace": "3:50–4:10",
+          "hr_zone": null
+        }
+      ],
+      "notes": [],
+      "source_text": "Easy @5:50–6:30 [Z2]\n+ 6×100 m strides @3:50–4:10"
+    },
+    {
+      "id": "W19-thu",
+      "date": "2027-04-01",
+      "week": 19,
+      "day": "thu",
+      "phase": "Spesifik",
+      "type": "hm_pace",
+      "is_hard": true,
+      "planned_km": 13.0,
+      "z4_target_min": null,
+      "z4_planned_min": 39.7,
+      "mp_hmp_km": 8.0,
+      "segments_km": 13.0,
+      "segments": [
+        {
+          "kind": "warmup",
+          "distance_m": 3000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        },
+        {
+          "kind": "work",
+          "reps": 1,
+          "distance_m": 8000,
+          "intensity": "H",
+          "src_pace": "4:55–5:00",
+          "hr_zone": "Z4",
+          "label": "HM pace kontinu"
+        },
+        {
+          "kind": "cooldown",
+          "distance_m": 2000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        }
+      ],
+      "notes": [],
+      "source_text": "WU 3 km @6:00–6:30 [Z1–2]\nHM pace 8 km kontinu @4:55–5:00 [Z4]\nCD 2 km @6:00–6:30 [Z1–2]"
+    },
+    {
+      "id": "W19-sat",
+      "date": "2027-04-03",
+      "week": 19,
+      "day": "sat",
+      "phase": "Spesifik",
+      "type": "long_with_pace",
+      "is_hard": true,
+      "planned_km": 24.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": 8.0,
+      "segments_km": 24.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 14000,
+          "intensity": "L",
+          "src_pace": "5:45–6:15",
+          "hr_zone": "Z2"
+        },
+        {
+          "kind": "steady",
+          "distance_m": 8000,
+          "intensity": "M",
+          "src_pace": "5:15–5:20",
+          "hr_zone": "Z3"
+        },
+        {
+          "kind": "steady",
+          "distance_m": 2000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        }
+      ],
+      "notes": [],
+      "source_text": "14 km @5:45–6:15 [Z2] + 8 km @5:15–5:20 [Z3]\n+ 2 km @6:00–6:30 [Z1–2]"
+    },
+    {
+      "id": "W19-sun",
+      "date": "2027-04-04",
+      "week": 19,
+      "day": "sun",
+      "phase": "Spesifik",
+      "type": "recovery",
+      "is_hard": false,
+      "planned_km": 9.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 9.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 9000,
+          "intensity": "REC",
+          "src_pace": "6:05–6:40",
+          "hr_zone": "Z1",
+          "fill_remaining": true
+        }
+      ],
+      "notes": [
+        "santai, bisa ngobrol"
+      ],
+      "source_text": "Recovery @6:05–6:40 [Z1]\n(santai, bisa ngobrol)"
+    },
+    {
+      "id": "W20-tue",
+      "date": "2027-04-06",
+      "week": 20,
+      "day": "tue",
+      "phase": "Spesifik",
+      "type": "vo2_4x4",
+      "is_hard": true,
+      "planned_km": 10.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 10.2,
+      "segments": [
+        {
+          "kind": "warmup",
+          "distance_m": 3000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        },
+        {
+          "kind": "work",
+          "reps": 4,
+          "distance_m": 1000,
+          "intensity": "N",
+          "src_pace": "4:25–4:40",
+          "hr_zone": "Z5"
+        },
+        {
+          "kind": "recovery",
+          "distance_m": 400,
+          "intensity": "JOG",
+          "src_pace": "7:00–8:00",
+          "hr_zone": "Z1",
+          "reps": 3,
+          "between_reps": true
+        },
+        {
+          "kind": "cooldown",
+          "distance_m": 2000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        }
+      ],
+      "notes": [],
+      "source_text": "WU 3 km @6:00–6:30 [Z1–2]\n4×1 km @4:25–4:40 [Z5]\nrec 400 m jog @7:00–8:00\nCD 2 km @6:00–6:30 [Z1–2]"
+    },
+    {
+      "id": "W20-wed",
+      "date": "2027-04-07",
+      "week": 20,
+      "day": "wed",
+      "phase": "Spesifik",
+      "type": "easy_strides",
+      "is_hard": false,
+      "planned_km": 10.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 10.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 9400,
+          "intensity": "E",
+          "src_pace": "5:50–6:30",
+          "hr_zone": "Z2",
+          "fill_remaining": true
+        },
+        {
+          "kind": "strides",
+          "reps": 6,
+          "distance_m": 100,
+          "intensity": "S",
+          "src_pace": "3:50–4:10",
+          "hr_zone": null
+        }
+      ],
+      "notes": [],
+      "source_text": "Easy @5:50–6:30 [Z2]\n+ 6×100 m strides @3:50–4:10"
+    },
+    {
+      "id": "W20-thu",
+      "date": "2027-04-08",
+      "week": 20,
+      "day": "thu",
+      "phase": "Spesifik",
+      "type": "hm_pace",
+      "is_hard": true,
+      "planned_km": 17.5,
+      "z4_target_min": null,
+      "z4_planned_min": 59.5,
+      "mp_hmp_km": 12.0,
+      "segments_km": 17.6,
+      "segments": [
+        {
+          "kind": "warmup",
+          "distance_m": 3000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        },
+        {
+          "kind": "work",
+          "reps": 3,
+          "distance_m": 4000,
+          "intensity": "H",
+          "src_pace": "4:55–5:00",
+          "hr_zone": "Z4",
+          "label": "HM pace"
+        },
+        {
+          "kind": "recovery",
+          "distance_m": 300,
+          "intensity": "JOG",
+          "pace_adj_s": [
+            -30,
+            -60
+          ],
+          "review": true,
+          "src_pace": "6:30–7:00",
+          "hr_zone": "Z1",
+          "reps": 2,
+          "between_reps": true
+        },
+        {
+          "kind": "cooldown",
+          "distance_m": 2000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        }
+      ],
+      "notes": [],
+      "source_text": "WU 3 km @6:00–6:30 [Z1–2]\nHM pace 3×4 km @4:55–5:00 [Z4]\nrec 300 m jog @6:30–7:00\nCD 2 km @6:00–6:30 [Z1–2]"
+    },
+    {
+      "id": "W20-sat",
+      "date": "2027-04-10",
+      "week": 20,
+      "day": "sat",
+      "phase": "Spesifik",
+      "type": "long",
+      "is_hard": false,
+      "planned_km": 26.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 26.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 26000,
+          "intensity": "L",
+          "src_pace": "5:45–6:15",
+          "hr_zone": "Z2",
+          "fill_remaining": true,
+          "label": "Long run TERPANJANG"
+        }
+      ],
+      "notes": [
+        "latihan gel tiap 35–40′"
+      ],
+      "source_text": "Long run TERPANJANG @5:45–6:15 [Z2]\n+ latihan gel tiap 35–40′"
+    },
+    {
+      "id": "W20-sun",
+      "date": "2027-04-11",
+      "week": 20,
+      "day": "sun",
+      "phase": "Spesifik",
+      "type": "recovery",
+      "is_hard": false,
+      "planned_km": 8.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 8.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 8000,
+          "intensity": "REC",
+          "src_pace": "6:05–6:40",
+          "hr_zone": "Z1",
+          "fill_remaining": true
+        }
+      ],
+      "notes": [
+        "santai, bisa ngobrol"
+      ],
+      "source_text": "Recovery @6:05–6:40 [Z1]\n(santai, bisa ngobrol)"
+    },
+    {
+      "id": "W21-tue",
+      "date": "2027-04-13",
+      "week": 21,
+      "day": "tue",
+      "phase": "Peak",
+      "type": "easy_strides",
+      "is_hard": false,
+      "planned_km": 10.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 10.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 9200,
+          "intensity": "E",
+          "src_pace": "5:50–6:30",
+          "hr_zone": "Z2",
+          "fill_remaining": true
+        },
+        {
+          "kind": "strides",
+          "reps": 8,
+          "distance_m": 100,
+          "intensity": "S",
+          "src_pace": "3:50–4:10",
+          "hr_zone": null
+        }
+      ],
+      "notes": [
+        "ganti 4×4 — minggu ini cukup 1–2 sesi keras"
+      ],
+      "source_text": "Easy @5:50–6:30 [Z2]\n+ 8×100 m strides @3:50–4:10\n(ganti 4×4 — minggu ini cukup 1–2 sesi keras)"
+    },
+    {
+      "id": "W21-wed",
+      "date": "2027-04-14",
+      "week": 21,
+      "day": "wed",
+      "phase": "Peak",
+      "type": "easy_strides",
+      "is_hard": false,
+      "planned_km": 15.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 15.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 14400,
+          "intensity": "E",
+          "src_pace": "5:50–6:30",
+          "hr_zone": "Z2",
+          "fill_remaining": true
+        },
+        {
+          "kind": "strides",
+          "reps": 6,
+          "distance_m": 100,
+          "intensity": "S",
+          "src_pace": "3:50–4:10",
+          "hr_zone": null
+        }
+      ],
+      "notes": [],
+      "source_text": "Easy @5:50–6:30 [Z2]\n+ 6×100 m strides @3:50–4:10"
+    },
+    {
+      "id": "W21-thu",
+      "date": "2027-04-15",
+      "week": 21,
+      "day": "thu",
+      "phase": "Peak",
+      "type": "hm_pace",
+      "is_hard": true,
+      "planned_km": 15.0,
+      "z4_target_min": null,
+      "z4_planned_min": 49.6,
+      "mp_hmp_km": 10.0,
+      "segments_km": 15.0,
+      "segments": [
+        {
+          "kind": "warmup",
+          "distance_m": 3000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        },
+        {
+          "kind": "work",
+          "reps": 1,
+          "distance_m": 10000,
+          "intensity": "H",
+          "src_pace": "4:55–5:00",
+          "hr_zone": "Z4",
+          "label": "HM pace kontinu"
+        },
+        {
+          "kind": "cooldown",
+          "distance_m": 2000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        }
+      ],
+      "notes": [],
+      "source_text": "WU 3 km @6:00–6:30 [Z1–2]\nHM pace 10 km kontinu @4:55–5:00 [Z4]\nCD 2 km @6:00–6:30 [Z1–2]"
+    },
+    {
+      "id": "W21-sat",
+      "date": "2027-04-17",
+      "week": 21,
+      "day": "sat",
+      "phase": "Peak",
+      "type": "long",
+      "is_hard": false,
+      "planned_km": 22.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 22.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 22000,
+          "intensity": "L",
+          "src_pace": "5:45–6:15",
+          "hr_zone": "Z2",
+          "fill_remaining": true,
+          "label": "Long run nyaman"
+        }
+      ],
+      "notes": [],
+      "source_text": "Long run nyaman @5:45–6:15 [Z2]"
+    },
+    {
+      "id": "W21-sun",
+      "date": "2027-04-18",
+      "week": 21,
+      "day": "sun",
+      "phase": "Peak",
+      "type": "recovery",
+      "is_hard": false,
+      "planned_km": 10.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 10.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 10000,
+          "intensity": "REC",
+          "src_pace": "6:05–6:40",
+          "hr_zone": "Z1",
+          "fill_remaining": true
+        }
+      ],
+      "notes": [
+        "santai, bisa ngobrol"
+      ],
+      "source_text": "Recovery @6:05–6:40 [Z1]\n(santai, bisa ngobrol)"
+    },
+    {
+      "id": "W22-tue",
+      "date": "2027-04-20",
+      "week": 22,
+      "day": "tue",
+      "phase": "Peak",
+      "type": "vo2_4x4",
+      "is_hard": true,
+      "planned_km": 8.5,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 8.8,
+      "segments": [
+        {
+          "kind": "warmup",
+          "distance_m": 3000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        },
+        {
+          "kind": "work",
+          "reps": 3,
+          "distance_m": 1000,
+          "intensity": "N",
+          "src_pace": "4:25–4:40",
+          "hr_zone": "Z5",
+          "note": "pemulihan"
+        },
+        {
+          "kind": "recovery",
+          "distance_m": 400,
+          "intensity": "JOG",
+          "src_pace": "7:00–8:00",
+          "hr_zone": "Z1",
+          "reps": 2,
+          "between_reps": true
+        },
+        {
+          "kind": "cooldown",
+          "distance_m": 2000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        }
+      ],
+      "notes": [],
+      "source_text": "WU 3 km @6:00–6:30 [Z1–2]\n3×1 km @4:25–4:40 [Z5] (pemulihan)\nrec 400 m jog @7:00–8:00\nCD 2 km @6:00–6:30 [Z1–2]"
+    },
+    {
+      "id": "W22-wed",
+      "date": "2027-04-21",
+      "week": 22,
+      "day": "wed",
+      "phase": "Peak",
+      "type": "easy_strides",
+      "is_hard": false,
+      "planned_km": 12.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 12.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 11400,
+          "intensity": "E",
+          "src_pace": "5:50–6:30",
+          "hr_zone": "Z2",
+          "fill_remaining": true
+        },
+        {
+          "kind": "strides",
+          "reps": 6,
+          "distance_m": 100,
+          "intensity": "S",
+          "src_pace": "3:50–4:10",
+          "hr_zone": null
+        }
+      ],
+      "notes": [],
+      "source_text": "Easy @5:50–6:30 [Z2]\n+ 6×100 m strides @3:50–4:10"
+    },
+    {
+      "id": "W22-thu",
+      "date": "2027-04-22",
+      "week": 22,
+      "day": "thu",
+      "phase": "Peak",
+      "type": "tempo",
+      "is_hard": true,
+      "planned_km": 10.0,
+      "z4_target_min": null,
+      "z4_planned_min": 24.3,
+      "mp_hmp_km": null,
+      "segments_km": 10.0,
+      "segments": [
+        {
+          "kind": "warmup",
+          "distance_m": 3000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        },
+        {
+          "kind": "work",
+          "reps": 1,
+          "distance_m": 5000,
+          "intensity": "T",
+          "src_pace": "4:48–4:55",
+          "hr_zone": "Z4",
+          "label": "Tempo kontinu"
+        },
+        {
+          "kind": "cooldown",
+          "distance_m": 2000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        }
+      ],
+      "notes": [],
+      "source_text": "WU 3 km @6:00–6:30 [Z1–2]\nTempo 5 km kontinu @4:48–4:55 [Z4]\nCD 2 km @6:00–6:30 [Z1–2]"
+    },
+    {
+      "id": "W22-sat",
+      "date": "2027-04-24",
+      "week": 22,
+      "day": "sat",
+      "phase": "Peak",
+      "type": "long",
+      "is_hard": false,
+      "planned_km": 18.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 18.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 18000,
+          "intensity": "L",
+          "pace_adj_s": [
+            10,
+            10
+          ],
+          "review": true,
+          "src_pace": "5:55–6:25",
+          "hr_zone": "Z2",
+          "fill_remaining": true,
+          "label": "Long run ringan"
+        }
+      ],
+      "notes": [],
+      "source_text": "Long run ringan @5:55–6:25 [Z2]"
+    },
+    {
+      "id": "W22-sun",
+      "date": "2027-04-25",
+      "week": 22,
+      "day": "sun",
+      "phase": "Peak",
+      "type": "recovery",
+      "is_hard": false,
+      "planned_km": 10.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 10.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 10000,
+          "intensity": "REC",
+          "src_pace": "6:05–6:40",
+          "hr_zone": "Z1",
+          "fill_remaining": true
+        }
+      ],
+      "notes": [
+        "santai, bisa ngobrol"
+      ],
+      "source_text": "Recovery @6:05–6:40 [Z1]\n(santai, bisa ngobrol)"
+    },
+    {
+      "id": "W23-tue",
+      "date": "2027-04-27",
+      "week": 23,
+      "day": "tue",
+      "phase": "Peak",
+      "type": "easy_hill",
+      "is_hard": false,
+      "planned_km": 10.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 10.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 10000,
+          "intensity": "E",
+          "src_pace": "5:50–6:30",
+          "hr_zone": "Z2",
+          "fill_remaining": true
+        },
+        {
+          "kind": "hill",
+          "intensity": "HILL",
+          "reps": 6,
+          "duration_s": 20,
+          "hr_zone": null,
+          "effort": "±90%",
+          "recovery": "jalan turun",
+          "note": "flyover/ramp/treadmill 6–8%"
+        }
+      ],
+      "notes": [
+        "ganti 4×4 — long run Sabtu sudah keras"
+      ],
+      "source_text": "Easy @5:50–6:30 [Z2]\n+ 6×20 dtk hill sprint (flyover/ramp/\ntreadmill 6–8%), effort ±90%, jalan turun\n(ganti 4×4 — long run Sabtu sudah keras)"
+    },
+    {
+      "id": "W23-wed",
+      "date": "2027-04-28",
+      "week": 23,
+      "day": "wed",
+      "phase": "Peak",
+      "type": "easy_strides",
+      "is_hard": false,
+      "planned_km": 15.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 15.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 14400,
+          "intensity": "E",
+          "src_pace": "5:50–6:30",
+          "hr_zone": "Z2",
+          "fill_remaining": true
+        },
+        {
+          "kind": "strides",
+          "reps": 6,
+          "distance_m": 100,
+          "intensity": "S",
+          "src_pace": "3:50–4:10",
+          "hr_zone": null
+        }
+      ],
+      "notes": [],
+      "source_text": "Easy @5:50–6:30 [Z2]\n+ 6×100 m strides @3:50–4:10"
+    },
+    {
+      "id": "W23-thu",
+      "date": "2027-04-29",
+      "week": 23,
+      "day": "thu",
+      "phase": "Peak",
+      "type": "tempo",
+      "is_hard": true,
+      "planned_km": 11.5,
+      "z4_target_min": null,
+      "z4_planned_min": 29.1,
+      "mp_hmp_km": null,
+      "segments_km": 11.6,
+      "segments": [
+        {
+          "kind": "warmup",
+          "distance_m": 3000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        },
+        {
+          "kind": "work",
+          "reps": 3,
+          "distance_m": 2000,
+          "intensity": "T",
+          "src_pace": "4:48–4:55",
+          "hr_zone": "Z4",
+          "label": "Tempo"
+        },
+        {
+          "kind": "recovery",
+          "distance_m": 300,
+          "intensity": "JOG",
+          "pace_adj_s": [
+            -30,
+            -60
+          ],
+          "review": true,
+          "src_pace": "6:30–7:00",
+          "hr_zone": "Z1",
+          "reps": 2,
+          "between_reps": true
+        },
+        {
+          "kind": "cooldown",
+          "distance_m": 2000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        }
+      ],
+      "notes": [],
+      "source_text": "WU 3 km @6:00–6:30 [Z1–2]\nTempo 3×2 km @4:48–4:55 [Z4]\nrec 300 m jog @6:30–7:00\nCD 2 km @6:00–6:30 [Z1–2]"
+    },
+    {
+      "id": "W23-sat",
+      "date": "2027-05-01",
+      "week": 23,
+      "day": "sat",
+      "phase": "Peak",
+      "type": "long_with_pace",
+      "is_hard": true,
+      "planned_km": 22.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": 8.0,
+      "segments_km": 22.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 10000,
+          "intensity": "L",
+          "src_pace": "5:45–6:15",
+          "hr_zone": "Z2"
+        },
+        {
+          "kind": "steady",
+          "distance_m": 8000,
+          "intensity": "H",
+          "src_pace": "4:55–5:00",
+          "hr_zone": "Z4"
+        },
+        {
+          "kind": "steady",
+          "distance_m": 4000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        }
+      ],
+      "notes": [],
+      "source_text": "10 km @5:45–6:15 [Z2] + 8 km @4:55–5:00 [Z4]\n+ 4 km @6:00–6:30 [Z1–2]"
+    },
+    {
+      "id": "W23-sun",
+      "date": "2027-05-02",
+      "week": 23,
+      "day": "sun",
+      "phase": "Peak",
+      "type": "recovery",
+      "is_hard": false,
+      "planned_km": 10.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 10.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 10000,
+          "intensity": "REC",
+          "src_pace": "6:05–6:40",
+          "hr_zone": "Z1",
+          "fill_remaining": true
+        }
+      ],
+      "notes": [
+        "santai, bisa ngobrol"
+      ],
+      "source_text": "Recovery @6:05–6:40 [Z1]\n(santai, bisa ngobrol)"
+    },
+    {
+      "id": "W24-tue",
+      "date": "2027-05-04",
+      "week": 24,
+      "day": "tue",
+      "phase": "Peak",
+      "type": "easy_strides",
+      "is_hard": false,
+      "planned_km": 10.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 10.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 9200,
+          "intensity": "E",
+          "src_pace": "5:50–6:30",
+          "hr_zone": "Z2",
+          "fill_remaining": true
+        },
+        {
+          "kind": "strides",
+          "reps": 8,
+          "distance_m": 100,
+          "intensity": "S",
+          "src_pace": "3:50–4:10",
+          "hr_zone": null
+        }
+      ],
+      "notes": [
+        "ganti 4×4 — minggu ini cukup 1–2 sesi keras"
+      ],
+      "source_text": "Easy @5:50–6:30 [Z2]\n+ 8×100 m strides @3:50–4:10\n(ganti 4×4 — minggu ini cukup 1–2 sesi keras)"
+    },
+    {
+      "id": "W24-wed",
+      "date": "2027-05-05",
+      "week": 24,
+      "day": "wed",
+      "phase": "Peak",
+      "type": "easy_strides",
+      "is_hard": false,
+      "planned_km": 12.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 12.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 11400,
+          "intensity": "E",
+          "src_pace": "5:50–6:30",
+          "hr_zone": "Z2",
+          "fill_remaining": true
+        },
+        {
+          "kind": "strides",
+          "reps": 6,
+          "distance_m": 100,
+          "intensity": "S",
+          "src_pace": "3:50–4:10",
+          "hr_zone": null
+        }
+      ],
+      "notes": [],
+      "source_text": "Easy @5:50–6:30 [Z2]\n+ 6×100 m strides @3:50–4:10"
+    },
+    {
+      "id": "W24-thu",
+      "date": "2027-05-06",
+      "week": 24,
+      "day": "thu",
+      "phase": "Peak",
+      "type": "tempo",
+      "is_hard": true,
+      "planned_km": 10.0,
+      "z4_target_min": null,
+      "z4_planned_min": 24.3,
+      "mp_hmp_km": null,
+      "segments_km": 10.0,
+      "segments": [
+        {
+          "kind": "warmup",
+          "distance_m": 3000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        },
+        {
+          "kind": "work",
+          "reps": 1,
+          "distance_m": 5000,
+          "intensity": "T",
+          "src_pace": "4:48–4:55",
+          "hr_zone": "Z4",
+          "label": "Tempo kontinu"
+        },
+        {
+          "kind": "cooldown",
+          "distance_m": 2000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        }
+      ],
+      "notes": [],
+      "source_text": "WU 3 km @6:00–6:30 [Z1–2]\nTempo 5 km kontinu @4:48–4:55 [Z4]\nCD 2 km @6:00–6:30 [Z1–2]"
+    },
+    {
+      "id": "W24-sat",
+      "date": "2027-05-08",
+      "week": 24,
+      "day": "sat",
+      "phase": "Peak",
+      "type": "long_race_sim",
+      "is_hard": true,
+      "planned_km": 20.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": 12.0,
+      "segments_km": 20.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 4000,
+          "intensity": "L",
+          "pace_adj_s": [
+            5,
+            -5
+          ],
+          "review": true,
+          "src_pace": "5:50–6:10",
+          "hr_zone": "Z2",
+          "label": "Simulasi race"
+        },
+        {
+          "kind": "steady",
+          "distance_m": 6000,
+          "intensity": "H",
+          "src_pace": "4:55–5:00",
+          "hr_zone": "Z4"
+        },
+        {
+          "kind": "recovery",
+          "distance_m": 1000,
+          "intensity": "REC",
+          "pace_adj_s": [
+            10,
+            5
+          ],
+          "review": true,
+          "src_pace": "6:15–6:45",
+          "hr_zone": "Z1"
+        },
+        {
+          "kind": "steady",
+          "distance_m": 6000,
+          "intensity": "H",
+          "src_pace": "4:55–5:00",
+          "hr_zone": "Z4"
+        },
+        {
+          "kind": "steady",
+          "distance_m": 3000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        }
+      ],
+      "notes": [],
+      "source_text": "🎯 SIMULASI RACE: 4 km @5:50–6:10 [Z2]\n+ 6 km @4:55–5:00 [Z4] + 1 km jog @6:15–6:45 [Z1]\n+ 6 km @4:55–5:00 [Z4] + 3 km @6:00–6:30 [Z1–2]"
+    },
+    {
+      "id": "W24-sun",
+      "date": "2027-05-09",
+      "week": 24,
+      "day": "sun",
+      "phase": "Peak",
+      "type": "recovery",
+      "is_hard": false,
+      "planned_km": 9.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 9.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 9000,
+          "intensity": "REC",
+          "src_pace": "6:05–6:40",
+          "hr_zone": "Z1",
+          "fill_remaining": true
+        }
+      ],
+      "notes": [
+        "santai, bisa ngobrol"
+      ],
+      "source_text": "Recovery @6:05–6:40 [Z1]\n(santai, bisa ngobrol)"
+    },
+    {
+      "id": "W25-tue",
+      "date": "2027-05-11",
+      "week": 25,
+      "day": "tue",
+      "phase": "Taper",
+      "type": "vo2_4x4",
+      "is_hard": true,
+      "planned_km": 10.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 10.2,
+      "segments": [
+        {
+          "kind": "warmup",
+          "distance_m": 3000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        },
+        {
+          "kind": "work",
+          "reps": 4,
+          "distance_m": 1000,
+          "intensity": "N",
+          "src_pace": "4:25–4:40",
+          "hr_zone": "Z5"
+        },
+        {
+          "kind": "recovery",
+          "distance_m": 400,
+          "intensity": "JOG",
+          "src_pace": "7:00–8:00",
+          "hr_zone": "Z1",
+          "reps": 3,
+          "between_reps": true
+        },
+        {
+          "kind": "cooldown",
+          "distance_m": 2000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        }
+      ],
+      "notes": [],
+      "source_text": "WU 3 km @6:00–6:30 [Z1–2]\n4×1 km @4:25–4:40 [Z5]\nrec 400 m jog @7:00–8:00\nCD 2 km @6:00–6:30 [Z1–2]"
+    },
+    {
+      "id": "W25-wed",
+      "date": "2027-05-12",
+      "week": 25,
+      "day": "wed",
+      "phase": "Taper",
+      "type": "easy_strides",
+      "is_hard": false,
+      "planned_km": 6.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 6.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 5400,
+          "intensity": "E",
+          "src_pace": "5:50–6:30",
+          "hr_zone": "Z2",
+          "fill_remaining": true
+        },
+        {
+          "kind": "strides",
+          "reps": 6,
+          "distance_m": 100,
+          "intensity": "S",
+          "src_pace": "3:50–4:10",
+          "hr_zone": null
+        }
+      ],
+      "notes": [],
+      "source_text": "Easy @5:50–6:30 [Z2]\n+ 6×100 m strides @3:50–4:10"
+    },
+    {
+      "id": "W25-thu",
+      "date": "2027-05-13",
+      "week": 25,
+      "day": "thu",
+      "phase": "Taper",
+      "type": "hm_pace",
+      "is_hard": true,
+      "planned_km": 13.5,
+      "z4_target_min": null,
+      "z4_planned_min": 39.7,
+      "mp_hmp_km": 8.0,
+      "segments_km": 13.4,
+      "segments": [
+        {
+          "kind": "warmup",
+          "distance_m": 3000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        },
+        {
+          "kind": "work",
+          "reps": 2,
+          "distance_m": 4000,
+          "intensity": "H",
+          "src_pace": "4:55–5:00",
+          "hr_zone": "Z4",
+          "label": "HM pace"
+        },
+        {
+          "kind": "recovery",
+          "distance_m": 400,
+          "intensity": "JOG",
+          "pace_adj_s": [
+            -30,
+            -60
+          ],
+          "review": true,
+          "src_pace": "6:30–7:00",
+          "hr_zone": "Z1",
+          "reps": 1,
+          "between_reps": true
+        },
+        {
+          "kind": "cooldown",
+          "distance_m": 2000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        }
+      ],
+      "notes": [],
+      "source_text": "WU 3 km @6:00–6:30 [Z1–2]\nHM pace 2×4 km @4:55–5:00 [Z4]\nrec 400 m jog @6:30–7:00\nCD 2 km @6:00–6:30 [Z1–2]"
+    },
+    {
+      "id": "W25-sat",
+      "date": "2027-05-15",
+      "week": 25,
+      "day": "sat",
+      "phase": "Taper",
+      "type": "long_with_pace",
+      "is_hard": false,
+      "planned_km": 18.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": 4.0,
+      "segments_km": 18.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 7000,
+          "intensity": "L",
+          "src_pace": "5:45–6:15",
+          "hr_zone": "Z2"
+        },
+        {
+          "kind": "steady",
+          "distance_m": 4000,
+          "intensity": "H",
+          "src_pace": "4:55–5:00",
+          "hr_zone": "Z4"
+        },
+        {
+          "kind": "steady",
+          "distance_m": 7000,
+          "intensity": "L",
+          "src_pace": "5:45–6:15",
+          "hr_zone": "Z2"
+        }
+      ],
+      "notes": [],
+      "source_text": "7 km @5:45–6:15 [Z2] + 4 km @4:55–5:00 [Z4]\n+ 7 km @5:45–6:15 [Z2]"
+    },
+    {
+      "id": "W25-sun",
+      "date": "2027-05-16",
+      "week": 25,
+      "day": "sun",
+      "phase": "Taper",
+      "type": "recovery",
+      "is_hard": false,
+      "planned_km": 6.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 6.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 6000,
+          "intensity": "REC",
+          "src_pace": "6:05–6:40",
+          "hr_zone": "Z1",
+          "fill_remaining": true
+        }
+      ],
+      "notes": [
+        "santai, bisa ngobrol"
+      ],
+      "source_text": "Recovery @6:05–6:40 [Z1]\n(santai, bisa ngobrol)"
+    },
+    {
+      "id": "W26-tue",
+      "date": "2027-05-18",
+      "week": 26,
+      "day": "tue",
+      "phase": "Taper",
+      "type": "vo2_4x4",
+      "is_hard": true,
+      "planned_km": 8.5,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 8.8,
+      "segments": [
+        {
+          "kind": "warmup",
+          "distance_m": 3000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        },
+        {
+          "kind": "work",
+          "reps": 3,
+          "distance_m": 1000,
+          "intensity": "N",
+          "src_pace": "4:25–4:40",
+          "hr_zone": "Z5",
+          "note": "terkontrol"
+        },
+        {
+          "kind": "recovery",
+          "distance_m": 400,
+          "intensity": "JOG",
+          "src_pace": "7:00–8:00",
+          "hr_zone": "Z1",
+          "reps": 2,
+          "between_reps": true
+        },
+        {
+          "kind": "cooldown",
+          "distance_m": 2000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        }
+      ],
+      "notes": [],
+      "source_text": "WU 3 km @6:00–6:30 [Z1–2]\n3×1 km @4:25–4:40 [Z5] (terkontrol)\nrec 400 m jog @7:00–8:00\nCD 2 km @6:00–6:30 [Z1–2]"
+    },
+    {
+      "id": "W26-wed",
+      "date": "2027-05-19",
+      "week": 26,
+      "day": "wed",
+      "phase": "Taper",
+      "type": "easy_strides",
+      "is_hard": false,
+      "planned_km": 6.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 6.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 5400,
+          "intensity": "E",
+          "src_pace": "5:50–6:30",
+          "hr_zone": "Z2",
+          "fill_remaining": true
+        },
+        {
+          "kind": "strides",
+          "reps": 6,
+          "distance_m": 100,
+          "intensity": "S",
+          "src_pace": "3:50–4:10",
+          "hr_zone": null
+        }
+      ],
+      "notes": [],
+      "source_text": "Easy @5:50–6:30 [Z2]\n+ 6×100 m strides @3:50–4:10"
+    },
+    {
+      "id": "W26-thu",
+      "date": "2027-05-20",
+      "week": 26,
+      "day": "thu",
+      "phase": "Taper",
+      "type": "hm_pace",
+      "is_hard": true,
+      "planned_km": 11.0,
+      "z4_target_min": null,
+      "z4_planned_min": 29.8,
+      "mp_hmp_km": 6.0,
+      "segments_km": 11.0,
+      "segments": [
+        {
+          "kind": "warmup",
+          "distance_m": 3000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        },
+        {
+          "kind": "work",
+          "reps": 1,
+          "distance_m": 6000,
+          "intensity": "H",
+          "src_pace": "4:55–5:00",
+          "hr_zone": "Z4",
+          "label": "HM pace kontinu"
+        },
+        {
+          "kind": "cooldown",
+          "distance_m": 2000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        }
+      ],
+      "notes": [],
+      "source_text": "WU 3 km @6:00–6:30 [Z1–2]\nHM pace 6 km kontinu @4:55–5:00 [Z4]\nCD 2 km @6:00–6:30 [Z1–2]"
+    },
+    {
+      "id": "W26-sat",
+      "date": "2027-05-22",
+      "week": 26,
+      "day": "sat",
+      "phase": "Taper",
+      "type": "long",
+      "is_hard": false,
+      "planned_km": 14.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 14.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 14000,
+          "intensity": "L",
+          "pace_adj_s": [
+            5,
+            5
+          ],
+          "review": true,
+          "src_pace": "5:50–6:20",
+          "hr_zone": "Z2",
+          "fill_remaining": true,
+          "label": "Long run pendek"
+        }
+      ],
+      "notes": [],
+      "source_text": "Long run pendek @5:50–6:20 [Z2]"
+    },
+    {
+      "id": "W26-sun",
+      "date": "2027-05-23",
+      "week": 26,
+      "day": "sun",
+      "phase": "Taper",
+      "type": "recovery",
+      "is_hard": false,
+      "planned_km": 6.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 6.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 6000,
+          "intensity": "REC",
+          "src_pace": "6:05–6:40",
+          "hr_zone": "Z1",
+          "fill_remaining": true
+        }
+      ],
+      "notes": [
+        "santai, bisa ngobrol"
+      ],
+      "source_text": "Recovery @6:05–6:40 [Z1]\n(santai, bisa ngobrol)"
+    },
+    {
+      "id": "W27-tue",
+      "date": "2027-05-25",
+      "week": 27,
+      "day": "tue",
+      "phase": "Taper",
+      "type": "vo2_4x4",
+      "is_hard": true,
+      "planned_km": 7.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 7.4,
+      "segments": [
+        {
+          "kind": "warmup",
+          "distance_m": 2500,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        },
+        {
+          "kind": "work",
+          "reps": 3,
+          "distance_m": 700,
+          "intensity": "N",
+          "src_pace": "4:25–4:40",
+          "hr_zone": "Z5",
+          "note": "buka kaki"
+        },
+        {
+          "kind": "recovery",
+          "distance_m": 400,
+          "intensity": "JOG",
+          "src_pace": "7:00–8:00",
+          "hr_zone": "Z1",
+          "reps": 2,
+          "between_reps": true
+        },
+        {
+          "kind": "cooldown",
+          "distance_m": 2000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        }
+      ],
+      "notes": [],
+      "source_text": "WU 2,5 km @6:00–6:30 [Z1–2]\n3×700 m @4:25–4:40 [Z5] (buka kaki)\nrec 400 m jog @7:00–8:00\nCD 2 km @6:00–6:30 [Z1–2]"
+    },
+    {
+      "id": "W27-wed",
+      "date": "2027-05-26",
+      "week": 27,
+      "day": "wed",
+      "phase": "Taper",
+      "type": "easy",
+      "is_hard": false,
+      "planned_km": 6.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 6.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 6000,
+          "intensity": "E",
+          "src_pace": "5:50–6:30",
+          "hr_zone": "Z2",
+          "fill_remaining": true
+        }
+      ],
+      "notes": [],
+      "source_text": "Easy @5:50–6:30 [Z2]"
+    },
+    {
+      "id": "W27-thu",
+      "date": "2027-05-27",
+      "week": 27,
+      "day": "thu",
+      "phase": "Taper",
+      "type": "hm_pace",
+      "is_hard": true,
+      "planned_km": 6.5,
+      "z4_target_min": null,
+      "z4_planned_min": 14.9,
+      "mp_hmp_km": 3.0,
+      "segments_km": 6.5,
+      "segments": [
+        {
+          "kind": "warmup",
+          "distance_m": 2000,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        },
+        {
+          "kind": "work",
+          "distance_m": 3000,
+          "intensity": "H",
+          "src_pace": "4:55–5:00",
+          "hr_zone": "Z4",
+          "note": "rasa pace race",
+          "reps": 1
+        },
+        {
+          "kind": "cooldown",
+          "distance_m": 1500,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2"
+        }
+      ],
+      "notes": [],
+      "source_text": "WU 2 km @6:00–6:30 [Z1–2]\n3 km @4:55–5:00 [Z4] (rasa pace race)\nCD 1,5 km @6:00–6:30 [Z1–2]"
+    },
+    {
+      "id": "W27-sat",
+      "date": "2027-05-29",
+      "week": 27,
+      "day": "sat",
+      "phase": "Taper",
+      "type": "shakeout",
+      "is_hard": false,
+      "planned_km": 4.0,
+      "z4_target_min": null,
+      "z4_planned_min": null,
+      "mp_hmp_km": null,
+      "segments_km": 4.0,
+      "segments": [
+        {
+          "kind": "steady",
+          "distance_m": 3600,
+          "intensity": "WU",
+          "src_pace": "6:00–6:30",
+          "hr_zone": "Z1-2",
+          "fill_remaining": true
+        },
+        {
+          "kind": "strides",
+          "reps": 4,
+          "distance_m": 100,
+          "intensity": "S",
+          "pace_adj_s": [
+            10,
+            -10
+          ],
+          "review": true,
+          "src_pace": "4:00–4:00",
+          "hr_zone": null,
+          "note": "H-1"
+        }
+      ],
+      "notes": [],
+      "source_text": "Shake-out @6:00–6:30 [Z1–2]\n+ 4×100 m strides @4:00 (H-1)"
+    },
+    {
+      "id": "W27-sun",
+      "date": "2027-05-30",
+      "week": 27,
+      "day": "sun",
+      "phase": "Taper",
+      "type": "race",
+      "is_hard": true,
+      "planned_km": 21.1,
+      "z4_target_min": null,
+      "z4_planned_min": 104.6,
+      "mp_hmp_km": 21.1,
+      "segments_km": 21.1,
+      "segments": [
+        {
+          "kind": "work",
+          "distance_m": 3000,
+          "label": "race km 1–3",
+          "intensity": "H",
+          "pace_adj_s": [
+            5,
+            5
+          ],
+          "review": true,
+          "src_pace": "5:00–5:05",
+          "hr_zone": "Z4"
+        },
+        {
+          "kind": "work",
+          "distance_m": 18100,
+          "label": "race km 4–21",
+          "intensity": "H",
+          "pace_adj_s": [
+            0,
+            -2
+          ],
+          "review": true,
+          "src_pace": "4:55–4:58",
+          "hr_zone": "Z4"
+        }
+      ],
+      "notes": [
+        "RACE DAY"
+      ],
+      "source_text": "🏆 RACE DAY\nkm 1–3 @5:00–5:05 [Z4]\nkm 4–21 @4:55–4:58 [Z4]"
+    }
+  ],
+  "strength_template": {
+    "mon": "Upper – Shoulder + core",
+    "tue": "Low Bar Squat + Quads (SORE, ≥6 jam setelah lari)",
+    "thu": "Deadlift + Hamstring/Glute (SORE)",
+    "fri": "Upper – Chest"
+  }
+}
