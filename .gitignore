@@ -49,3 +49,6 @@ __pycache__/
 # Playwright
 /test-results/
 /playwright-report/
+
+# bundel migrasi sekali pakai (dibuat ulang dari supabase/migrations)
+/supabase/deploy-bundle.sql
