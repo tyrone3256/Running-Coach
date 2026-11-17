@@ -1,6 +1,6 @@
 # SPEC — Personal Running Coach (HM sub-1:45, 30 Mei 2027)
 
-Status: **DRAFT, menunggu persetujuan**. Belum ada kode aplikasi.
+Status: **Disetujui 2026-11-17** (stack default PWA Next.js + Supabase). M1 selesai.
 Sumber program: `data/Program_HM_Sub145_Mei2027.xlsx` → `seed/plan.json` (via `scripts/parse_plan.py`, laporan: `seed/parse_report.md`).
 
 ---
@@ -82,7 +82,7 @@ Semua tabel punya `user_id uuid references auth.users` + RLS `using (user_id = a
 type Segment = {
   kind: 'warmup'|'work'|'recovery'|'steady'|'cooldown'|'strides'|'hill'|'test'
   reps?: number; distance_m?: number|null; duration_s?: number
-  intensity: 'WU'|'E'|'REC'|'L'|'M'|'H'|'T'|'N'|'JOG'|'S'|'HILL'|'TEST'
+  intensity: 'WU'|'E'|'REC'|'L'|'M'|'H'|'T'|'N'|'JOG'|'TJOG'|'S'|'HILL'|'TEST'
   pace_variant?: 'base'            // paksa varian fase Base (T/N)
   pace_adj_s?: [number, number]    // offset relatif dari kode (lihat §8 keputusan)
   hr_zone: 'Z1'|'Z1-2'|'Z2'|'Z2-3'|'Z3'|'Z3-4'|'Z4'|'Z4-5'|'Z5'|null
@@ -135,7 +135,9 @@ Setiap rule punya unit test minimal: 1 kasus memicu, 1 kasus tidak, 1 kasus bata
 - Persona & cue HR 170 diambil dari sheet 🫀 (start rep 5 dtk/km lebih lambat; pelankan 5–10 dtk/km tapi selesaikan rep; napas 2:2 tempo / 2:1 4×4; chunking 1 menit; cadence 170–180; mulai rep berikut saat HR <80% LTHR). Bedakan "berat tapi normal di ambang" vs red flag.
 - Model dari `ANTHROPIC_MODEL` (default yang direncanakan: model Claude terbaru, dicek ulang di dokumentasi saat M4); prompt caching untuk system prompt + profil.
 
-## 8. Hasil parsing & keputusan yang dibutuhkan
+## 8. Hasil parsing & keputusan
+
+**Status (2026-11-17):** D1–D4, D7–D11 diterapkan sesuai usulan (D1 = kode `TJOG` 390–420). **D5 & D6 masih terbuka** — W12 dan W27 ditandai `guardrail_exception: pending_decision` di seed dan tampil ⚠ di layar Program.
 
 Parser membaca 27 minggu × 5 hari = 135 sesi, semua baris dikenali. Pace yang **cocok persis** dengan profil langsung jadi kode. Yang tidak cocok **tidak ditebak diam-diam** — ditandai `review: true` dengan usulan (lengkap di `seed/parse_report.md`):
 
@@ -179,8 +181,8 @@ Parser membaca 27 minggu × 5 hari = 135 sesi, semua baris dikenali. Pace yang *
 
 ## 11. Pertanyaan terbuka
 
-1. Stack: PWA Next.js (default) atau Expo?
-2. HP: Android, iPhone, atau keduanya? (penting untuk push di iOS)
-3. Jam tangan & chest strap apa? (menentukan import FIT & default `hr_source`)
-4. Sinkronisasi: Strava, Garmin Connect, atau cukup upload file?
-5. Keputusan D1–D11 di atas (terutama D1, D5, D6).
+Terjawab: stack = PWA Next.js; HP = **Android**; jam = **Huawei** (wrist HR → default `hr_source=wrist`, R13 penting); data dari **Huawei Health**. Huawei Health tidak punya API publik praktis untuk pemakaian pribadi → jalur utama: **Huawei Health → Strava → Strava API (M6)**, upload file GPX/TCX/FIT sebagai cadangan (M2).
+
+Masih terbuka:
+1. D5 (W12 3 sesi keras) dan D6 (race week W27).
+2. Punya chest strap yang bisa dipasangkan ke jam Huawei?

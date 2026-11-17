@@ -7,43 +7,23 @@ Sesi: 135 • Minggu: 27 • LTHR: 170
 | Mgg | Hari | Jenis | Teks | Usulan |
 |---|---|---|---|---|
 | W02 | tue | pace_variant | @4:35–4:45 = pace N fase Base, tapi W02 bukan fase Base | intensity=N, pace_variant=base |
-| W02 | tue | pace_unmatched | @6:30–7:00 [-] tidak ada di pace profile | intensity=JOG (7:00–8:00) + pace_adj_s=[-30, -60] |
 | W02 | thu | pace_unmatched | @4:15–4:30 [-] tidak ada di pace profile | intensity=N (4:25–4:40) + pace_adj_s=[-10, -10] |
-| W02 | thu | zone_missing | tidak ada tag zona di 'Fartlek 6×250 m @4:15–4:30' | hr_zone=Z5 (default kode N) |
-| W02 | thu | pace_unmatched | @6:30–7:00 [-] tidak ada di pace profile | intensity=JOG (7:00–8:00) + pace_adj_s=[-30, -60] |
-| W02 | thu | hard_unknown | Fartlek 250 m: tidak ada di definisi 'sesi keras' | is_hard=false (diperlakukan seperti strides panjang) |
 | W02 | sat | pace_unmatched | @5:50–6:20 [Z2] tidak ada di pace profile | intensity=L (5:45–6:15) + pace_adj_s=[5, 5] |
 | W03 | thu | pace_unmatched | @4:15–4:30 [-] tidak ada di pace profile | intensity=N (4:35–4:45) + pace_adj_s=[-20, -15] |
-| W03 | thu | zone_missing | tidak ada tag zona di 'Fartlek 8×250 m @4:15–4:30' | hr_zone=Z5 (default kode N) |
-| W03 | thu | pace_unmatched | @6:30–7:00 [-] tidak ada di pace profile | intensity=JOG (7:00–8:00) + pace_adj_s=[-30, -60] |
 | W03 | thu | km_mismatch | jumlah segmen 8.4 km ≠ kolom km 9.0 km | planned_km tetap pakai kolom Excel |
-| W03 | thu | hard_unknown | Fartlek 250 m: tidak ada di definisi 'sesi keras' | is_hard=false (diperlakukan seperti strides panjang) |
 | W03 | sat | pace_unmatched | @5:50–6:20 [Z2] tidak ada di pace profile | intensity=L (5:45–6:15) + pace_adj_s=[5, 5] |
-| W04 | thu | pace_unmatched | @6:30–7:00 [-] tidak ada di pace profile | intensity=JOG (7:00–8:00) + pace_adj_s=[-30, -60] |
-| W06 | thu | pace_unmatched | @6:30–7:00 [-] tidak ada di pace profile | intensity=JOG (7:00–8:00) + pace_adj_s=[-30, -60] |
 | W06 | sat | pace_unmatched | @5:55–6:25 [Z2] tidak ada di pace profile | intensity=L (5:45–6:15) + pace_adj_s=[10, 10] |
-| W07 | thu | pace_unmatched | @6:30–7:00 [-] tidak ada di pace profile | intensity=JOG (7:00–8:00) + pace_adj_s=[-30, -60] |
-| W08 | thu | pace_unmatched | @6:30–7:00 [-] tidak ada di pace profile | intensity=JOG (7:00–8:00) + pace_adj_s=[-30, -60] |
-| W10 | thu | pace_unmatched | @6:30–7:00 [-] tidak ada di pace profile | intensity=JOG (7:00–8:00) + pace_adj_s=[-30, -60] |
 | W10 | sat | pace_unmatched | @5:55–6:25 [Z2] tidak ada di pace profile | intensity=L (5:45–6:15) + pace_adj_s=[10, 10] |
-| W12 | thu | pace_unmatched | @6:30–7:00 [-] tidak ada di pace profile | intensity=JOG (7:00–8:00) + pace_adj_s=[-30, -60] |
 | W12 | sat | pace_unmatched | @6:00–6:10 [Z2] tidak ada di pace profile | intensity=L (5:45–6:15) + pace_adj_s=[15, -5] |
 | W12 | sat | pace_unmatched | @5:35–5:45 [Z2-3] tidak ada di pace profile | intensity=L (5:45–6:15) + pace_adj_s=[-10, -30] |
 | W12 | - | guardrail | 3 sesi keras di minggu ini: tue, thu, sat (aturan maks 2) |  |
-| W13 | thu | pace_unmatched | @6:30–7:00 [-] tidak ada di pace profile | intensity=JOG (7:00–8:00) + pace_adj_s=[-30, -60] |
-| W15 | thu | pace_unmatched | @6:30–7:00 [-] tidak ada di pace profile | intensity=JOG (7:00–8:00) + pace_adj_s=[-30, -60] |
-| W16 | thu | pace_unmatched | @6:30–7:00 [-] tidak ada di pace profile | intensity=JOG (7:00–8:00) + pace_adj_s=[-30, -60] |
 | W16 | sat | pace_unmatched | @6:00–6:10 [Z2] tidak ada di pace profile | intensity=L (5:45–6:15) + pace_adj_s=[15, -5] |
 | W16 | sat | pace_unmatched | @5:30–5:40 [Z2-3] tidak ada di pace profile | intensity=L (5:45–6:15) + pace_adj_s=[-15, -35] |
 | W16 | sat | pace_unmatched | @5:05–5:15 [Z3] tidak ada di pace profile | intensity=M (5:15–5:20) + pace_adj_s=[-10, -5] |
-| W18 | thu | pace_unmatched | @6:30–7:00 [-] tidak ada di pace profile | intensity=JOG (7:00–8:00) + pace_adj_s=[-30, -60] |
 | W18 | sat | pace_unmatched | @5:55–6:25 [Z2] tidak ada di pace profile | intensity=L (5:45–6:15) + pace_adj_s=[10, 10] |
-| W20 | thu | pace_unmatched | @6:30–7:00 [-] tidak ada di pace profile | intensity=JOG (7:00–8:00) + pace_adj_s=[-30, -60] |
 | W22 | sat | pace_unmatched | @5:55–6:25 [Z2] tidak ada di pace profile | intensity=L (5:45–6:15) + pace_adj_s=[10, 10] |
-| W23 | thu | pace_unmatched | @6:30–7:00 [-] tidak ada di pace profile | intensity=JOG (7:00–8:00) + pace_adj_s=[-30, -60] |
 | W24 | sat | pace_unmatched | @5:50–6:10 [Z2] tidak ada di pace profile | intensity=L (5:45–6:15) + pace_adj_s=[5, -5] |
 | W24 | sat | pace_unmatched | @6:15–6:45 [Z1] tidak ada di pace profile | intensity=REC (6:05–6:40) + pace_adj_s=[10, 5] |
-| W25 | thu | pace_unmatched | @6:30–7:00 [-] tidak ada di pace profile | intensity=JOG (7:00–8:00) + pace_adj_s=[-30, -60] |
 | W26 | sat | pace_unmatched | @5:50–6:20 [Z2] tidak ada di pace profile | intensity=L (5:45–6:15) + pace_adj_s=[5, 5] |
 | W27 | sat | pace_single | pace tunggal @4:00 di '+ 4×100 m strides @4:00 (H-1)' | diperlakukan sebagai rentang 4:00–4:00 |
 | W27 | sat | pace_unmatched | @4:00–4:00 [-] tidak ada di pace profile | intensity=S (3:50–4:10) + pace_adj_s=[10, -10] |
@@ -88,8 +68,8 @@ Sesi: 135 • Minggu: 27 • LTHR: 170
 **TUE 2026-12-01 — vo2_4x4 — 7.5 km ⭐KERAS**
 ```
 warmup    3 km     WU → 6:00–6:30 [Z1-2 ≤151 bpm]
-work      4×400 m    N (base) → 4:35–4:45 [Z5 172–180 bpm] ⚠review
-recovery  3×200 m    JOG adj[-30, -60] → 6:30–7:00 [Z1 ≤143 bpm] ⚠review
+work      4×400 m    N (base) → 4:35–4:45 [Z5 172–180 bpm]
+recovery  3×200 m    TJOG → 6:30–7:00 [Z1 ≤143 bpm]
 cooldown  2 km     WU → 6:00–6:30 [Z1-2 ≤151 bpm]
 ```
 **WED 2026-12-02 — easy_strides — 6.0 km**
@@ -100,13 +80,13 @@ strides   6×100 m    S → 3:50–4:10 [-]
 **THU 2026-12-03 — fartlek — 8.0 km**
 ```
 warmup    3 km     WU → 6:00–6:30 [Z1-2 ≤151 bpm]
-work      6×250 m    N adj[-10, -10] → 4:15–4:30 [Z5 172–180 bpm] ⚠review
-recovery  5×200 m    JOG adj[-30, -60] → 6:30–7:00 [Z1 ≤143 bpm] ⚠review
+work      6×250 m    N adj[-10, -10] → 4:15–4:30 [-]
+recovery  5×200 m    TJOG → 6:30–7:00 [Z1 ≤143 bpm]
 cooldown  2 km     WU → 6:00–6:30 [Z1-2 ≤151 bpm]
 ```
 **SAT 2026-12-05 — long — 15.0 km**
 ```
-steady    15 km    L adj[5, 5] → 5:50–6:20 [Z2 144–151 bpm] ⚠review
+steady    15 km    L adj[5, 5] → 5:50–6:20 [Z2 144–151 bpm]
 ```
 **SUN 2026-12-06 — recovery — 6.0 km**
 ```
@@ -162,13 +142,13 @@ strides   6×100 m    S → 3:50–4:10 [-]
 ```
 warmup    3 km     WU → 6:00–6:30 [Z1-2 ≤151 bpm]
 work      3×2.5 km   T → 4:48–4:55 [Z4 162–170 bpm]
-recovery  2×300 m    JOG adj[-30, -60] → 6:30–7:00 [Z1 ≤143 bpm] ⚠review
+recovery  2×300 m    TJOG → 6:30–7:00 [Z1 ≤143 bpm]
 cooldown  2 km     WU → 6:00–6:30 [Z1-2 ≤151 bpm]
 ```
 **SAT 2027-02-13 — long_progressive — 22.0 km ⭐KERAS**
 ```
-steady    8 km     L adj[15, -5] → 6:00–6:10 [Z2 144–151 bpm] ⚠review
-steady    8 km     L adj[-10, -30] → 5:35–5:45 [Z2-3 144–160 bpm] ⚠review
+steady    8 km     L adj[15, -5] → 6:00–6:10 [Z2 144–151 bpm]
+steady    8 km     L adj[-10, -30] → 5:35–5:45 [Z2-3 144–160 bpm]
 steady    6 km     M → 5:15–5:20 [Z3 153–160 bpm]
 ```
 **SUN 2027-02-14 — recovery — 9.0 km**
@@ -198,9 +178,9 @@ cooldown  2 km     WU → 6:00–6:30 [Z1-2 ≤151 bpm]
 ```
 **SAT 2027-05-08 — long_race_sim — 20.0 km ⭐KERAS**
 ```
-steady    4 km     L adj[5, -5] → 5:50–6:10 [Z2 144–151 bpm] ⚠review
+steady    4 km     L adj[5, -5] → 5:50–6:10 [Z2 144–151 bpm]
 steady    6 km     H → 4:55–5:00 [Z4 162–170 bpm]
-recovery  1 km     REC adj[10, 5] → 6:15–6:45 [Z1 ≤143 bpm] ⚠review
+recovery  1 km     REC adj[10, 5] → 6:15–6:45 [Z1 ≤143 bpm]
 steady    6 km     H → 4:55–5:00 [Z4 162–170 bpm]
 steady    3 km     WU → 6:00–6:30 [Z1-2 ≤151 bpm]
 ```

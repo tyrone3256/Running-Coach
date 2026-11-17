@@ -1,7 +1,21 @@
 {
   "meta": {
+    "decisions": {
+      "approved": "2026-11-17",
+      "D1": "TJOG 390–420",
+      "D2": "L + pace_adj_s",
+      "D3": "fartlek: N + adj, hr_zone null, is_hard false",
+      "D4": "N pace_variant base (W02)",
+      "D5": "pending",
+      "D6": "pending",
+      "D7": "race/strides: H/S + adj",
+      "D8": "z4_target_min = tangga",
+      "D9": "planned_km = kolom Excel",
+      "D10": "tes 30′ jarak estimasi",
+      "D11": "pakai WU bila cocok persis"
+    },
     "source": "Program_HM_Sub145_Mei2027.xlsx",
-    "generated_at": "2026-11-17T11:45:36",
+    "generated_at": "2026-11-17T11:51:47",
     "athlete": "Tyrone",
     "race": {
       "name": "Half Marathon",
@@ -52,6 +66,10 @@
       "JOG": [
         420,
         480
+      ],
+      "TJOG": [
+        390,
+        420
       ],
       "S": [
         230,
@@ -142,6 +160,7 @@
   ],
   "weeks": [
     {
+      "guardrail_exception": null,
       "week": 1,
       "start": "2026-11-23",
       "phase": "Transisi",
@@ -155,6 +174,7 @@
       }
     },
     {
+      "guardrail_exception": null,
       "week": 2,
       "start": "2026-11-30",
       "phase": "Transisi",
@@ -170,6 +190,7 @@
       }
     },
     {
+      "guardrail_exception": null,
       "week": 3,
       "start": "2026-12-07",
       "phase": "Base",
@@ -185,6 +206,7 @@
       }
     },
     {
+      "guardrail_exception": null,
       "week": 4,
       "start": "2026-12-14",
       "phase": "Base",
@@ -201,6 +223,7 @@
       }
     },
     {
+      "guardrail_exception": null,
       "week": 5,
       "start": "2026-12-21",
       "phase": "Base",
@@ -217,6 +240,7 @@
       }
     },
     {
+      "guardrail_exception": null,
       "week": 6,
       "start": "2026-12-28",
       "phase": "Base",
@@ -233,6 +257,7 @@
       }
     },
     {
+      "guardrail_exception": null,
       "week": 7,
       "start": "2027-01-04",
       "phase": "Base",
@@ -249,6 +274,7 @@
       }
     },
     {
+      "guardrail_exception": null,
       "week": 8,
       "start": "2027-01-11",
       "phase": "Base",
@@ -265,6 +291,7 @@
       }
     },
     {
+      "guardrail_exception": null,
       "week": 9,
       "start": "2027-01-18",
       "phase": "Build",
@@ -281,6 +308,7 @@
       }
     },
     {
+      "guardrail_exception": null,
       "week": 10,
       "start": "2027-01-25",
       "phase": "Build",
@@ -297,6 +325,7 @@
       }
     },
     {
+      "guardrail_exception": null,
       "week": 11,
       "start": "2027-02-01",
       "phase": "Build",
@@ -313,6 +342,11 @@
       }
     },
     {
+      "guardrail_exception": {
+        "rule": "R8_max_hard",
+        "status": "pending_decision",
+        "decision_ref": "D5"
+      },
       "week": 12,
       "start": "2027-02-08",
       "phase": "Build",
@@ -330,6 +364,7 @@
       }
     },
     {
+      "guardrail_exception": null,
       "week": 13,
       "start": "2027-02-15",
       "phase": "Build",
@@ -346,6 +381,7 @@
       }
     },
     {
+      "guardrail_exception": null,
       "week": 14,
       "start": "2027-02-22",
       "phase": "Build",
@@ -362,6 +398,7 @@
       }
     },
     {
+      "guardrail_exception": null,
       "week": 15,
       "start": "2027-03-01",
       "phase": "Spesifik",
@@ -378,6 +415,7 @@
       }
     },
     {
+      "guardrail_exception": null,
       "week": 16,
       "start": "2027-03-08",
       "phase": "Spesifik",
@@ -394,6 +432,7 @@
       }
     },
     {
+      "guardrail_exception": null,
       "week": 17,
       "start": "2027-03-15",
       "phase": "Spesifik",
@@ -410,6 +449,7 @@
       }
     },
     {
+      "guardrail_exception": null,
       "week": 18,
       "start": "2027-03-22",
       "phase": "Spesifik",
@@ -425,6 +465,7 @@
       }
     },
     {
+      "guardrail_exception": null,
       "week": 19,
       "start": "2027-03-29",
       "phase": "Spesifik",
@@ -441,6 +482,7 @@
       }
     },
     {
+      "guardrail_exception": null,
       "week": 20,
       "start": "2027-04-05",
       "phase": "Spesifik",
@@ -457,6 +499,7 @@
       }
     },
     {
+      "guardrail_exception": null,
       "week": 21,
       "start": "2027-04-12",
       "phase": "Peak",
@@ -472,6 +515,7 @@
       }
     },
     {
+      "guardrail_exception": null,
       "week": 22,
       "start": "2027-04-19",
       "phase": "Peak",
@@ -488,6 +532,7 @@
       }
     },
     {
+      "guardrail_exception": null,
       "week": 23,
       "start": "2027-04-26",
       "phase": "Peak",
@@ -504,6 +549,7 @@
       }
     },
     {
+      "guardrail_exception": null,
       "week": 24,
       "start": "2027-05-03",
       "phase": "Peak",
@@ -520,6 +566,7 @@
       }
     },
     {
+      "guardrail_exception": null,
       "week": 25,
       "start": "2027-05-10",
       "phase": "Taper",
@@ -536,6 +583,7 @@
       }
     },
     {
+      "guardrail_exception": null,
       "week": 26,
       "start": "2027-05-17",
       "phase": "Taper",
@@ -552,6 +600,11 @@
       }
     },
     {
+      "guardrail_exception": {
+        "rule": "R8_max_hard",
+        "status": "pending_decision",
+        "decision_ref": "D6"
+      },
       "week": 27,
       "start": "2027-05-24",
       "phase": "Taper",
@@ -734,7 +787,6 @@
           "distance_m": 400,
           "intensity": "N",
           "pace_variant": "base",
-          "review": true,
           "src_pace": "4:35–4:45",
           "hr_zone": "Z5",
           "note": "pengenalan"
@@ -742,12 +794,7 @@
         {
           "kind": "recovery",
           "distance_m": 200,
-          "intensity": "JOG",
-          "pace_adj_s": [
-            -30,
-            -60
-          ],
-          "review": true,
+          "intensity": "TJOG",
           "src_pace": "6:30–7:00",
           "hr_zone": "Z1",
           "reps": 3,
@@ -828,20 +875,14 @@
             -10,
             -10
           ],
-          "review": true,
           "src_pace": "4:15–4:30",
-          "hr_zone": "Z5",
+          "hr_zone": null,
           "label": "Fartlek"
         },
         {
           "kind": "recovery",
           "distance_m": 200,
-          "intensity": "JOG",
-          "pace_adj_s": [
-            -30,
-            -60
-          ],
-          "review": true,
+          "intensity": "TJOG",
           "src_pace": "6:30–7:00",
           "hr_zone": "Z1",
           "reps": 5,
@@ -880,7 +921,6 @@
             5,
             5
           ],
-          "review": true,
           "src_pace": "5:50–6:20",
           "hr_zone": "Z2",
           "fill_remaining": true,
@@ -1031,20 +1071,14 @@
             -20,
             -15
           ],
-          "review": true,
           "src_pace": "4:15–4:30",
-          "hr_zone": "Z5",
+          "hr_zone": null,
           "label": "Fartlek"
         },
         {
           "kind": "recovery",
           "distance_m": 200,
-          "intensity": "JOG",
-          "pace_adj_s": [
-            -30,
-            -60
-          ],
-          "review": true,
+          "intensity": "TJOG",
           "src_pace": "6:30–7:00",
           "hr_zone": "Z1",
           "reps": 7,
@@ -1083,7 +1117,6 @@
             5,
             5
           ],
-          "review": true,
           "src_pace": "5:50–6:20",
           "hr_zone": "Z2",
           "fill_remaining": true,
@@ -1239,12 +1272,7 @@
         {
           "kind": "recovery",
           "distance_m": 300,
-          "intensity": "JOG",
-          "pace_adj_s": [
-            -30,
-            -60
-          ],
-          "review": true,
+          "intensity": "TJOG",
           "src_pace": "6:30–7:00",
           "hr_zone": "Z1",
           "reps": 2,
@@ -1615,12 +1643,7 @@
         {
           "kind": "recovery",
           "distance_m": 300,
-          "intensity": "JOG",
-          "pace_adj_s": [
-            -30,
-            -60
-          ],
-          "review": true,
+          "intensity": "TJOG",
           "src_pace": "6:30–7:00",
           "hr_zone": "Z1",
           "reps": 1,
@@ -1659,7 +1682,6 @@
             10,
             10
           ],
-          "review": true,
           "src_pace": "5:55–6:25",
           "hr_zone": "Z2",
           "fill_remaining": true,
@@ -1813,12 +1835,7 @@
         {
           "kind": "recovery",
           "distance_m": 300,
-          "intensity": "JOG",
-          "pace_adj_s": [
-            -30,
-            -60
-          ],
-          "review": true,
+          "intensity": "TJOG",
           "src_pace": "6:30–7:00",
           "hr_zone": "Z1",
           "reps": 2,
@@ -2006,12 +2023,7 @@
         {
           "kind": "recovery",
           "distance_m": 400,
-          "intensity": "JOG",
-          "pace_adj_s": [
-            -30,
-            -60
-          ],
-          "review": true,
+          "intensity": "TJOG",
           "src_pace": "6:30–7:00",
           "hr_zone": "Z1",
           "reps": 1,
@@ -2385,12 +2397,7 @@
         {
           "kind": "recovery",
           "distance_m": 300,
-          "intensity": "JOG",
-          "pace_adj_s": [
-            -30,
-            -60
-          ],
-          "review": true,
+          "intensity": "TJOG",
           "src_pace": "6:30–7:00",
           "hr_zone": "Z1",
           "reps": 2,
@@ -2429,7 +2436,6 @@
             10,
             10
           ],
-          "review": true,
           "src_pace": "5:55–6:25",
           "hr_zone": "Z2",
           "fill_remaining": true,
@@ -2768,12 +2774,7 @@
         {
           "kind": "recovery",
           "distance_m": 300,
-          "intensity": "JOG",
-          "pace_adj_s": [
-            -30,
-            -60
-          ],
-          "review": true,
+          "intensity": "TJOG",
           "src_pace": "6:30–7:00",
           "hr_zone": "Z1",
           "reps": 2,
@@ -2812,7 +2813,6 @@
             15,
             -5
           ],
-          "review": true,
           "src_pace": "6:00–6:10",
           "hr_zone": "Z2",
           "label": "Progresif"
@@ -2825,7 +2825,6 @@
             -10,
             -30
           ],
-          "review": true,
           "src_pace": "5:35–5:45",
           "hr_zone": "Z2-3"
         },
@@ -2984,12 +2983,7 @@
         {
           "kind": "recovery",
           "distance_m": 400,
-          "intensity": "JOG",
-          "pace_adj_s": [
-            -30,
-            -60
-          ],
-          "review": true,
+          "intensity": "TJOG",
           "src_pace": "6:30–7:00",
           "hr_zone": "Z1",
           "reps": 1,
@@ -3362,12 +3356,7 @@
         {
           "kind": "recovery",
           "distance_m": 400,
-          "intensity": "JOG",
-          "pace_adj_s": [
-            -30,
-            -60
-          ],
-          "review": true,
+          "intensity": "TJOG",
           "src_pace": "6:30–7:00",
           "hr_zone": "Z1",
           "reps": 2,
@@ -3548,12 +3537,7 @@
         {
           "kind": "recovery",
           "distance_m": 400,
-          "intensity": "JOG",
-          "pace_adj_s": [
-            -30,
-            -60
-          ],
-          "review": true,
+          "intensity": "TJOG",
           "src_pace": "6:30–7:00",
           "hr_zone": "Z1",
           "reps": 1,
@@ -3592,7 +3576,6 @@
             15,
             -5
           ],
-          "review": true,
           "src_pace": "6:00–6:10",
           "hr_zone": "Z2",
           "label": "Progresif"
@@ -3605,7 +3588,6 @@
             -15,
             -35
           ],
-          "review": true,
           "src_pace": "5:30–5:40",
           "hr_zone": "Z2-3"
         },
@@ -3617,7 +3599,6 @@
             -10,
             -5
           ],
-          "review": true,
           "src_pace": "5:05–5:15",
           "hr_zone": "Z3"
         }
@@ -3935,12 +3916,7 @@
         {
           "kind": "recovery",
           "distance_m": 300,
-          "intensity": "JOG",
-          "pace_adj_s": [
-            -30,
-            -60
-          ],
-          "review": true,
+          "intensity": "TJOG",
           "src_pace": "6:30–7:00",
           "hr_zone": "Z1",
           "reps": 3,
@@ -3979,7 +3955,6 @@
             10,
             10
           ],
-          "review": true,
           "src_pace": "5:55–6:25",
           "hr_zone": "Z2",
           "fill_remaining": true,
@@ -4313,12 +4288,7 @@
         {
           "kind": "recovery",
           "distance_m": 300,
-          "intensity": "JOG",
-          "pace_adj_s": [
-            -30,
-            -60
-          ],
-          "review": true,
+          "intensity": "TJOG",
           "src_pace": "6:30–7:00",
           "hr_zone": "Z1",
           "reps": 2,
@@ -4705,7 +4675,6 @@
             10,
             10
           ],
-          "review": true,
           "src_pace": "5:55–6:25",
           "hr_zone": "Z2",
           "fill_remaining": true,
@@ -4848,12 +4817,7 @@
         {
           "kind": "recovery",
           "distance_m": 300,
-          "intensity": "JOG",
-          "pace_adj_s": [
-            -30,
-            -60
-          ],
-          "review": true,
+          "intensity": "TJOG",
           "src_pace": "6:30–7:00",
           "hr_zone": "Z1",
           "reps": 2,
@@ -5070,7 +5034,6 @@
             5,
             -5
           ],
-          "review": true,
           "src_pace": "5:50–6:10",
           "hr_zone": "Z2",
           "label": "Simulasi race"
@@ -5090,7 +5053,6 @@
             10,
             5
           ],
-          "review": true,
           "src_pace": "6:15–6:45",
           "hr_zone": "Z1"
         },
@@ -5256,12 +5218,7 @@
         {
           "kind": "recovery",
           "distance_m": 400,
-          "intensity": "JOG",
-          "pace_adj_s": [
-            -30,
-            -60
-          ],
-          "review": true,
+          "intensity": "TJOG",
           "src_pace": "6:30–7:00",
           "hr_zone": "Z1",
           "reps": 1,
@@ -5492,7 +5449,6 @@
             5,
             5
           ],
-          "review": true,
           "src_pace": "5:50–6:20",
           "hr_zone": "Z2",
           "fill_remaining": true,
@@ -5678,7 +5634,6 @@
             10,
             -10
           ],
-          "review": true,
           "src_pace": "4:00–4:00",
           "hr_zone": null,
           "note": "H-1"
@@ -5710,7 +5665,6 @@
             5,
             5
           ],
-          "review": true,
           "src_pace": "5:00–5:05",
           "hr_zone": "Z4"
         },
@@ -5723,7 +5677,6 @@
             0,
             -2
           ],
-          "review": true,
           "src_pace": "4:55–4:58",
           "hr_zone": "Z4"
         }

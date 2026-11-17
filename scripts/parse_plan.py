@@ -27,7 +27,7 @@ REPORT = ROOT / "seed" / "parse_report.md"
 PACE_PROFILE = {
     "WU": (360, 390), "E": (350, 390), "REC": (365, 400), "L": (345, 375),
     "M": (315, 320), "H": (295, 300), "T": (288, 295), "N": (265, 280),
-    "JOG": (420, 480), "S": (230, 250),
+    "JOG": (420, 480), "TJOG": (390, 420), "S": (230, 250),
 }
 PACE_PROFILE_BASE = {"T": (298, 305), "N": (275, 285)}  # fase Base W03–W08
 BASE_WEEKS = range(3, 9)
@@ -35,7 +35,7 @@ BASE_WEEKS = range(3, 9)
 # zona default per kode (dari sheet ⏱️ Pace & Zone Guide)
 DEFAULT_ZONE = {
     "WU": "Z1-2", "E": "Z2", "REC": "Z1", "L": "Z2", "M": "Z3", "H": "Z4",
-    "T": "Z4", "N": "Z5", "JOG": "Z1", "S": None, "HILL": None, "TEST": "Z4-5",
+    "T": "Z4", "N": "Z5", "JOG": "Z1", "TJOG": "Z1", "S": None, "HILL": None, "TEST": "Z4-5",
 }
 
 # R12 tangga toleransi Z4 (menit) untuk tempo Kamis
@@ -179,7 +179,7 @@ def seg_from_pace(week, day, clause, kind, hint, **extra):
         seg["intensity"] = hint
     code = seg.get("intensity")
     seg["hr_zone"] = zone or DEFAULT_ZONE.get(code)
-    if not zone and code not in ("S", "HILL", "JOG"):
+    if not zone and code not in ("S", "HILL", "JOG", "TJOG") and hint is not None:
         issue(week, day, "zone_missing", f"tidak ada tag zona di '{clause}'",
               f"hr_zone={seg['hr_zone']} (default kode {code})")
     note = strip_note(PACE_RE.split(clause)[-1]) if pm else None
@@ -228,6 +228,8 @@ def parse_clause(week, day, clause):
         seg = seg_from_pace(week, day, c, "work", hint, reps=int(m.group(2)), distance_m=int(dist))
         if label:
             seg["label"] = m.group(1)
+        if label == "fartlek":  # D3: effort-based, tanpa zona
+            seg["hr_zone"] = None
         return seg
     # --- kontinu: "Tempo 5 km kontinu", "HM pace 8 km kontinu"
     m = re.match(rf"^(Tempo|HM pace)\s+{NUM}\s*km\s+kontinu", c)
@@ -423,9 +425,6 @@ def main():
             mp_hmp_km = sum(seg_km(s) for s in segs if s.get("intensity") in ("M", "H"))
             is_hard = stype in ("vo2_4x4", "tempo", "hm_pace", "test_30min", "tt_10k", "race") or (
                 day == "sat" and mp_hmp_km >= 5)
-            if stype == "fartlek":
-                issue(week, day, "hard_unknown", "Fartlek 250 m: tidak ada di definisi 'sesi keras'",
-                      "is_hard=false (diperlakukan seperti strides panjang)")
             if is_hard:
                 hard_days.append(day)
             # target Z4 (R12)
@@ -454,15 +453,29 @@ def main():
             issue(week, "-", "guardrail", f"{hard_n} sesi keras di minggu ini: {', '.join(hard_days)} (aturan maks 2)")
         if consec:
             issue(week, "-", "guardrail", f"2 hari keras berturut-turut: {', '.join(hard_days)}")
+        exception = None
+        if hard_n > 2:
+            exception = {"rule": "R8_max_hard", "status": "pending_decision",
+                         "decision_ref": "D6" if week == 27 else "D5"}
         weeks.append({
+            "guardrail_exception": exception,
             "week": week, "start": start.isoformat(), "phase": phase,
             "is_recovery_week": week in RECOVERY_WEEKS, "is_taper": week >= 25,
             "planned_km": round(week_km, 1), "hard_sessions": hard_days,
             "color": {"header": f"#{color_head}", "cell": f"#{color_cell}"},
         })
 
+    for s_ in sessions:
+        for g in s_["segments"]:
+            g.pop("review", None)
     plan = {
         "meta": {
+            "decisions": {"approved": "2026-11-17", "D1": "TJOG 390–420", "D2": "L + pace_adj_s",
+                          "D3": "fartlek: N + adj, hr_zone null, is_hard false",
+                          "D4": "N pace_variant base (W02)", "D5": "pending", "D6": "pending",
+                          "D7": "race/strides: H/S + adj", "D8": "z4_target_min = tangga",
+                          "D9": "planned_km = kolom Excel", "D10": "tes 30′ jarak estimasi",
+                          "D11": "pakai WU bila cocok persis"},
             "source": XLSX.name, "generated_at": dt.datetime.now().isoformat(timespec="seconds"),
             "athlete": "Tyrone", "race": {"name": "Half Marathon", "date": "2027-05-30",
                                             "distance_m": 21097.5, "goal_time_s": 6299, "goal_pace_s": 298},
