@@ -10,6 +10,8 @@ import { STOP_MESSAGE } from "@/lib/log/safety";
 import { SessionCard } from "@/components/session-card";
 import { DeleteLogButton } from "@/components/delete-log-button";
 import { CoachFeedback } from "@/components/coach-feedback";
+import { feedbackForLog } from "@/lib/coach/feedback";
+import { loadState } from "@/lib/data/engine-service";
 
 export const dynamic = "force-dynamic";
 
@@ -24,7 +26,7 @@ function Row({ k, v }: { k: string; v: React.ReactNode }) {
 
 export default async function LogDetailPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
-  const [plan, log] = await Promise.all([getPlan(), getStore().getLog(id)]);
+  const [plan, log, st] = await Promise.all([getPlan(), getStore().getLog(id), loadState()]);
   if (!log) notFound();
   const session = log.session_key ? plan.sessions.find((s) => s.id === log.session_key) : undefined;
   const tiz = log.time_in_zone;
@@ -44,10 +46,18 @@ export default async function LogDetailPage({ params }: { params: Promise<{ id: 
 
       <dl className="divide-y rounded-xl border bg-card px-4 text-sm">
         <Row k="Jarak" v={`${(log.distance_m / 1000).toLocaleString("id-ID", { maximumFractionDigits: 2 })} km${session ? ` / ${session.planned_km} km rencana` : ""}`} />
-        <Row k="Durasi" v={formatDuration(log.duration_s)} />
+        <Row k="Waktu bergerak" v={formatDuration(log.duration_s)} />
+        {log.elapsed_s != null && <Row k="Waktu total" v={formatDuration(log.elapsed_s)} />}
         <Row k="Pace rata-rata" v={log.avg_pace_s ? `${formatPace(log.avg_pace_s)}/km` : "–"} />
         <Row k="HR avg / max" v={`${log.avg_hr ?? "–"} / ${log.max_hr ?? "–"} bpm (${log.hr_source === "chest" ? "chest strap" : "jam"})`} />
-        <Row k="Cadence" v={log.avg_cadence ? `${log.avg_cadence} spm` : "–"} />
+        <Row k="Kadens" v={log.avg_cadence ? `${log.avg_cadence} langkah/menit` : "–"} />
+        {log.avg_stride_cm != null && <Row k="Panjang langkah" v={`${log.avg_stride_cm} cm`} />}
+        {log.total_steps != null && <Row k="Total langkah" v={log.total_steps.toLocaleString("id-ID")} />}
+        {log.elevation_gain_m != null && <Row k="Elevasi naik" v={`${log.elevation_gain_m} m`} />}
+        {log.calories_kcal != null && <Row k="Kalori" v={`${log.calories_kcal} kkal`} />}
+        {log.training_load != null && <Row k="Training load" v={log.training_load} />}
+        {(log.aerobic_te != null || log.anaerobic_te != null) && <Row k="Training Effect" v={`aerob ${log.aerobic_te ?? "–"} · anaerob ${log.anaerobic_te ?? "–"}`} />}
+        {log.recovery_h != null && <Row k="Waktu pemulihan" v={`${log.recovery_h} jam`} />}
         <Row k="RPE" v={log.rpe} />
         {log.hr_drop_1min != null && <Row k="HR turun 1 menit" v={`${log.hr_drop_1min} bpm`} />}
         {log.discomfort_at_hr.flag && <Row k="HR 170 terasa berat" v={log.discomfort_at_hr.bpm ? `mulai ${log.discomfort_at_hr.bpm} bpm` : "ya"} />}
@@ -95,9 +105,25 @@ export default async function LogDetailPage({ params }: { params: Promise<{ id: 
         </section>
       )}
 
-      {log.safety.level !== "stop" && (
-        <CoachFeedback logId={log.id} initial={log.coach_feedback ?? null} aiReady={!!process.env.ANTHROPIC_API_KEY} />
+
+      {log.splits.length > 0 && (
+        <details className="rounded-xl border bg-card px-4 py-3 text-sm">
+          <summary className="cursor-pointer">Split per km ({log.splits.length})</summary>
+          <table className="mt-2 w-full tabular-nums">
+            <tbody>
+              {log.splits.map((sp) => (
+                <tr key={sp.km} className="border-t">
+                  <td className="py-1 text-muted-foreground">km {sp.km}{sp.distance_m ? ` (${sp.distance_m} m)` : ""}</td>
+                  <td className="text-right">{sp.pace_s ? `${formatPace(sp.pace_s)}/km` : "–"}</td>
+                  <td className="text-right">{sp.avg_hr ?? "–"} bpm</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </details>
       )}
+
+      {log.safety.level !== "stop" && <CoachFeedback fb={feedbackForLog(log, st)} />}
 
       {session && (
         <details className="text-sm">

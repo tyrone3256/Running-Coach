@@ -2,7 +2,7 @@
 import type { PaceProfile, Session } from "@/lib/engine/types";
 import { resolvePace } from "@/lib/engine/pace";
 import { todayIso } from "@/lib/dates";
-import { detectReps, repMetrics, summarize, type ParsedActivity } from "./activity";
+import { detectReps, kmSplits, repMetrics, summarize, type ParsedActivity } from "./activity";
 import type { Rep, WorkoutLogInput } from "./schema";
 
 export interface ImportDraft {
@@ -76,6 +76,17 @@ export function buildDraft(
       source: act.format,
       external_id: act.external_id ?? `${act.format}:${act.start}:${Math.round(sum.distance_m)}`,
       streams: sum.streams,
+      elapsed_s: act.samples.length && act.samples[act.samples.length - 1].t >= 60 ? Math.round(act.samples[act.samples.length - 1].t) : null,
+      elevation_gain_m: null,
+      calories_kcal: null,
+      avg_stride_cm: sum.avg_cadence && sum.distance_m && sum.duration_s
+        ? Math.round((sum.distance_m / (sum.avg_cadence * (sum.duration_s / 60))) * 1000) / 10 : null,
+      total_steps: null,
+      training_load: null,
+      aerobic_te: null,
+      anaerobic_te: null,
+      recovery_h: null,
+      splits: kmSplits(act.samples),
     },
     reps_detected: reps.length,
     reps_expected: expected,

@@ -30,13 +30,8 @@ export default defineConfig({
       LOCAL_DATA_DIR: dataDir,
       ALLOW_LOCAL_STORE: "1",
       CRON_SECRET: "e2e-cron-secret",
-      // kunci palsu: hanya untuk membuktikan nilainya tidak pernah sampai ke bundle client
-      ANTHROPIC_API_KEY: "sk-ant-e2e-dummy-should-never-leak",
-      // E2E tidak boleh memanggil Anthropic sungguhan: arahkan SDK ke port lokal yang tertutup
-      ANTHROPIC_BASE_URL: "http://127.0.0.1:9",
-      STRAVA_CLIENT_ID: "e2e-client",
-      STRAVA_CLIENT_SECRET: "e2e-secret",
-      STRAVA_WEBHOOK_VERIFY_TOKEN: "e2e-verify",
+      // nilai palsu: membuktikan secret server tidak pernah sampai ke bundle client
+      VAPID_PRIVATE_KEY: "e2e-vapid-private",
       NEXT_PUBLIC_SUPABASE_URL: "",
       NEXT_PUBLIC_SUPABASE_ANON_KEY: "",
     },

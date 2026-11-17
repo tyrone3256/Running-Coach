@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { LogForm, type SessionOption } from "@/components/log-form";
 import type { ImportDraft } from "@/lib/log/draft";
 
-export function ImportForm({ sessions }: { sessions: SessionOption[] }) {
+export function ImportForm({ sessions, lthr }: { sessions: SessionOption[]; lthr: number }) {
   const [draft, setDraft] = useState<ImportDraft | null>(null);
   const [err, setErr] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
@@ -33,6 +33,7 @@ export function ImportForm({ sessions }: { sessions: SessionOption[] }) {
         initial={draft.log}
         sessions={sessions}
         quick={false}
+        lthr={lthr}
         importMeta={{ warnings: draft.warnings, device: draft.device, reps_detected: draft.reps_detected, reps_expected: draft.reps_expected }}
       />
     );

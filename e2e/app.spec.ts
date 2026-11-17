@@ -38,28 +38,26 @@ test("service worker aktif; halaman yang pernah dibuka tersedia offline", async 
   await context.setOffline(false);
 });
 
-test("API key tidak pernah ada di JS client", async ({ page, request }) => {
+test("secret server tidak pernah ada di JS client", async ({ page, request }) => {
   const scripts = new Set<string>();
   page.on("response", (r) => { if (r.url().endsWith(".js")) scripts.add(r.url()); });
   for (const p of ["/", "/coach", "/settings", "/log/new", "/program/changes"]) await page.goto(p);
   expect(scripts.size).toBeGreaterThan(3);
   for (const url of scripts) {
     const body = await (await request.get(url)).text();
-    expect(body, url).not.toContain("sk-ant-e2e-dummy");
-    expect(body, url).not.toContain("e2e-secret"); // STRAVA_CLIENT_SECRET
     expect(body, url).not.toContain("e2e-cron-secret");
-    expect(body, url).not.toContain("api.anthropic.com");
+    expect(body, url).not.toContain("e2e-vapid-private");
   }
-  const html = await (await request.get("/coach")).text();
-  expect(html).not.toContain("sk-ant-e2e-dummy");
 });
 
-test("chat 'nyeri dada' → STOP, program ditahan, lalu dibuka setelah 'sudah diperiksa'", async ({ page }) => {
+test("Coach: lapor 'nyeri dada' → STOP, program ditahan, lalu dibuka setelah 'sudah diperiksa'", async ({ page }) => {
   await page.goto("/coach");
-  await page.getByLabel("Pesan untuk coach").fill("tadi rep 2 nyeri dada, besok boleh tempo?");
-  await page.getByRole("button", { name: "Kirim" }).click();
-  await expect(page.getByText(/STOP latihan/)).toBeVisible();
-  await expect(page.getByText(/EKG/)).toBeVisible();
+  await page.getByText("Lapor gejala bahaya").click();
+  await page.getByLabel("Nyeri / tekanan di dada").check();
+  await page.getByRole("button", { name: "Laporkan gejala" }).click();
+  const alert = page.getByRole("alert").filter({ hasText: "STOP latihan" });
+  await expect(alert).toBeVisible();
+  await expect(alert).toContainText("EKG");
 
   await page.goto("/?date=2027-01-07");
   await expect(page.getByText("STOP — program ditahan")).toBeVisible();
@@ -84,5 +82,6 @@ test("pengaturan: status & tombol notifikasi", async ({ page }) => {
   await page.goto("/settings");
   await expect(page.getByRole("heading", { name: "Pengaturan" })).toBeVisible();
   await expect(page.getByText("Notifikasi", { exact: true })).toBeVisible();
-  await expect(page.getByText(/Coach AI: aktif/)).toBeVisible();
+  await expect(page.getByText(/Zona HR \(LTHR 170\)/)).toBeVisible();
+  await expect(page.getByText("Connect with Strava")).toHaveCount(0); // Strava nonaktif
 });

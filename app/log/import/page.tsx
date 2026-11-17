@@ -11,7 +11,7 @@ export default async function ImportPage() {
     <main className="flex flex-col gap-4">
       <nav className="text-sm"><Link href="/log" className="text-muted-foreground hover:underline">← Log</Link></nav>
       <h1 className="text-2xl font-semibold">Import file</h1>
-      <ImportForm sessions={toSessionOptions(plan.sessions)} />
+      <ImportForm sessions={toSessionOptions(plan.sessions)} lthr={plan.hrProfile.lthr} />
     </main>
   );
 }

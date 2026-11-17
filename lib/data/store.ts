@@ -2,20 +2,20 @@ import "server-only";
 import { randomUUID } from "node:crypto";
 import { mkdir, readFile, rename, writeFile } from "node:fs/promises";
 import path from "node:path";
-import type { CheckinInput, WorkoutLog, WorkoutLogInput } from "@/lib/log/schema";
+import { workoutLogSchema, type CheckinInput, type WorkoutLog, type WorkoutLogRawInput } from "@/lib/log/schema";
 import { assessLogSafety } from "@/lib/log/safety";
 import { paceOf } from "@/lib/log/units";
 import { createSupabaseServer, currentUserId, supabaseConfigured } from "@/lib/supabase/server";
 
 export type Checkin = CheckinInput & { created_at: string };
 
-export type LogAnnotationPatch = Partial<Pick<WorkoutLog, "sensor_suspect" | "sensor_suspect_reason" | "coach_feedback" | "coach_feedback_at">>;
+export type LogAnnotationPatch = Partial<Pick<WorkoutLog, "sensor_suspect" | "sensor_suspect_reason">>;
 
 export interface Store {
   kind: "file" | "supabase";
   listLogs(opts?: { from?: string; to?: string; limit?: number }): Promise<WorkoutLog[]>;
   getLog(id: string): Promise<WorkoutLog | null>;
-  saveLog(input: WorkoutLogInput): Promise<{ log: WorkoutLog; duplicate: boolean }>;
+  saveLog(input: WorkoutLogRawInput): Promise<{ log: WorkoutLog; duplicate: boolean }>;
   deleteLog(id: string): Promise<void>;
   annotateLog(id: string, a: LogAnnotationPatch): Promise<void>;
   getCheckin(date: string): Promise<Checkin | null>;
@@ -23,7 +23,8 @@ export interface Store {
   saveCheckin(input: CheckinInput): Promise<Checkin>;
 }
 
-export function enrich(input: WorkoutLogInput, id: string = randomUUID(), created_at = new Date().toISOString()): WorkoutLog {
+export function enrich(raw: WorkoutLogRawInput, id: string = randomUUID(), created_at = new Date().toISOString()): WorkoutLog {
+  const input = workoutLogSchema.parse(raw); // isi default kolom opsional
   return {
     ...input,
     id,
@@ -115,6 +116,11 @@ function supabaseStore(): Store {
     red_flags: r.red_flags ?? [], notes: r.notes, source: r.source, external_id: r.external_id,
     streams: r.streams, safety: r.safety,
     sensor_suspect: r.sensor_suspect, sensor_suspect_reason: r.sensor_suspect_reason,
+    elapsed_s: r.elapsed_s ?? null, elevation_gain_m: r.elevation_gain_m == null ? null : Number(r.elevation_gain_m),
+    calories_kcal: r.calories_kcal ?? null, avg_stride_cm: r.avg_stride_cm == null ? null : Number(r.avg_stride_cm),
+    total_steps: r.total_steps ?? null, training_load: r.training_load == null ? null : Number(r.training_load),
+    aerobic_te: r.aerobic_te == null ? null : Number(r.aerobic_te), anaerobic_te: r.anaerobic_te == null ? null : Number(r.anaerobic_te),
+    recovery_h: r.recovery_h == null ? null : Number(r.recovery_h), splits: r.splits ?? [],
   });
   const check = <T,>(res: { data: T; error: unknown }) => {
     if (res.error) throw new Error(JSON.stringify(res.error));

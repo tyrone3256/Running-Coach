@@ -255,3 +255,26 @@ export function fillDistanceFromCoords(
     return acc;
   });
 }
+
+/** Split per km (pace & HR rata-rata), seperti tab "Split" Strava / "Pace" Huawei Health. */
+export function kmSplits(samples: Sample[]): Array<{ km: number; distance_m: number | null; pace_s: number | null; avg_hr: number | null }> {
+  const pts = samples.filter((s) => s.d != null);
+  if (pts.length < 2) return [];
+  const out: Array<{ km: number; distance_m: number | null; pace_s: number | null; avg_hr: number | null }> = [];
+  let startT = pts[0].t, startD = pts[0].d!, km = 1;
+  let hrSum = 0, hrN = 0;
+  for (const p of pts) {
+    if (p.hr != null) { hrSum += p.hr; hrN++; }
+    if (p.d! - startD >= 1000) {
+      const dist = p.d! - startD;
+      out.push({ km, distance_m: null, pace_s: Math.round(((p.t - startT) / dist) * 1000), avg_hr: hrN ? Math.round(hrSum / hrN) : null });
+      km++; startT = p.t; startD = p.d!; hrSum = 0; hrN = 0;
+    }
+  }
+  const last = pts[pts.length - 1];
+  const rest = last.d! - startD;
+  if (rest >= 100) {
+    out.push({ km, distance_m: Math.round(rest), pace_s: Math.round(((last.t - startT) / rest) * 1000), avg_hr: hrN ? Math.round(hrSum / hrN) : null });
+  }
+  return out.filter((x) => x.pace_s == null || (x.pace_s >= 120 && x.pace_s <= 1500)).slice(0, 100);
+}

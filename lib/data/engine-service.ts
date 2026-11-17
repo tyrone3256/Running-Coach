@@ -154,30 +154,3 @@ export async function clearHold(note: string | null) {
 export async function recordSafetyEvent(reasons: string[], date = todayIso()) {
   await getPlanStore().addSafetyEvent({ created_at: new Date().toISOString(), date, reasons, source: "chat" });
 }
-
-/** Usulan coach: selalu disimpan sebagai pending (atau blocked bila melanggar guardrail). */
-export async function proposeCoachChange(input: {
-  title: string; reason: string; changes: Change[]; size: "small" | "large"; cues?: string[];
-}): Promise<PlanChangeRecord> {
-  const state = await loadState();
-  const p: Proposal = {
-    key: `coach:${randomUUID()}`, rule: "coach", size: input.size, title: input.title, reason: input.reason,
-    changes: input.changes, cues: input.cues,
-  };
-  const preview = applyProposal(state.snapshot, p.changes);
-  const v = validateChange(state.snapshot, preview.after, p.changes, state.today);
-  const rec = v.ok
-    ? record(p, "pending", state.today, { diff: preview.diff })
-    : record(p, "blocked", state.today, { diff: preview.diff, blocked_by: v.violations });
-  await getPlanStore().saveChange(rec);
-  return rec;
-}
-
-/** Coach hanya boleh menerapkan sendiri usulan KECIL miliknya. Usulan besar wajib disetujui user di UI. */
-export async function applyCoachChange(id: string) {
-  const c = await getPlanStore().getChange(id);
-  if (!c || c.rule !== "coach") throw new Error("Bukan usulan coach");
-  if (c.mode !== "pending") throw new Error(`Usulan sudah ${c.mode}`);
-  if (c.size !== "small") throw new Error("Perubahan besar: harus disetujui atlet sendiri lewat tombol Setujui");
-  return approveChange(id);
-}

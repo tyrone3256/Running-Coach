@@ -7,9 +7,10 @@ Coach lari personal (PWA, Bahasa Indonesia). Spesifikasi: [docs/SPEC.md](docs/SP
 - [x] **M1** schema + RLS + seed + layar *Hari ini* & *Program* (read-only)
 - [x] **M2** log manual & log cepat, check-in pagi, import FIT/GPX/TCX (deteksi rep otomatis), antrean offline
 - [x] **M3** adaptive engine R1–R13 (deterministik, 1 test file per rule + acceptance), plan versioning dengan diff, approve/tolak, revert
-- [x] **M4** AI coach (Claude, server-only) dengan 11 tool di atas engine, safety pre-filter, feedback otomatis per log
+- [x] **M4** coach — sejak M7 berbasis aturan (tanpa AI/biaya): feedback per log, halaman Coach, lapor gejala
 - [x] **M5** PWA (install, offline), web push pagi/sore, cron Vercel, konfigurasi deploy, E2E Playwright
-- [x] **M6** Strava: OAuth, webhook + sinkron cadangan, aktivitas masuk sebagai draft yang kamu lengkapi (RPE & rasa)
+- [x] **M6** Strava (opsional, **nonaktif** — input manual dipilih)
+- [x] **M7** input manual seperti ringkasan Huawei Health/Strava (zona HR, split per km, elevasi, kalori, Training Effect…), coach berbasis aturan, AI dihapus
 
 ## Jalankan lokal
 
@@ -44,21 +45,29 @@ npm run build && npm run test:e2e   # Playwright di build produksi (memakai Edge
 - **Program → Perubahan program**: riwayat + diff sebelum/sesudah, setujui/tolak perubahan besar, revert.
 - **Program → Input hasil tes**: tes 30′ / 10K TT → usulan LTHR + pace (atau LTHR saja).
 
-## AI coach (M4)
+## Coach & input manual (M7)
 
-Isi di `.env.local` (server only — tidak pernah berprefix `NEXT_PUBLIC_`):
+Tanpa layanan berbayar. Setelah lari, buka **Log → + Log** dan salin dari layar ringkasan aktivitas di Huawei Health (atau Strava):
 
-```bash
-ANTHROPIC_API_KEY=sk-ant-...
-ANTHROPIC_MODEL=claude-opus-5-5   # opsional; default claude-opus-5-5
-```
+| Di app | Huawei Health | Strava |
+|---|---|---|
+| Jarak, Waktu bergerak | Jarak, Durasi | Distance, Moving Time |
+| Waktu total | — | Elapsed Time |
+| HR rata-rata / maks | Detak jantung rata-rata / maks | Avg / Max Heart Rate |
+| Kadens (langkah/menit) | Kadens rata-rata | Cadence (angka <120 otomatis ×2) |
+| Panjang langkah, Total langkah | Panjang langkah rata-rata, Langkah | — |
+| Elevasi naik, Kalori | Total kenaikan, Kalori | Elevation Gain, Calories |
+| Training load, Aerobic/Anaerobic TE, Waktu pemulihan | Efek latihan | — |
+| Waktu di zona HR (menit) | Zona detak jantung | Heart Rate zones |
+| Split per km (pace + HR) | Tab Pace | Splits |
+| Interval / rep | Lap / interval | Laps |
+| RPE 1–10 | — | Perceived Exertion |
 
-- Kode: `lib/coach/` — `agent.ts` (loop tool use), `tools.ts` (11 tool, input divalidasi zod), `actions.ts` (aksi perubahan yang boleh diusulkan coach → dibangun dengan builder engine), `prompt.ts` (persona + cue HR 170), `server.ts` (klien Anthropic; hanya di server).
-- **Coach** (tab bawah): chat; riwayat disimpan di HP (localStorage), 20 giliran terakhir dikirim ke server.
-- **Log → detail**: feedback coach dibuat otomatis sekali saat log dibuka, lalu disimpan di log.
-- Red flag di chat (mis. "nyeri dada", "dada terasa sesak") dijawab STOP **tanpa** memanggil LLM dan menahan program sampai kamu menekan "sudah diperiksa dokter". Ini jalan walau API key kosong.
-- Coach hanya bisa mengubah plan lewat `propose_plan_change` (aksi terbatas: easy, kurangi volume, pecah rep, rest, pindah, geser pace) → guardrail engine. Usulan kecil diterapkan coach setelah kamu setuju di chat; usulan besar hanya lewat tombol **Setujui**.
-- Tanpa API key: semua fitur lain jalan; layar Coach menampilkan "belum aktif".
+Wajib: jarak, waktu, RPE. Sisanya opsional; makin lengkap makin tajam feedback-nya. Zona HR: samakan dulu batas zona di jam/aplikasi dengan tabel di ⚙ Pengaturan → Zona HR.
+
+- **Feedback coach** muncul di detail log, dihitung dari aturan program (`lib/coach/feedback.ts`): eksekusi vs rencana (pace & zona), toleransi Z4, rep, cue HR 170 (maks 3), pacing & cardiac drift dari split, kadens, Training Effect, perubahan program yang dipicu log, sesi berikutnya. Log red flag hanya mendapat STOP.
+- **Tab Coach**: sesi hari ini/berikutnya + tujuan + cue, feedback lari terakhir, tabel toleransi Z4, ringkasan minggu, panduan "HR 170 berat: normal atau bahaya", aturan sesi terlewat, dan **Lapor gejala bahaya** (program langsung ditahan sampai kamu menyatakan sudah diperiksa dokter).
+- Import file FIT/GPX/TCX tetap ada (mis. GPX dari Strava web → ⋯ → Export GPX); split per km dihitung otomatis dari file.
 
 ## Regenerasi seed dari Excel
 
@@ -73,7 +82,9 @@ python scripts/parse_plan.py   # butuh openpyxl → seed/plan.json + seed/parse_
 - Cron (`vercel.json`): `05:00 WIB` engine harian + notifikasi sesi hari ini/check-in (hari tanpa lari hanya bila ada perubahan menunggu persetujuan); `19:00 WIB` pengingat log bila sesi hari ini belum dicatat. Saat hold red flag: hanya pengingat ke dokter.
 - Cron berjalan tanpa sesi login: route `/api/cron/*` hanya menerima `Authorization: Bearer $CRON_SECRET`, lalu memakai service-role key **terbatas pada akun `OWNER_EMAIL`**.
 
-## Strava (M6)
+## Strava (M6, opsional — nonaktif)
+
+Kode tetap ada tapi tidak dipakai: tanpa env `STRAVA_*` semua menu Strava tersembunyi. Untuk mengaktifkan nanti:
 
 Alur: jam Huawei → Huawei Health → (sinkron ke Strava, atur di Huawei Health → Saya → Berbagi data) → Strava → app ini.
 
@@ -107,10 +118,8 @@ App Strava baru berstatus *Single Player Mode* (1 atlet) — cukup untuk app ini
    | `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY` | dari Supabase → Project Settings → API |
    | `SUPABASE_SERVICE_ROLE_KEY` | service role (server only; hanya dipakai cron) |
    | `OWNER_EMAIL` | email login kamu |
-   | `ANTHROPIC_API_KEY`, `ANTHROPIC_MODEL` | coach AI (model opsional) |
    | `NEXT_PUBLIC_VAPID_PUBLIC_KEY`, `VAPID_PRIVATE_KEY` | dari langkah 2 |
    | `VAPID_SUBJECT` | `mailto:` email kamu |
-   | `STRAVA_CLIENT_ID`, `STRAVA_CLIENT_SECRET`, `STRAVA_WEBHOOK_VERIFY_TOKEN`, `STRAVA_SUBSCRIPTION_ID` | lihat bagian Strava |
    | `CRON_SECRET` | string acak panjang (`openssl rand -hex 32`) — Vercel mengirimnya otomatis ke cron |
 4. Supabase → Auth → URL Configuration: Site URL = domain Vercel, tambahkan `https://<domain>/auth/callback` ke Redirect URLs.
 5. Deploy, buka di Chrome Android → login magic link → ⋮ **Instal aplikasi** → ⚙ Pengaturan → **Aktifkan notifikasi** → **Kirim tes**.

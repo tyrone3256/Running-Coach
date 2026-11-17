@@ -177,6 +177,12 @@ Setiap rule punya unit test minimal: 1 kasus memicu, 1 kasus tidak, 1 kasus bata
 - Brand: tombol "Connect with Strava" (#FC5200), "Powered by Strava", tautan "View on Strava".
 - Belum diuji dengan akun Strava sungguhan (butuh app Strava + domain publik). Logika diuji dengan fixture + fetch tiruan (18 test) dan E2E alur draft → log.
 
+### 7.4 Perubahan M7 (keputusan atlet: tanpa API berbayar, input manual)
+- Coach AI (Anthropic) dihapus beserta SDK-nya. Diganti coach berbasis aturan: `feedbackForLog` (murni, diuji) + halaman Coach statis berbasis data + lapor gejala (`/api/safety` → `safety_events` → hold). §7.1 tetap sebagai catatan historis.
+- Strava dinonaktifkan (kode dorman; UI tersembunyi tanpa env). Jalur data utama: input manual dari layar ringkasan Huawei Health/Strava; import file tetap.
+- Skema log ditambah kolom ringkasan Huawei/Strava (semua opsional): `elapsed_s`, `elevation_gain_m`, `calories_kcal`, `avg_stride_cm`, `total_steps`, `training_load`, `aerobic_te`, `anaerobic_te`, `recovery_h`, `splits[]` (migrasi `20261123000000_m7_huawei_fields.sql`). Kadens <120 dianggap per-kaki dan dikali 2.
+- Waktu di zona hanya bermakna bila batas zona di jam/aplikasi disamakan dengan zona program (%LTHR); petunjuknya di Pengaturan.
+
 ## 8. Hasil parsing & keputusan
 
 **Status (2026-11-17):** D1–D4, D7–D11 diterapkan sesuai usulan (D1 = kode `TJOG` 390–420). **D5 & D6 masih terbuka** — W12 dan W27 ditandai `guardrail_exception: pending_decision` di seed dan tampil ⚠ di layar Program.

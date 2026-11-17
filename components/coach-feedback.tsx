@@ -1,50 +1,38 @@
-"use client";
-import { useEffect, useRef, useState } from "react";
+import type { Feedback, Tone } from "@/lib/coach/feedback";
+import { cn } from "@/lib/utils";
 
-/** Feedback coach per log: dibuat otomatis sekali saat log dibuka (bila AI aktif), lalu disimpan di log. */
-export function CoachFeedback({ logId, initial, aiReady }: { logId: string; initial: string | null; aiReady: boolean }) {
-  const [text, setText] = useState(initial);
-  const [busy, setBusy] = useState(false);
-  const [err, setErr] = useState<string | null>(null);
-  const started = useRef(false);
+const ICON: Record<Tone, string> = { good: "✓", info: "•", warn: "!", stop: "⛔" };
+const BOX: Record<Tone, string> = {
+  good: "border-emerald-500/40",
+  info: "",
+  warn: "border-amber-500/50",
+  stop: "border-destructive bg-destructive/10 text-destructive",
+};
 
-  async function load(regenerate = false) {
-    setBusy(true);
-    setErr(null);
-    try {
-      const res = await fetch("/api/coach/feedback", {
-        method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ log_id: logId, regenerate }),
-      });
-      const data = await res.json().catch(() => ({}));
-      if (!res.ok) throw new Error(data.error ?? `Gagal (${res.status})`);
-      setText(data.text);
-    } catch (e) {
-      setErr(navigator.onLine ? (e as Error).message : "Offline — feedback dibuat saat online.");
-    } finally {
-      setBusy(false);
-    }
-  }
-
-  useEffect(() => {
-    if (!initial && aiReady && !started.current) {
-      started.current = true;
-      void load();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  if (!aiReady && !text) return null;
+/** Feedback coach berbasis aturan (tanpa AI). */
+export function CoachFeedback({ fb, title = "Feedback coach" }: { fb: Feedback; title?: string }) {
   return (
-    <section className="flex flex-col gap-2 rounded-xl border bg-card p-4 text-sm">
-      <div className="flex items-center justify-between">
-        <p className="font-medium">Feedback coach</p>
-        {text && !busy && aiReady && (
-          <button type="button" className="text-xs text-muted-foreground underline" onClick={() => load(true)}>Buat ulang</button>
-        )}
-      </div>
-      {busy && <p className="text-muted-foreground">Coach sedang membaca log…</p>}
-      {text && !busy && <p className="whitespace-pre-line leading-relaxed">{text}</p>}
-      {err && <p className="text-destructive">{err}</p>}
+    <section className={cn("flex flex-col gap-2 rounded-xl border bg-card p-4 text-sm", BOX[fb.tone])}>
+      <p className="text-xs text-muted-foreground">{title}</p>
+      <p className="font-medium">{fb.headline}</p>
+      <ul className="flex flex-col gap-1.5">
+        {fb.points.map((p, i) => (
+          <li key={i} className="grid grid-cols-[1rem_1fr] gap-1">
+            <span className={cn(p.tone === "warn" && "text-amber-600", p.tone === "good" && "text-emerald-600")} aria-hidden>{ICON[p.tone]}</span>
+            <span>{p.text}</span>
+          </li>
+        ))}
+      </ul>
+      {fb.cues.length > 0 && (
+        <div className="rounded-lg bg-muted p-3">
+          <p className="mb-1 text-xs font-medium">Fokus sesi kualitas berikutnya</p>
+          <ul className="list-disc pl-4 text-xs leading-relaxed">{fb.cues.map((c) => <li key={c}>{c}</li>)}</ul>
+        </div>
+      )}
+      {fb.changes.length > 0 && (
+        <ul className="text-xs text-muted-foreground">{fb.changes.map((c) => <li key={c}>Program: {c}</li>)}</ul>
+      )}
+      {fb.next && <p className="text-xs text-muted-foreground">Berikutnya: {fb.next}</p>}
     </section>
   );
 }

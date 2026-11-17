@@ -31,6 +31,7 @@ export default async function StravaItemPage({ params }: { params: Promise<{ id:
         initial={item.draft.log}
         sessions={toSessionOptions(plan.sessions)}
         quick={false}
+        lthr={plan.hrProfile.lthr}
         importMeta={{
           warnings: item.draft.warnings, device: item.draft.device,
           reps_detected: item.draft.reps_detected, reps_expected: item.draft.reps_expected,

@@ -35,6 +35,17 @@ export const streamsSchema = z.object({
 });
 export type Streams = z.infer<typeof streamsSchema>;
 
+/** Split per km seperti di Huawei Health / Strava (km terakhir boleh parsial). */
+export const splitSchema = z.object({
+  km: int(1, 100),
+  distance_m: z.number().min(10).max(1000).nullable().default(null),
+  pace_s: z.number().min(120).max(1500).nullable(),
+  avg_hr: int(40, 230).nullable().default(null),
+});
+export type Split = z.infer<typeof splitSchema>;
+
+const opt = <T extends z.ZodType>(t: T) => t.nullable().default(null);
+
 export const workoutLogSchema = z.object({
   date: z.string().regex(/^\d{4}-\d{2}-\d{2}$/),
   session_key: z.string().regex(/^W\d{2}-(mon|tue|wed|thu|fri|sat|sun)$/).nullable(),
@@ -62,8 +73,25 @@ export const workoutLogSchema = z.object({
   source: z.enum(["manual", "fit", "gpx", "tcx", "strava"]),
   external_id: z.string().max(200).nullable(),
   streams: streamsSchema.nullable(),
+  // ---- kolom ringkasan Huawei Health / Strava (semua opsional)
+  /** waktu total termasuk berhenti (Strava "Elapsed Time"); duration_s = waktu bergerak/olahraga */
+  elapsed_s: opt(z.number().int().min(60).max(86_400)),
+  elevation_gain_m: opt(z.number().min(0).max(5000)),
+  calories_kcal: opt(int(0, 5000)),
+  avg_stride_cm: opt(z.number().min(30).max(250)),
+  total_steps: opt(int(0, 200_000)),
+  /** Huawei: Training load / Beban latihan */
+  training_load: opt(z.number().min(0).max(2000)),
+  /** Huawei: Aerobic / Anaerobic Training Effect 0–5 */
+  aerobic_te: opt(z.number().min(0).max(5)),
+  anaerobic_te: opt(z.number().min(0).max(5)),
+  /** Huawei: waktu pemulihan (jam) */
+  recovery_h: opt(z.number().min(0).max(120)),
+  splits: z.array(splitSchema).max(100).default([]),
 });
 export type WorkoutLogInput = z.infer<typeof workoutLogSchema>;
+/** Bentuk sebelum default diisi (kolom Huawei/Strava boleh tidak ada). */
+export type WorkoutLogRawInput = z.input<typeof workoutLogSchema>;
 export type WorkoutLog = WorkoutLogInput & {
   id: string;
   created_at: string;
@@ -72,9 +100,6 @@ export type WorkoutLog = WorkoutLogInput & {
   /** diisi engine (R13) */
   sensor_suspect?: boolean;
   sensor_suspect_reason?: string | null;
-  /** diisi coach AI (M4) */
-  coach_feedback?: string | null;
-  coach_feedback_at?: string | null;
 };
 
 export const checkinSchema = z.object({

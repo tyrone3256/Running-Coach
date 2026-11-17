@@ -18,7 +18,7 @@ export default async function NewLogPage({
     <main className="flex flex-col gap-4">
       <nav className="text-sm"><Link href="/log" className="text-muted-foreground hover:underline">← Log</Link></nav>
       <h1 className="text-2xl font-semibold">{quick ? "Log cepat" : "Log lari"}</h1>
-      <LogForm initial={{ date }} sessions={toSessionOptions(plan.sessions)} quick={quick} />
+      <LogForm initial={{ date }} sessions={toSessionOptions(plan.sessions)} quick={quick} lthr={plan.hrProfile.lthr} />
     </main>
   );
 }
