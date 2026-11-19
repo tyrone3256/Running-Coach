@@ -6,6 +6,12 @@
       "runtimeExecutable": "npm",
       "runtimeArgs": ["run", "dev"],
       "port": 3000
+    },
+    {
+      "name": "local-preview",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["scripts/e2e-server.mjs", "3200"],
+      "port": 3200
     }
   ]
 }

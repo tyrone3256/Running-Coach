@@ -54,3 +54,6 @@ __pycache__/
 /supabase/deploy-bundle.sql
 /supabase/deploy-m7-only.sql
 /supabase/deploy-grants-only.sql
+/.next-e2e/
+/.local-data-preview/
+/supabase/deploy-m8-only.sql

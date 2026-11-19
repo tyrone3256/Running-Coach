@@ -10,6 +10,7 @@ Coach lari personal (PWA, Bahasa Indonesia). Spesifikasi: [docs/SPEC.md](docs/SP
 - [x] **M4** coach — sejak M7 berbasis aturan (tanpa AI/biaya): feedback per log, halaman Coach, lapor gejala
 - [x] **M5** PWA (install, offline), web push pagi/sore, cron Vercel, konfigurasi deploy, E2E Playwright
 - [x] **M6** Strava (opsional, **nonaktif** — input manual dipilih)
+- [x] **M8** tab Target (race berikutnya, PB 5K/10K/21K/42K, pace, kendala) → analisis kebugaran & peluang target → ubah target / kalibrasi pace / generator program 5K–FM; login password
 - [x] **M7** input manual seperti ringkasan Huawei Health/Strava (zona HR, split per km, elevasi, kalori, Training Effect…), coach berbasis aturan, AI dihapus
 
 ## Jalankan lokal
@@ -44,6 +45,19 @@ npm run build && npm run test:e2e   # Playwright di build produksi (memakai Edge
 - Dipicu otomatis setelah simpan log, check-in, dan saat membuka **Hari ini** (sesi terlewat, ACWR).
 - **Program → Perubahan program**: riwayat + diff sebelum/sesudah, setujui/tolak perubahan besar, revert.
 - **Program → Input hasil tes**: tes 30′ / 10K TT → usulan LTHR + pace (atau LTHR saja).
+
+## Target & program otomatis (M8)
+
+Tab **Target** (menu bawah):
+1. Isi **race berikutnya** (nama, kategori 5K/10K/HM/FM, tanggal, target), **performa sekarang** (PB tiap jarak — boleh kosong — dan tanggalnya, pace easy, km/minggu, long run terpanjang, hari lari, hari long run) dan **kendala** (HR 170, panas, cedera, catatan) → **Simpan & analisis**.
+2. Analisis: VDOT dari PB terbaik (PB >12 bulan dikoreksi), prediksi 5K–FM, dan penilaian target: *dalam jangkauan / realistis / ambisius / sangat ambisius* (perkiraan ±0,2 VDOT per minggu latihan — kasar, ditampilkan apa adanya) + target cadangan.
+3. Aksi (semuanya usulan yang kamu **Setujui**, bisa di-revert):
+   - **Ubah target** race aktif — struktur program tetap, hanya sesi pace race yang berubah.
+   - **Kalibrasi pace latihan** ke kebugaran (bila beda ≥1 VDOT) — pace race tidak disentuh.
+   - **Buat program race ini** — generator (`lib/plan/generate.ts`): transisi pasca race, Base → Build → Spesifik → Peak → Taper, recovery tiap minggu ke-4, maks 2 sesi keras & tidak berurutan (hari kualitas dipilih ≥48 jam dari long run), tangga menit Z4, long run +2 km/minggu sampai batas jarak, volume ≤ +10%/3 minggu, taper sesuai jarak. Disambung setelah race aktif (minggu W28…), program HM tetap utuh.
+- Pace latihan dari kebugaran sekarang; sesi pace race memakai kode **RP** (target race baru) — HM Excel tetap memakai **H**.
+- Login: **email + password** (atur di ⚙ Pengaturan → Password setelah login pertama lewat link email). Sesi tersimpan sampai Keluar.
+- E2E memakai build terpisah tanpa Supabase (`scripts/e2e-server.mjs`, folder `.next-e2e`). Preview lokal tanpa login: konfigurasi `local-preview` (port 3200).
 
 ## Coach & input manual (M7)
 

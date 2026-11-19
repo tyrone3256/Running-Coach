@@ -8,6 +8,8 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  // build E2E memakai folder terpisah (scripts/e2e-server.mjs) supaya tidak tercampur build Supabase
+  distDir: process.env.NEXT_DIST_DIR || ".next",
   async headers() {
     return [
       { source: "/:path*", headers: securityHeaders },

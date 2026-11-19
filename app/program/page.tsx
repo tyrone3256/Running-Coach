@@ -3,24 +3,38 @@ import { getPlan } from "@/lib/data/plan";
 import { DAY_LABEL, addDays, formatDateId, todayIso } from "@/lib/dates";
 import { PHASE_COLOR, SESSION_LABEL } from "@/lib/labels";
 import { Badge } from "@/components/ui/badge";
-import type { Phase } from "@/lib/engine/types";
+import { RACE_LABEL, type Phase } from "@/lib/engine/types";
+import { formatRaceTime } from "@/lib/plan/time";
 
 export const dynamic = "force-dynamic";
 
-export default async function ProgramPage() {
+export default async function ProgramPage({ searchParams }: { searchParams: Promise<{ race?: string }> }) {
   const plan = await getPlan();
+  const sp = await searchParams;
   const today = todayIso();
-  const phases = [...new Set(plan.weeks.map((w) => w.phase))] as Phase[];
-  const total = plan.weeks.reduce((a, w) => a + w.planned_km, 0);
+  const race = plan.races.find((r) => r.id === sp.race) ?? plan.race;
+  const weeks = plan.weeks.filter((w) => w.week >= race.first_week && w.week <= race.last_week);
+  const phases = [...new Set(weeks.map((w) => w.phase))] as Phase[];
+  const total = weeks.reduce((a, w) => a + w.planned_km, 0);
   const current = [...plan.weeks].reverse().find((w) => w.start <= today && addDays(w.start, 6) >= today);
 
   return (
     <main className="flex flex-col gap-4">
       <header>
-        <h1 className="text-2xl font-semibold">Program 27 minggu</h1>
+        <h1 className="text-2xl font-semibold">Program {RACE_LABEL[race.distance]} · {weeks.length} minggu</h1>
         <p className="text-sm text-muted-foreground tabular-nums">
-          HM sub-1:45 · {formatDateId(plan.race.date)} · total {total.toLocaleString("id-ID")} km rencana · plan v{plan.planVersion}
+          {race.name} · target {formatRaceTime(race.goal_time_s)} · {formatDateId(race.date)} · total {Math.round(total).toLocaleString("id-ID")} km · plan v{plan.planVersion}
         </p>
+        {plan.races.length > 1 && (
+          <p className="mt-1 flex flex-wrap gap-2 text-xs">
+            {plan.races.map((r) => (
+              <Link key={r.id} href={`/program?race=${r.id}`}
+                className={`rounded-full border px-2 py-0.5 ${r.id === race.id ? "border-primary bg-primary text-primary-foreground" : ""}`}>
+                {RACE_LABEL[r.distance]} {r.date.slice(0, 7)}
+              </Link>
+            ))}
+          </p>
+        )}
         <p className="mt-1 flex gap-4 text-sm">
           <Link href="/program/changes" className="underline">Perubahan program</Link>
           <Link href="/program/test" className="underline">Input hasil tes</Link>
@@ -37,7 +51,7 @@ export default async function ProgramPage() {
       </ul>
 
       <ol className="flex flex-col gap-2">
-        {plan.weeks.map((w) => {
+        {weeks.map((w) => {
           const sessions = plan.sessions.filter((s) => s.week === w.week).sort((a, b) => a.date.localeCompare(b.date));
           const isCurrent = current?.week === w.week;
           return (

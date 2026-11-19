@@ -4,6 +4,8 @@ import path from "node:path";
 import seed from "@/seed/plan.json";
 import type { Notice, PlanChangeRecord, PlanSnapshot, SafetyEvent } from "@/lib/engine/model";
 import type { PlanSeed } from "@/lib/engine/types";
+import { normalizeSnapshot, seedRace, withRp } from "@/lib/plan/defaults";
+import type { PlanningProfile } from "@/lib/plan/profile";
 import { createSupabaseServer, currentUserId, supabaseConfigured } from "@/lib/supabase/server";
 import { vdotFromRace } from "@/lib/engine/vdot";
 
@@ -20,6 +22,8 @@ export interface PlanStore {
   addClearance(at: string, note: string | null): Promise<void>;
   listSafetyEvents(): Promise<SafetyEvent[]>;
   addSafetyEvent(e: SafetyEvent): Promise<void>;
+  getPlanning(): Promise<PlanningProfile | null>;
+  savePlanning(p: PlanningProfile): Promise<void>;
 }
 
 export function seedSnapshot(): PlanSnapshot {
@@ -28,9 +32,10 @@ export function seedSnapshot(): PlanSnapshot {
     version: 1,
     weeks: p.weeks,
     sessions: p.sessions,
-    paceProfile: { ...p.pace_profile, vdot_ref: Math.round(vdotFromRace(p.meta.race.distance_m, p.meta.race.goal_time_s) * 10) / 10 },
+    paceProfile: withRp({ ...p.pace_profile, vdot_ref: Math.round(vdotFromRace(p.meta.race.distance_m, p.meta.race.goal_time_s) * 10) / 10 }),
     lthr: p.meta.lthr,
     lthrSource: "estimate",
+    races: [seedRace()],
   };
 }
 
@@ -41,6 +46,7 @@ interface FileDb {
   notices: Array<Notice & { created_at: string }>;
   clearances: Array<{ at: string; note: string | null }>;
   safety_events?: SafetyEvent[];
+  planning?: PlanningProfile | null;
 }
 
 export function filePlanStore(dir = process.env.LOCAL_DATA_DIR ?? path.join(process.cwd(), ".local-data")): PlanStore {
@@ -60,7 +66,7 @@ export function filePlanStore(dir = process.env.LOCAL_DATA_DIR ?? path.join(proc
   return {
     async getActive() {
       const db = await load();
-      return db.versions.length ? db.versions[db.versions.length - 1].snapshot : seedSnapshot();
+      return db.versions.length ? normalizeSnapshot(db.versions[db.versions.length - 1].snapshot) : seedSnapshot();
     },
     async saveVersion(snapshot, reason) {
       const db = await load();
@@ -110,6 +116,14 @@ export function filePlanStore(dir = process.env.LOCAL_DATA_DIR ?? path.join(proc
       (db.safety_events ??= []).push(e);
       await save(db);
     },
+    async getPlanning() {
+      return (await load()).planning ?? null;
+    },
+    async savePlanning(p) {
+      const db = await load();
+      db.planning = p;
+      await save(db);
+    },
   };
 }
 
@@ -139,7 +153,7 @@ function supabasePlanStore(): PlanStore {
   return {
     async getActive() {
       const client = await db();
-      const pv = check(await client.from("plan_versions").select("id, version").eq("is_active", true).maybeSingle()) as Row | null;
+      const pv = check(await client.from("plan_versions").select("id, version, meta").eq("is_active", true).maybeSingle()) as Row | null;
       if (!pv) return seedSnapshot();
       const [pace, hr, weeks, sessions] = await Promise.all([
         client.from("pace_profile").select("*").order("version", { ascending: false }).limit(1).single(),
@@ -153,8 +167,9 @@ function supabasePlanStore(): PlanStore {
         mp_hmp_km: null, segments_km: Number(s.planned_km), segments: s.segments, notes: s.notes ?? [],
         source_text: s.source_text ?? "", status: s.status === "planned" ? undefined : s.status, moved_from: s.moved_from,
       }));
-      return {
+      return normalizeSnapshot({
         version: pv.version,
+        races: (pv.meta as Row | null)?.races ?? [],
         weeks: (weeks as unknown as Row[]).map((w) => ({
           week: w.week, start: w.start_date, phase: w.phase, is_recovery_week: w.is_recovery_week, is_taper: w.is_taper,
           planned_km: Number(w.planned_km), color: w.color, guardrail_exception: w.guardrail_exception,
@@ -167,14 +182,14 @@ function supabasePlanStore(): PlanStore {
         })(),
         lthr: hr.lthr,
         lthrSource: hr.source,
-      } as PlanSnapshot;
+      } as PlanSnapshot);
     },
     async saveVersion(snap, reason) {
       const client = await db();
       const user_id = await uid();
       const cur = await this.getActive();
       const pv = check(await client.from("plan_versions").insert({
-        user_id, version: snap.version, parent_version: cur.version, reason, is_active: false,
+        user_id, version: snap.version, parent_version: cur.version, reason, is_active: false, meta: { races: snap.races },
       }).select("id").single()) as Row;
       check(await client.from("plan_weeks").insert(snap.weeks.map((w) => ({
         user_id, plan_version_id: pv.id, week: w.week, start_date: w.start, phase: w.phase,
@@ -241,6 +256,13 @@ function supabasePlanStore(): PlanStore {
     },
     async addSafetyEvent(e) {
       check(await (await db()).from("safety_events").insert({ user_id: await uid(), ...e }));
+    },
+    async getPlanning() {
+      const r = check(await (await db()).from("athlete_profile").select("planning").maybeSingle()) as Row | null;
+      return (r?.planning as PlanningProfile | null) ?? null;
+    },
+    async savePlanning(p) {
+      check(await (await db()).from("athlete_profile").update({ planning: p, updated_at: new Date().toISOString() }).eq("user_id", await uid()));
     },
   };
 }

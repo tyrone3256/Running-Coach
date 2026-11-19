@@ -16,6 +16,7 @@ export const SESSION_LABEL: Record<SessionType, string> = {
   long_progressive: "Long run progresif",
   long_race_sim: "Simulasi race",
   shakeout: "Shake-out (H-1)",
+  race_pace: "Pace race",
   race: "🏆 RACE DAY",
 };
 
@@ -32,7 +33,7 @@ export const KIND_LABEL: Record<SegmentKind, string> = {
 
 export const INTENSITY_LABEL: Record<Intensity, string> = {
   WU: "WU/CD", E: "Easy", REC: "Recovery", L: "Long", M: "Marathon pace", H: "HM pace",
-  T: "Tempo", N: "4×4 / VO2", JOG: "Jog rec 4×4", TJOG: "Jog rec tempo", S: "Strides",
+  T: "Tempo", N: "4×4 / VO2", JOG: "Jog rec 4×4", TJOG: "Jog rec tempo", S: "Strides", RP: "Pace race",
   HILL: "Hill sprint", TEST: "Tes",
 };
 

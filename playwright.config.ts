@@ -22,10 +22,10 @@ export default defineConfig({
     serviceWorkers: "allow",
   },
   webServer: {
-    command: `npx next start -p ${PORT}`,
+    command: `node scripts/e2e-server.mjs ${PORT}`,
     url: `http://localhost:${PORT}/offline`,
     reuseExistingServer: false,
-    timeout: 60_000,
+    timeout: 240_000, // termasuk build terpisah
     env: {
       LOCAL_DATA_DIR: dataDir,
       ALLOW_LOCAL_STORE: "1",

@@ -4,6 +4,7 @@ import { formatHr, zoneTable } from "@/lib/engine/pace";
 import { PushSettings } from "@/components/push-settings";
 import { InstallApp } from "@/components/install-app";
 import { SignOutButton } from "@/components/sign-out-button";
+import { PasswordSettings } from "@/components/password-settings";
 import { supabaseConfigured } from "@/lib/supabase/server";
 import { StravaSettings } from "@/components/strava-settings";
 import { stravaConfigured } from "@/lib/strava/server";
@@ -60,6 +61,7 @@ export default async function SettingsPage({ searchParams }: { searchParams: Pro
           <Link href="/program/test" className="underline">Input hasil tes</Link>
         </p>
       </section>
+      {supabaseConfigured() && <PasswordSettings />}
       {supabaseConfigured() && <SignOutButton />}
     </main>
   );

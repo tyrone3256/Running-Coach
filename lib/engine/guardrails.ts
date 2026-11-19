@@ -7,6 +7,7 @@ import { isActive } from "./snapshot";
 import { daysBetween } from "@/lib/dates";
 import type { WorkoutLog } from "@/lib/log/schema";
 
+/** Program Excel: taper W25–W27 (kini dibaca dari flag is_taper per minggu). */
 export const TAPER_FROM_WEEK = 25;
 export const MAX_HARD_PER_WEEK = 2;
 export const VOLUME_MAX_INCREASE = 0.1;
@@ -27,6 +28,11 @@ export function weekKm(s: PlanSnapshot, week: number): number {
   return activeSessions(s).filter((x) => x.week === week).reduce((a, x) => a + x.planned_km, 0);
 }
 
+/** Km latihan (tanpa race itu sendiri) — dasar aturan kenaikan volume. */
+export function trainingKm(s: PlanSnapshot, week: number): number {
+  return activeSessions(s).filter((x) => x.week === week && x.type !== "race").reduce((a, x) => a + x.planned_km, 0);
+}
+
 export function planViolations(s: PlanSnapshot): Violation[] {
   const out: Violation[] = [];
   const act = activeSessions(s);
@@ -38,12 +44,14 @@ export function planViolations(s: PlanSnapshot): Violation[] {
         message: `W${String(w.week).padStart(2, "0")}: ${hard.length} sesi keras (maks ${MAX_HARD_PER_WEEK})`,
       });
     }
-    // volume ≤ +10% vs rata-rata 3 minggu sebelumnya, kecuali minggu setelah minggu pemulihan
+    // volume latihan ≤ +10% vs rata-rata 3 minggu sebelumnya. Tidak dinilai setelah minggu pemulihan,
+    // dan tidak saat jendela 3 minggu masih memuat taper/transisi (membangun ulang setelah race).
     const prev = s.weeks.filter((x) => x.week < w.week && x.week >= w.week - 3);
     const prevWeek = s.weeks.find((x) => x.week === w.week - 1);
-    if (prev.length === 3 && !prevWeek?.is_recovery_week) {
-      const avg = prev.reduce((a, x) => a + weekKm(s, x.week), 0) / 3;
-      const km = weekKm(s, w.week);
+    const reset = prev.some((x) => x.is_taper || x.phase === "Transisi");
+    if (prev.length === 3 && !prevWeek?.is_recovery_week && !reset) {
+      const avg = prev.reduce((a, x) => a + trainingKm(s, x.week), 0) / 3;
+      const km = trainingKm(s, w.week);
       if (km > avg * (1 + VOLUME_MAX_INCREASE) + 0.05) {
         out.push({
           code: "volume_jump", key: `W${w.week}`, amount: km / avg,
@@ -67,7 +75,8 @@ export function planViolations(s: PlanSnapshot): Violation[] {
 /** Apakah perubahan menaikkan beban di minggu taper (R11)? */
 function taperIncreases(before: PlanSnapshot, after: PlanSnapshot, changes: Change[], today: string): string[] {
   const msgs: string[] = [];
-  const taperWeek = (w: number) => w >= TAPER_FROM_WEEK;
+  // minggu taper ditandai di plan (Excel: W25–W27; program buatan generator: sesuai jaraknya)
+  const taperWeek = (w: number) => !!before.weeks.find((x) => x.week === w)?.is_taper || !!after.weeks.find((x) => x.week === w)?.is_taper;
   for (const ch of changes) {
     if (ch.op !== "update_session") continue;
     const a = before.sessions.find((x) => x.id === ch.id)!;

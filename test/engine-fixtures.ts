@@ -3,6 +3,7 @@ import type { PlanSeed } from "@/lib/engine/types";
 import type { Checkin, EngineState, PlanChangeRecord, PlanSnapshot } from "@/lib/engine/model";
 import { workoutLogSchema, type WorkoutLog, type WorkoutLogInput } from "@/lib/log/schema";
 import { enrich } from "@/lib/data/store";
+import { seedRace, withRp } from "@/lib/plan/defaults";
 
 const plan = seed as unknown as PlanSeed;
 
@@ -11,9 +12,10 @@ export function baseSnapshot(): PlanSnapshot {
     version: 1,
     weeks: plan.weeks,
     sessions: plan.sessions,
-    paceProfile: { ...plan.pace_profile, vdot_ref: 42.6 },
+    paceProfile: withRp({ ...plan.pace_profile, vdot_ref: 42.6 }),
     lthr: 170,
     lthrSource: "estimate" as const,
+    races: [seedRace()],
   });
 }
 

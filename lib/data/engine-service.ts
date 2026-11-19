@@ -154,3 +154,18 @@ export async function clearHold(note: string | null) {
 export async function recordSafetyEvent(reasons: string[], date = todayIso()) {
   await getPlanStore().addSafetyEvent({ created_at: new Date().toISOString(), date, reasons, source: "chat" });
 }
+
+/** Usulan perubahan besar dari tab Target (target baru, kalibrasi, program baru): pending atau blocked. */
+export async function proposeChange(p: Proposal): Promise<PlanChangeRecord> {
+  const state = await loadState();
+  const preview = applyProposal(state.snapshot, p.changes);
+  const v = validateChange(state.snapshot, preview.after, p.changes, state.today);
+  const ps = getPlanStore();
+  // usulan lama dengan key sama yang masih pending diganti (mis. buat ulang program)
+  for (const c of state.changes.filter((c) => c.key.startsWith(`${p.key}:`) && c.mode === "pending")) await ps.updateChange(c.id, { mode: "rejected" });
+  const rec = v.ok
+    ? record(p, "pending", state.today, { diff: preview.diff, key: `${p.key}:${Date.now()}` })
+    : record(p, "blocked", state.today, { diff: preview.diff, blocked_by: v.violations, key: `${p.key}:${Date.now()}` });
+  await ps.saveChange(rec);
+  return rec;
+}

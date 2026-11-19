@@ -1,14 +1,14 @@
 "use client";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { CalendarDays, Sun, NotebookPen, LineChart, MessageCircle } from "lucide-react";
+import { CalendarDays, Sun, NotebookPen, Flag, MessageCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const ITEMS = [
   { href: "/", label: "Hari ini", icon: Sun, ready: true },
   { href: "/program", label: "Program", icon: CalendarDays, ready: true },
   { href: "/log", label: "Log", icon: NotebookPen, ready: true },
-  { href: "/insights", label: "Insights", icon: LineChart, ready: false },
+  { href: "/target", label: "Target", icon: Flag, ready: true },
   { href: "/coach", label: "Coach", icon: MessageCircle, ready: true },
 ];
 

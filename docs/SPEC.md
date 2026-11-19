@@ -183,6 +183,15 @@ Setiap rule punya unit test minimal: 1 kasus memicu, 1 kasus tidak, 1 kasus bata
 - Skema log ditambah kolom ringkasan Huawei/Strava (semua opsional): `elapsed_s`, `elevation_gain_m`, `calories_kcal`, `avg_stride_cm`, `total_steps`, `training_load`, `aerobic_te`, `anaerobic_te`, `recovery_h`, `splits[]` (migrasi `20261123000000_m7_huawei_fields.sql`). Kadens <120 dianggap per-kaki dan dikali 2.
 - Waktu di zona hanya bermakna bila batas zona di jam/aplikasi disamakan dengan zona program (%LTHR); petunjuknya di Pengaturan.
 
+### 7.5 M8 — Target & program otomatis (keputusan atlet)
+- Pace latihan dihitung dari **kebugaran sekarang**; hanya sesi pace race memakai target. Peringatan bila target jauh dari kebugaran.
+- Ubah target HM sekarang: **struktur Excel tetap**, hanya kode H + target race (usulan large).
+- Volume program baru **otomatis**: dari km/minggu (isian atau log 4 minggu), puncak per jarak (5K 40, 10K 45, HM 55, FM 70; cedera −15%).
+- Model: `PlanSnapshot.races[]` (id, jarak, tanggal, target, first/last_week, pace_code). Operasi baru `set_race_goal` & `set_program_tail` (dengan inverse → revert). Disimpan di `plan_versions.meta.races` (Supabase).
+- Guardrail volume kini memakai km latihan tanpa race, dan tidak dinilai saat jendela 3 minggu memuat taper/transisi (membangun ulang setelah race). Taper dibaca dari flag minggu, bukan konstanta W25.
+- Batas minggu `plan_weeks` dilonggarkan ke 1–520 (migrasi `20261125000000_m8_planning.sql`); profil Target di `athlete_profile.planning`.
+- Login password ditambahkan (magic link tetap sebagai cadangan, `shouldCreateUser: false`).
+
 ## 8. Hasil parsing & keputusan
 
 **Status (2026-11-17):** D1–D4, D7–D11 diterapkan sesuai usulan (D1 = kode `TJOG` 390–420). **D5 & D6 masih terbuka** — W12 dan W27 ditandai `guardrail_exception: pending_decision` di seed dan tampil ⚠ di layar Program.

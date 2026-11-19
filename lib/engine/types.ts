@@ -1,7 +1,7 @@
 // Tipe domain — dipakai engine (murni), data layer, dan UI.
 
 export const INTENSITY_CODES = [
-  "WU", "E", "REC", "L", "M", "H", "T", "N", "JOG", "TJOG", "S", "HILL", "TEST",
+  "WU", "E", "REC", "L", "M", "H", "T", "N", "JOG", "TJOG", "S", "RP", "HILL", "TEST",
 ] as const;
 export type Intensity = (typeof INTENSITY_CODES)[number];
 
@@ -40,12 +40,33 @@ export interface Segment {
   src_pace?: string | null;
 }
 
-export type DayKey = "tue" | "wed" | "thu" | "sat" | "sun";
+export type DayKey = "mon" | "tue" | "wed" | "thu" | "fri" | "sat" | "sun";
+export const DAY_KEYS: DayKey[] = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
 
 export type SessionType =
   | "easy" | "easy_strides" | "easy_hill" | "recovery" | "vo2_4x4" | "tempo" | "hm_pace"
   | "fartlek" | "test_30min" | "tt_10k" | "long" | "long_with_pace" | "long_progressive"
-  | "long_race_sim" | "shakeout" | "race";
+  | "long_race_sim" | "shakeout" | "race" | "race_pace";
+
+/** Kategori race yang didukung generator program. */
+export type RaceDistance = "5k" | "10k" | "hm" | "fm";
+export const RACE_DISTANCE_M: Record<RaceDistance, number> = { "5k": 5000, "10k": 10000, hm: 21097.5, fm: 42195 };
+export const RACE_LABEL: Record<RaceDistance, string> = { "5k": "5K", "10k": "10K", hm: "Half Marathon", fm: "Full Marathon" };
+
+/** Satu race dalam rangkaian program (program = minggu first_week..last_week). */
+export interface RaceTarget {
+  id: string;
+  name: string;
+  distance: RaceDistance;
+  distance_m: number;
+  date: string;
+  goal_time_s: number;
+  first_week: number;
+  last_week: number;
+  /** kode pace race untuk program ini (HM Excel: H; program buatan generator: RP) */
+  pace_code: "H" | "M" | "RP";
+  result_time_s?: number | null;
+}
 
 export type Phase = "Transisi" | "Base" | "Build" | "Spesifik" | "Peak" | "Taper";
 

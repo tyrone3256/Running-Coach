@@ -12,7 +12,7 @@ export const HR_ZONES_PCT: Record<ZoneName, [number, number]> = {
   Z5: [101, 106],
 };
 
-const PACED = new Set<string>(["WU", "E", "REC", "L", "M", "H", "T", "N", "JOG", "TJOG", "S"]);
+const PACED = new Set<string>(["WU", "E", "REC", "L", "M", "H", "T", "N", "JOG", "TJOG", "S", "RP"]);
 
 export function isPaced(code: string): code is PacedCode {
   return PACED.has(code);

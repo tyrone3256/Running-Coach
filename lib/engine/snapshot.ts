@@ -44,6 +44,14 @@ export function applyChange(s: PlanSnapshot, ch: Change): PlanSnapshot {
       sessions.sort((a, b) => a.date.localeCompare(b.date));
       return { ...s, sessions, weeks: recomputeWeeks(s, sessions) };
     }
+    case "set_race_goal":
+      return { ...s, races: s.races.map((r) => (r.id === ch.race_id ? { ...r, goal_time_s: ch.goal_time_s } : r)) };
+    case "set_program_tail": {
+      const sessions = [...s.sessions.filter((x) => x.week < ch.from_week), ...ch.sessions]
+        .sort((a, b) => a.date.localeCompare(b.date));
+      const weeks = [...s.weeks.filter((w) => w.week < ch.from_week), ...ch.weeks].sort((a, b) => a.week - b.week);
+      return { ...s, sessions, weeks, races: ch.races };
+    }
   }
 }
 
@@ -95,6 +103,19 @@ export function inverseOf(before: PlanSnapshot, changes: Change[]): Change[] {
         inv.unshift({ op: "update_session", id: ch.id, patch });
         break;
       }
+      case "set_race_goal": {
+        const old = cur.races.find((r) => r.id === ch.race_id);
+        if (old) inv.unshift({ op: "set_race_goal", race_id: ch.race_id, goal_time_s: old.goal_time_s });
+        break;
+      }
+      case "set_program_tail":
+        inv.unshift({
+          op: "set_program_tail", from_week: ch.from_week,
+          weeks: cur.weeks.filter((w) => w.week >= ch.from_week),
+          sessions: cur.sessions.filter((x) => x.week >= ch.from_week),
+          races: cur.races,
+        });
+        break;
     }
     cur = applyChange(cur, ch);
   }
@@ -134,7 +155,33 @@ export function diffSnapshots(a: PlanSnapshot, b: PlanSnapshot): DiffItem[] {
       out.push({ kind: "pace", id: `${c}-base`, label: `Pace ${c} (fase Base)`, before: formatPaceRange(xb), after: formatPaceRange(yb) });
     }
   }
-  const ids = new Set([...a.sessions.map((s) => s.id), ...b.sessions.map((s) => s.id)]);
+  for (const r of b.races) {
+    const o = a.races.find((x) => x.id === r.id);
+    if (!o) out.push({ kind: "race", id: r.id, label: `Race baru`, before: "—", after: `${r.name} · ${r.date} · target ${fmtTime(r.goal_time_s)}` });
+    else if (o.goal_time_s !== r.goal_time_s) out.push({ kind: "race", id: r.id, label: `Target ${r.name}`, before: fmtTime(o.goal_time_s), after: fmtTime(r.goal_time_s) });
+  }
+  for (const r of a.races) {
+    if (!b.races.some((x) => x.id === r.id)) out.push({ kind: "race", id: r.id, label: "Race dihapus", before: `${r.name} · ${r.date}`, after: "—" });
+  }
+  // sesi yang ditambah/dihapus seluruhnya (program baru) diringkas per minggu
+  const aIds = new Set(a.sessions.map((s) => s.id));
+  const bIds = new Set(b.sessions.map((s) => s.id));
+  const summarize = (list: Session[]) => {
+    const byWeek = new Map<number, Session[]>();
+    for (const s of list) byWeek.set(s.week, [...(byWeek.get(s.week) ?? []), s]);
+    return [...byWeek.entries()].sort((x, y) => x[0] - y[0]);
+  };
+  for (const [w, ss] of summarize(b.sessions.filter((s) => !aIds.has(s.id)))) {
+    const wk = b.weeks.find((x) => x.week === w);
+    out.push({
+      kind: "session", id: `W${w}-add`, label: `W${String(w).padStart(2, "0")}${wk ? ` · ${wk.phase}` : ""}`, before: "—",
+      after: `${ss.length} sesi · ${Math.round(ss.reduce((t, s) => t + s.planned_km, 0))} km${ss.some((s) => s.is_hard) ? ` · keras: ${ss.filter((s) => s.is_hard).map((s) => SESSION_LABEL[s.type]).join(", ")}` : ""}`,
+    });
+  }
+  for (const [w, ss] of summarize(a.sessions.filter((s) => !bIds.has(s.id)))) {
+    out.push({ kind: "session", id: `W${w}-del`, label: `W${String(w).padStart(2, "0")}`, before: `${ss.length} sesi`, after: "dihapus" });
+  }
+  const ids = new Set([...a.sessions.filter((s) => bIds.has(s.id)).map((s) => s.id)]);
   for (const id of ids) {
     const x = a.sessions.find((s) => s.id === id);
     const y = b.sessions.find((s) => s.id === id);
@@ -145,4 +192,9 @@ export function diffSnapshots(a: PlanSnapshot, b: PlanSnapshot): DiffItem[] {
     out.push({ kind: "session", id, label: id, before, after: before === after ? `${after} (segmen diubah)` : after });
   }
   return out;
+}
+
+function fmtTime(sec: number): string {
+  const h = Math.floor(sec / 3600), m = Math.floor((sec % 3600) / 60), x = Math.round(sec % 60);
+  return h ? `${h}:${String(m).padStart(2, "0")}:${String(x).padStart(2, "0")}` : `${m}:${String(x).padStart(2, "0")}`;
 }

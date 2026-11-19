@@ -12,7 +12,7 @@ const PRIORITY: Record<string, number> = {
 /** Ukuran minimum menurut aturan "kecil vs besar" di SPEC. */
 export function computeSize(before: PlanSnapshot, changes: Change[]): Size {
   for (const ch of changes) {
-    if (ch.op === "set_lthr" || ch.op === "set_pace_profile") return "large";
+    if (ch.op === "set_lthr" || ch.op === "set_pace_profile" || ch.op === "set_race_goal" || ch.op === "set_program_tail") return "large";
     if (ch.op === "shift_pace" && Math.abs(ch.delta_s) > 10) return "large";
     if (ch.op === "update_session") {
       const old = before.sessions.find((s) => s.id === ch.id);

@@ -18,6 +18,7 @@ export const PURPOSE: Record<SessionType, string> = {
   long_race_sim: "Simulasi race: perlengkapan, nutrisi, pacing.",
   shakeout: "Shake-out H-1: pendek & ringan.",
   race: "Race day.",
+  race_pace: "Membiasakan pace target race (RP) dalam rep terkontrol.",
 };
 
 export const HR170_NORMAL = [

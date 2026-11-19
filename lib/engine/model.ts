@@ -1,5 +1,5 @@
 // Model adaptive engine. Semua fungsi engine murni: (state, trigger) → hasil, tanpa I/O.
-import type { PacedCode, PaceProfile, PaceRange, Session, Week } from "./types";
+import type { PacedCode, PaceProfile, PaceRange, RaceTarget, Session, Week } from "./types";
 import type { WorkoutLog } from "@/lib/log/schema";
 
 export type RuleId =
@@ -13,6 +13,8 @@ export interface PlanSnapshot {
   paceProfile: PaceProfile;
   lthr: number;
   lthrSource: "estimate" | "test";
+  /** rangkaian race; race aktif = race pertama yang tanggalnya >= hari ini */
+  races: RaceTarget[];
 }
 
 export type SessionPatch = Partial<Pick<
@@ -23,7 +25,10 @@ export type Change =
   | { op: "shift_pace"; codes: PacedCode[]; delta_s: number }
   | { op: "set_pace_profile"; default: Partial<Record<PacedCode, PaceRange>>; base_phase: Partial<Record<PacedCode, PaceRange>>; vdot_ref?: number }
   | { op: "set_lthr"; lthr: number; source: "estimate" | "test" }
-  | { op: "update_session"; id: string; patch: SessionPatch };
+  | { op: "update_session"; id: string; patch: SessionPatch }
+  | { op: "set_race_goal"; race_id: string; goal_time_s: number }
+  /** ganti semua minggu >= from_week (program race berikutnya), plus daftar race */
+  | { op: "set_program_tail"; from_week: number; weeks: Week[]; sessions: Session[]; races: RaceTarget[] };
 
 export type Size = "small" | "large";
 
@@ -83,7 +88,7 @@ export interface PlanChangeRecord {
 }
 
 export interface DiffItem {
-  kind: "session" | "pace" | "lthr";
+  kind: "session" | "pace" | "lthr" | "race";
   id: string;
   label: string;
   before: string;

@@ -62,3 +62,26 @@ test("tidak ada halaman yang melebar dari layar HP", async ({ page }) => {
     expect(doc, p).toBeLessThanOrEqual(vw);
   }
 });
+
+test("Target: isi race berikutnya & PB → analisis → buat program → setujui → muncul di Program", async ({ page }) => {
+  await page.goto("/target");
+  await expect(page.getByRole("heading", { name: "Target" })).toBeVisible();
+  await page.getByPlaceholder("Jakarta Marathon").fill("Jakarta Marathon");
+  await page.locator("select").first().selectOption("fm");
+  await page.locator('input[type="date"]').first().fill("2027-10-24");
+  await page.getByPlaceholder("3:30:00").fill("3:30");
+  await page.getByLabel("PB 21K (HM)", { exact: true }).fill("1:50:00");
+  await page.getByLabel("PB 10K", { exact: true }).fill("50:00");
+  await page.getByPlaceholder("6:10").fill("6:10");
+  await page.getByPlaceholder(/^\d+$/).first().fill("45");
+  await page.getByRole("button", { name: "Simpan & analisis" }).click();
+  await expect(page.getByText("Analisis kebugaran")).toBeVisible();
+  await expect(page.getByText(/program mulai/)).toBeVisible();
+  await page.getByRole("button", { name: "Buat program race ini" }).click();
+  await expect(page.getByText(/Menunggu persetujuanmu · Program Full Marathon/)).toBeVisible();
+  await page.getByRole("button", { name: "Setujui" }).first().click();
+  await expect(page.getByText(/Menunggu persetujuanmu · Program Full Marathon/)).toHaveCount(0);
+  await page.goto("/program");
+  await page.getByRole("link", { name: /Full Marathon 2027-10/ }).click();
+  await expect(page.getByRole("heading", { name: /Program Full Marathon/ })).toBeVisible();
+});

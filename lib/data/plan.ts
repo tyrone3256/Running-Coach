@@ -1,7 +1,9 @@
 import "server-only";
 import { cache } from "react";
 import seed from "@/seed/plan.json";
-import type { HrProfile, PaceProfile, PlanSeed, Session, Week } from "@/lib/engine/types";
+import type { HrProfile, PaceProfile, PlanSeed, RaceTarget, Session, Week } from "@/lib/engine/types";
+import { activeRace } from "@/lib/plan/defaults";
+import { todayIso } from "@/lib/dates";
 import { getPlanStore, seedSnapshot } from "@/lib/data/plan-store";
 import { supabaseConfigured } from "@/lib/supabase/server";
 import { isActive } from "@/lib/engine/snapshot";
@@ -10,7 +12,9 @@ export interface PlanView {
   source: "seed" | "local" | "supabase";
   planVersion: number;
   athlete: string;
-  race: PlanSeed["meta"]["race"];
+  /** race aktif (pertama yang belum lewat) */
+  race: RaceTarget;
+  races: RaceTarget[];
   programStart: string;
   weeks: Week[];
   /** semua sesi termasuk yang di-rest/skip (cek isActive) */
@@ -35,7 +39,8 @@ export const getPlan = cache(async (): Promise<PlanView> => {
     source,
     planVersion: snap.version,
     athlete: p.meta.athlete,
-    race: p.meta.race,
+    race: activeRace(snap, todayIso()),
+    races: snap.races,
     programStart: p.meta.program_start,
     weeks: snap.weeks,
     sessions: snap.sessions,
