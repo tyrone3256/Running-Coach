@@ -53,3 +53,4 @@ __pycache__/
 # bundel migrasi sekali pakai (dibuat ulang dari supabase/migrations)
 /supabase/deploy-bundle.sql
 /supabase/deploy-m7-only.sql
+/supabase/deploy-grants-only.sql

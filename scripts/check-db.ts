@@ -6,7 +6,7 @@ const db = createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.SUPAB
   auth: { persistSession: false, autoRefreshToken: false },
 });
 const tables = [
-  "allowed_emails", "profiles", "plan_versions", "plan_weeks", "sessions", "pace_profile", "hr_profile",
+  "allowed_emails", "athlete_profile", "plan_versions", "plan_weeks", "sessions", "pace_profile", "hr_profile",
   "workout_logs", "daily_checkins", "plan_changes", "engine_notices", "medical_clearances", "safety_events", "push_subscriptions",
 ];
 async function main() {
