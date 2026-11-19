@@ -19,6 +19,9 @@ for (const t of tables) {
 const { error } = await db.from("workout_logs").select("splits, aerobic_te, elapsed_s").limit(1);
 if (error) bad++;
 console.log("kolom M7".padEnd(20), error ? `BELUM: ${error.message}` : "ok");
+const m8 = await db.from("athlete_profile").select("planning").limit(1);
+if (m8.error) bad++;
+console.log("kolom M8 (planning)".padEnd(20), m8.error ? `BELUM: ${m8.error.message}` : "ok");
 process.exit(bad ? 1 : 0);
 }
 main();
