@@ -7,7 +7,14 @@ import { stdin, stdout } from "node:process";
 
 const FILE = ".env.local";
 const FIELDS = [
-  { key: "NEXT_PUBLIC_SUPABASE_URL", ask: "Supabase Project URL (Project Settings → API / Data API)", check: (v) => /^https:\/\/[a-z0-9-]+\.supabase\.co\/?$/.test(v) || "harus seperti https://xxxx.supabase.co" },
+  { key: "NEXT_PUBLIC_SUPABASE_URL", ask: "Supabase Project URL (Project Settings → API / Data API)", check: (v) => /^https:\/\/[a-z0-9-]+\.supabase\.co$/.test(v) || "harus seperti https://xxxx.supabase.co",
+    // terima juga ".../rest/v1/" dan alamat dashboard ".../dashboard/project/<ref>"
+    normalize: (v) => {
+      const dash = v.match(/supabase\.com\/dashboard\/project\/([a-z0-9]+)/);
+      if (dash) return `https://${dash[1]}.supabase.co`;
+      const m = v.match(/^(https:\/\/[a-z0-9-]+\.supabase\.co)/);
+      return m ? m[1] : v;
+    } },
   { key: "NEXT_PUBLIC_SUPABASE_ANON_KEY", ask: "Supabase anon / publishable key", check: (v) => v.length > 30 || "terlalu pendek — salin seluruh kunci" },
   { key: "SUPABASE_SERVICE_ROLE_KEY", ask: "Supabase service_role / secret key (RAHASIA)", check: (v) => v.length > 30 || "terlalu pendek — salin seluruh kunci" },
   { key: "OWNER_EMAIL", ask: "Email untuk login ke app", check: (v) => /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(v) || "format email tidak valid" },
@@ -22,7 +29,7 @@ for (const f of FIELDS) {
   const cur = get(f.key);
   for (;;) {
     const a = (await rl.question(`${f.ask}${cur ? " [sudah terisi, Enter = tetap]" : ""}:\n> `)).trim().replace(/^["']|["']$/g, "");
-    const v = a || cur;
+    const v = f.normalize && a ? f.normalize(a) : a || cur;
     const ok = v ? f.check(v) : "wajib diisi";
     if (ok === true) { values[f.key] = v; break; }
     console.log(`  ✗ ${ok}`);
